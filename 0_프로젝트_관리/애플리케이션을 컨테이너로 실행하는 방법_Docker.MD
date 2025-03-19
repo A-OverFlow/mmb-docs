@@ -73,6 +73,33 @@ References: https://docs.docker.com/reference/cli/docker/container/ls/
 
 # 4. 컨테이너를 배포하기 위해 설정해야 하는 서버 작업들
 
-# 5. 애플리케이션을 컨테이너로 배포하면 좋은 점
+# 5. 애플리케이션을 컨테이너로 배포하면 좋은점
 
 # 6. 컨테이너 안에서 생성되는 애플리케이션 로그를 확인하는 방법
+
+## 6-1. 도커 기본 로그 확인
+
+`docker logs` 명령어를 통해 도커 컨테이너의 표준 출력(stdout)과 표준 에러(stderr) 로그를 확인할 수 있습니다.  
+`-f` 옵션을 통해 실시간으로 로그를 모니터링할 수 있습니다.
+
+```
+docker logs -f {container_name or container_id}
+```
+
+References: https://docs.docker.com/reference/cli/docker/container/logs/
+
+## 6-2. 컨테이너 내부로 직접 접속하여 로그 확인
+
+일부 애플리케이션은 컨테이너 내부의 특정 디렉토리에 로그 파일을 저장하기 때문에  
+컨테이너 내부에서 해당 디렉토리에 접속하여 로그 파일을 확인할 수 있습니다.
+
+```
+docker exec -it {container_name or container_id} /bin/bash
+cd /var/log
+cat application.log
+```
+
+## 기타 방법으로 로그 확인
+
+컨테이너 로그를 파일로 저장하거나 도커 컨테이너를 특정 폴더와 마운트시켜 로그 파일을 직접 확인할 수 있습니다.  
+또한 컨테이너의 로그를 ELK, Fluentd, Loki와 같은 로그 수집 시스템과 연동하여 로그를 확인할 수 있습니다.
