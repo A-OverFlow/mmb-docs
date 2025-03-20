@@ -1,6 +1,6 @@
 # 무엇이든 물어 보세요
 
-![mmb.png](mmb.png)
+![mmb.png](9_이미지/mmb.png)
 
 - 무물보
 - mumulbo
