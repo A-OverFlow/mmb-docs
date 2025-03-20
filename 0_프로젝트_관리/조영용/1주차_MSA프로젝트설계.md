@@ -1,6 +1,6 @@
 # 결정된 사항
 
-![mumulbo_MVP.png](mumulbo_MVP.png)
+![mumulbo_MVP.png](images/mumulbo_MVP.png)
 
 - 1개의 프론트엔드 서비스
 - 2개 이상의 백엔드 서비스(마이크로 서비스)
