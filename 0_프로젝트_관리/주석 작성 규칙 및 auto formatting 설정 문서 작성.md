@@ -7,11 +7,11 @@
       원활하게 해주는 필수 요소.
 - 클래스, 메서드, 변수에 대한 주석 작성 예
     - 클래스 주석 예시
-        - ![class](../9_이미지/class.png)
+        - ![class](../9_images/class.png)
     - 메서드 주석 예시
-        - ![method](../9_이미지/method.png)
+        - ![method](../9_images/method.png)
     - 변수 주석 예시
-        - ![variable](../9_이미지/variable.png)
+        - ![variable](../9_images/variable.png)
 - IDE 에서 주석템플릿 설정
     - 링크로 대체 : https://ifuwanna.tistory.com/312
 
@@ -44,25 +44,25 @@
     - 특정 메소드나 클래스의 "책임"을 3초 안에 파악할 수 있도록 짧고 간결하게 적는다.
     - method는 파라미터/리턴값/예외에 대해 작성하고 구현내용은 주석으로 작성하지 않는다.
     - author , version , since 는 git을 사용하여 확인가능하여 제외함.
-    - ![mmjs](../9_이미지/mmjs.png)
+    - ![mmjs](../9_images/mmjs.png)
 - 오토 포맷팅 방법
     - 백앤드
         - 구글 스타일 가이드(설정파일)을 다운받아 IDE import 시킨다.
         - https://github.com/google/styleguide
         - 적용방법
-            - ![다운로드](../9_이미지/down.png)
-            - ![임포트](../9_이미지/import.png)
-            - ![저장](../9_이미지/save.png)
+            - ![다운로드](../9_images/down.png)
+            - ![임포트](../9_images/import.png)
+            - ![저장](../9_images/save.png)
     - 프론트앤드
         - 의존성 설치
             - npm install --save-dev eslint eslint-config-airbnb eslint-plugin-import
               eslint-plugin-react eslint-plugin-jsx-a11y eslint-plugin-react-hooks prettier
               eslint-config-prettier eslint-plugin-prettier
-            - ![의존성설치](../9_이미지/dependency.png)
+            - ![의존성설치](../9_images/dependency.png)
         - 프리티어 설정
-            - ![프리티어](../9_이미지/prettier_config.png)
+            - ![프리티어](../9_images/prettier_config.png)
         - eslint 설정
-            - ![eslint](../9_이미지/eslint_config.png)
+            - ![eslint](../9_images/eslint_config.png)
         - ide 설정(vscode workspace json 설정)
-            - ![ide설정](../9_이미지/vscode_config.png)
+            - ![ide설정](../9_images/vscode_config.png)
         - 코드 저장시 포맷팅, 코드검사(eslint) 실행되는것 확인

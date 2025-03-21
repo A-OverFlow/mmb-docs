@@ -1,6 +1,6 @@
 # 1. 각 언어(프레임워크)로 만들어진 애플리케이션을 컨테이너로 배포하는 방법 (Docker 기준)
 
-![Container Deployment](../9_이미지/container_deployment.png)
+![Container Deployment](../9_images/container_deployment.png)
 
 ## 1-1. Dockerfile 작성
 
@@ -63,7 +63,7 @@ References: https://docs.docker.com/engine/containers/run/
 docker ps
 ```
 
-![docker ps](../9_이미지/docker_ps.png)
+![docker ps](../9_images/docker_ps.png)
 
 References: https://docs.docker.com/reference/cli/docker/container/ls/
 
