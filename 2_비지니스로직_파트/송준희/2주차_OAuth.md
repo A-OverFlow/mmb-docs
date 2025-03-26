@@ -49,7 +49,8 @@
 
 ## Google에 로그인
 
-사용자가 Google 로그인하면 Spring Boot가 자동으로 Google에 사용자 정보를 요청한다.
+사용자가 Google 로그인하면 Google은 설정된 Redirect URI로 인가 코드를 전달하고  
+Spring Boot는 전달 받은 인가 코드를 이용하여 Google에 사용자 정보를 요청한다.
 
 ![intro](../../9_images/oauth/google-login-response.png)
 
