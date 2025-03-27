@@ -1,4 +1,6 @@
-# 미니멈 MSA
+# MMB v1 OnePager
+
+mmb v1은 미니멈 MSA로 개발합니다.
 
 ## 미니멈 MSA의 조건
 
@@ -15,7 +17,7 @@
 
 ## 구성도
 
-![minimum_msa.png](../9_images/minimum_msa.png)
+![minimum_msa.png](../../9_images/minimum_msa.png)
 
 - API Gateway (Nginx)
   - 클라이언트 요청 라우팅 (인증 처리 x, 각 서비스가 직접 검증)

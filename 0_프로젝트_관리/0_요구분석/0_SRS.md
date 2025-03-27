@@ -104,7 +104,7 @@ OS, 하드웨어, 네트워크 등 필수 환경
 
 서비스 아키텍쳐
 - MSA (마이크로 서비스 아키텍쳐)를 필수적으로 사용 한다.  
-    - ![intro](../9_images/mmb-architecture.png)
+    - ![intro](../../9_images/mmb-architecture.png)
 
 서비스 구동 단위
 - 도커 기반의 컨테이너 환경
@@ -322,12 +322,12 @@ OS, 하드웨어, 네트워크 등 필수 환경
 
 ## 6. 데이터 요구사항(Data Requirements)
 - 데이터베이스 스키마(ERD, 테이블 구조)
-    - ![intro](../9_images/db-schema.png)
+    - ![intro](../../9_images/db-schema.png)
 - 데이터 처리 정책(백업, 암호화)
     - 백업은 1일 1회로 규정
     - 백업 파일을 별도로 저장하며 장애시 자동 복구하도록 한다
 - 주요 데이터 흐름(DFD 등)
-    - ![intro](../9_images/db-relation-graph.png)
+    - ![intro](../../9_images/db-relation-graph.png)
 
 ---
 
