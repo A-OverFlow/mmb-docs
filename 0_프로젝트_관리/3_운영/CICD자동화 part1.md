@@ -115,8 +115,8 @@ jobs:
 
 https://github.com/A-OverFlow/mmb-github-action-demo/actions
 
-- ![class](../9_images/github_action_error1.png)
-- ![class](../9_images/github_action_error2.png)
+- ![class](../../9_images/github_action_error1.png)
+- ![class](../../9_images/github_action_error2.png)
 
 ## 5. 향후확장 방안
 
