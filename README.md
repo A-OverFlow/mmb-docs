@@ -6,7 +6,7 @@
 - mumulbo
 - mmb
 
-# Docs
+# MMB-Docs
 
 ## 작성 방법
 
