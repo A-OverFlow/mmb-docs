@@ -1,4 +1,4 @@
-# MMB v1 OnePager
+# 미니멈 MSA
 
 mmb v1은 미니멈 MSA로 개발합니다.
 
