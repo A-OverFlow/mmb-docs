@@ -22,7 +22,6 @@ Spring Cloud Gateway는 클라이언트 요청을 여러 마이크로서비스�
 - Eureka Server: 모든 마이크로서비스를 등록하고 관리하는 서버
 - Eureka Client: Eureka Server에 자신을 등록하고, 다른 서비스 정보를 가져가는 클라이언트
 
-- 디스커버리 : Spring Cloud Eureka <br>
 
 #### ✅ Config server (Spring Cloud Config ) : 설정 관리
 Spring Cloud Config는 모든 마이크로서비스의 설정을 한 곳에서 관리할 수 있도록 도와주는 서비스입니다.
@@ -31,25 +30,27 @@ Spring Cloud Config는 모든 마이크로서비스의 설정을 한 곳에서 �
 
 
 ### App 별 포트 (todo)
-| Service             | 포트번호    |
+| Service             | 포트번호  |
 |---------------------|---------|
-| API GW              | 8000    |
+| API GW              | 80 / 443|
 | eureka              | 8761    |
-| eureka client       | 8070 .. |
-| cloud config server | 8888    |
-| member service      | 8010    |
-| question service    | 8100    |
+| cloud config server | -       |
+| frontend            | 3000:80 |
+| question service    | 8081    |
+| member service      | 8082    |
+| oAuth               | 8083    |
 | ...                 | ....    |
 
 
 ### 개발 계획
 1. Gateway Application 프로젝트 생성
-2. eureka 추가 (server, client) 
+2. eureka client 등록  
 2. cloud config client (새로운 repo 생성)
 3. cloud config server 
 5. Spring cloud bus 
 
 ### 배포 및 운영
+- docker compose 환경에서 
 - 배포 계획: Spring Cloud Gateway는 Kubernetes, Docker, 또는 클라우드 환경에 배포할 수 있습니다.
 - 운영 계획: 모니터링 및 로깅 도구를 사용하여 API 호출의 성능을 추적하고, 장애를 관리합니다.
 
