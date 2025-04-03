@@ -91,6 +91,7 @@ ncabatoff/process-exporter        latest    84864a8aea86   11 months ago    15.8
 ```
 
 ## 다음주 todo 
+- https 추가 
 - config server 적용 여부 판단 
-- 회원/질문 서비스로 포트 라우팅 및 docker compose 로 확인 
+- 회원/질문 서비스로 포트 라우팅 및 docker compose 로 확인 (ec2 포트 추가 필요) 
 - docker-compose 용으로 deploy.yml 수정 (apigateway.yml 은 이미 docker-compose용으로 개발함)
