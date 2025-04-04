@@ -6,7 +6,7 @@
 - 배포 : 25.04.10
 - 접속 URL : https://mumulbo.com
 
-# 서비스 기능 
+# 서비스 기능
 
 ## 회원 관리
 
@@ -47,7 +47,7 @@
 ### 게시글 단일 조회
 
 * 게시글 리스트에서 `게시글` 클릭
-* 게시글 단건 조회 (단건 조회 요청) 
+* 게시글 단건 조회 (단건 조회 요청)
 
 ### 게시글 작성
 
@@ -72,7 +72,7 @@
 
 ## 서비스 구성도
 
-### Gateway
+### ![system-architecture-diagram.png](..%2F..%2F9_images%2Fsystem-architecture-diagram.png)
 
 ## 자동 배포
 
