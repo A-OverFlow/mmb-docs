@@ -103,20 +103,50 @@
     - 백앤드와 모니터링은 별도의 네트워크를 갖도록 설정한다
         - backend , monitoring
 
-## 자동 배포
+#### 3. 자동 배포
 
-#### 1. **github action**
+(1) **github action**
 
-## 모니터링
+#### 4. 모니터링
 
-#### 1. **그라파나**
+(1)) **그라파나**
 
-- 작성중..
+- **접속 방법**
+  - http://mumulbo.com:3000
+  - 각 팀원 별 계정 별도 생성 및 권한 부여
+- **모니터링 대상 지표**  
+  - 기본
+    - CPU, Memory, Network, Disk 기본 정보
+    - CPU, Memory, Network, Disk 사용률
+  - 상세
+    - CPU, Memory, Network, Disk 상세 정보  
+    - 프로세스별 CPU/메모리 사용량
 
-#### 2. **프로메테우스**
+- **대시보드 구성**
+  - 기본적으로 확인해야 할 지표들은 상단에 배치, 각 지표들에 대한 상세 내용은 하단에 배치  
 
-- 작성중..
+- **대시보드 예시**  
+![grafana](../../9_images/srs_grafana_dashboard.jpg)
 
-#### 3. **익스포터**
+- **경보 알림**  
+  - 주요 지표( CPU, 메모리, 디스크, 네트워크)의 임계치 초과 시 경보(알림) 기능 제공
 
-- 작성중..
+(2) **프로메테우스**
+
+- **`prometheus.yml` 설정 파일 구성**
+  - scrape_interval(스크랩 간격) : 60s 
+  - job_name(스크랩 대상(노드, 프로세스)) : node_exporter, process_exporter
+
+- **스크랩 대상**  
+  - **node-exporter**: `http://<EC2_IP>:9100`  
+  - **process-exporter**: `http://<EC2_IP>:9256`  
+
+(3) **익스포터**
+
+- **node-exporter**  
+  - 호스트(EC2) 시스템 레벨 메트릭(CPU, 메모리, 디스크 I/O, 네트워크, 파일시스템 등) 제공  
+
+- **process-exporter**  
+  - 프로세스 단위의 CPU, 메모리 사용량 제공  
+  - 주요 프로세스(예: 마이크로서비스, DB, Redis 등)가 시스템 자원을 얼마나 소비하는지 확인 가능  
+
