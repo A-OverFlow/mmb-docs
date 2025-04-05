@@ -74,8 +74,49 @@
 
 ### ![system-architecture-diagram.png](..%2F..%2F9_images%2Fsystem-architecture-diagram.png)
 
+#### 1. **API Gateway 설정**
+
+- SSL 인증서 설정
+    - 인증서 경로
+    - 인증서 갱신 (추후)
+    - 인증서 설정 방법
+- 라우팅 설정
+    - 회원서비스 라우팅 (dev/prod)
+    - 질문답변서비스 라우팅 (dev/prod)
+    - 그라파나 라우팅
+
+#### 2. **컨테이너 관리 및 설정**
+
+(1) docker-compose.yml 설정
+
+- 개발 / 운영 환경분리는 env 파일 경로를 docker-compose 실행시 파라미터로 넘긴다.
+    - docker-compose --env-file <env 파일 경로>
+- 컨테이너 실행 순서
+    - Database (MySQL, Redis)
+    - Spring Boot 애플리케이션 (Question Service, Member Service)
+    - Spring Cloud Gateway
+    - Exporter들 (Node Exporter, Process Exporter)
+    - Prometheus, Grafana
+- 도커 네트워크
+    - bridge 로 네트워크 구성을하여 컨테이너 이름으로 통신할수있도록 한다.
+        - (app1에서 app2를 접근할 때: http://app2:8080)
+    - 백앤드와 모니터링은 별도의 네트워크를 갖도록 설정한다
+        - backend , monitoring
+
 ## 자동 배포
 
-### Github Actions
+#### 1. **github action**
 
 ## 모니터링
+
+#### 1. **그라파나**
+
+- 작성중..
+
+#### 2. **프로메테우스**
+
+- 작성중..
+
+#### 3. **익스포터**
+
+- 작성중..
