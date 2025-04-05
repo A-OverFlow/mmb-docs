@@ -37,7 +37,9 @@
 |-------------|-----------------------------------------|----|
 | POST        | https://mumulbo.com/api/v1/auth/sign-up | -  |
 
-#### 2.2.4. Body
+### 2.1.1. Request
+
+#### 2.1.1.1. Body
 
 | Key      | Value                   | Required | Description |
 |----------|-------------------------|----------|-------------|
@@ -48,7 +50,7 @@
 
 ### 2.1.2. Response
 
-#### 2.1.2.2. Body
+#### 2.1.2.1. Body
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -67,7 +69,7 @@ Content-Type: application/json
 {
     "name": "송준희",
     "email": "joonhee.song@ahnlab.com",
-    "username:" "joonhee.song",
+    "username": "joonhee.song",
     "password": "password"
 }
 ```
@@ -78,6 +80,55 @@ Content-Type: application/json
 {
     "name": "송준희",
     "email": "joonhee.song@ahnlab.com",
-    "username:" "joonhee.song",
+    "username": "joonhee.song",
+}
+```
+
+---
+
+### 2.2. 로그인
+
+| HTTP Method | URL                                     | 비고 |
+|-------------|-----------------------------------------|----|
+| POST        | https://mumulbo.com/api/v1/auth/sign-in | -  |
+
+### 2.2.1. Request
+
+#### 2.2.1.1. Body
+
+| Key      | Value        | Required | Description |
+|----------|--------------|----------|-------------|
+| username | joonhee.song | O        | 아이디         |
+| password | password     | O        | 비밀번호        |
+
+### 2.2.2. Response
+
+#### 2.2.2.1. Body
+
+| Key          | Value | Description   |
+|--------------|-------|---------------|
+| accessToken  | ---   | access token  |
+| refreshToken | ---   | refresh token |
+
+### 2.2.3. Syntax
+
+#### 2.2.3.1 Request Syntax
+
+``` json
+POST https://mumulbo.com/api/v1/auth/sign-in  
+Content-Type: application/json
+
+{
+    "username": "joonhee.song",
+    "password": "password"
+}
+```
+
+#### 2.2.3.2. Response Syntax
+
+``` json
+{
+    "accessToken": "String",
+    "refreshToken": "String"
 }
 ```
