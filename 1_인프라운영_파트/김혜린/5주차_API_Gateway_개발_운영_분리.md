@@ -18,8 +18,7 @@ PR도 문서 작성 후 올릴 예정.
 - EC2 Route 53 에 서브 도메인 추가 완료함. 
 ![intro](../../9_images/hlkim_5_1.png)
 
-![intro](../../9_images/hlkim5_2.png)
-
+![intro](../../9_images/hlkim_5_2.png)
 
 - dev.mumulbo.com 은 개발용으로 사용 예정. 
 
@@ -64,6 +63,29 @@ environment:
 grafana는 최상위 경로에서 login으로 redirect 하고 있기 때문에, mumulbo API GW 에서 /grafana로 진입 시 mmb의 login path 로 리다이렉트 됩니다.         
 이를 방지하기 위해 grafana 내부에서 진행하도록 grafana 컨테이너 environment 에서 위 설정값을 세팅해줘야 합니다. 
 
+#### container name 
+api gateway 에 라우팅 규칙 정할 때 컨테이너 이름으로 라우팅되기 때문이 이 부분에 대한 땅땅이 필요함 
 
+| 서비스 | container name | 
+| --- | --- |
+| API GW | api-gateway (이부분은 사실 상관없음요.) |
+| 프론트엔드 | frontend-service |
+| 멤버 서비스 | member-service |
+| 질문 서비스 | question-service |
+| 그라파나 | grafana (그라파나는 위 env 설정을 못해서 테스트를 못해봐서.. 코드에는 추가 안되어있음. 수정예정) |
+| oAuth ?  | ..모름 |
+
+#### .env 옵션    
+API GW 에서는 local 인지 , dev 인지 구분만 필요합니다. 이부분은 서비스파트의 필요사항과 중복되는 것 같아서 이후에 옵션값으로 수정할 예정입니다.     
+before 
+```
+server:
+  port: 8443
+```
+after
+```
+server:
+  port: ${APPLICATION_PORT}
+```
 
 
