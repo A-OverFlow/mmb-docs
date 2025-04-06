@@ -40,12 +40,15 @@ PR도 문서 작성 후 올릴 예정.
 
 
 #### 서비스 포트는 모든 도메인에 다 동일하게 적용함. 
-| 서비스 | path | 파일 | 포트 (외부:내부) |
-| --- | --- | --- | --- |
-| grafana  | /grafana | application-local.yml |  3000:3000 |
-| 멤버 서비스  | /api/v1/member | application-dev.yml | 8082:8082 |
-| 질문 서비스  | /api/v1/questions | application-dev.yml |8081:8082 |
-| 프론트 엔드  | / | application-prod.yml | 81:80 |
+
+| 서비스 | path | 포트 (외부:내부) |
+| --- | --- | --- |
+| grafana | /grafana | 3000:3000 |
+| 멤버 서비스  | /api/v1/member | 8082:8082 |
+| 질문 서비스  | /api/v1/questions |8081:8082 |
+| 프론트 엔드  | / | 81:80 |
+| Eureka  | 운영용 | 8761 (todo) |
+| config server  | 운영용 | todo |
 
 * API 별 path는 서비스 개발 팀에서 올려준 docs 참고함. 변경 시 이 문서도 업데이트 예정 
  
