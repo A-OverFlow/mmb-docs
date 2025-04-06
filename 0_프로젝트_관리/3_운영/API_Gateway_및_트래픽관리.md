@@ -1,6 +1,6 @@
 ## API Gateway 및 트래픽관리
 
-----
+
 API Gateway는 클라이언트가 각 마이크로서비스의 API를 직접 호출하지 않고, 중앙의 API Gateway를 통해 접근할 수 있도록 합니다. 
 이를 통해 단일 진입점을 제공하며, 마이크로서비스 간의 요청 라우팅 및 트래픽 관리를 중앙에서 처리할 수 있습니다.
 
@@ -29,25 +29,42 @@ Spring Cloud Config는 모든 마이크로서비스의 설정을 한 곳에서 �
 무물보에서는 git이나 DB에서 관리 예정 
 
 
-### App 별 포트 (todo)
-| Service             | 포트번호  |
-|---------------------|---------|
-| API GW              | 80 / 443|
-| eureka              | 8761    |
-| cloud config server | -       |
-| frontend            | 3000:80 |
-| question service    | 8081    |
-| member service      | 8082    |
-| oAuth               | 8083    |
-| ...                 | ....    |
+### API Gateway 포트 
+#### 목적 별 포트 
+| 목적 | 설명 | 파일 | 포트 |
+| --- | --- | --- | --- |
+| 로컬 개발 | all 도메인 + http | application-local.yml |  8080 |
+| 개발 서버  | 서브 도메인 + https | application-dev.yml | 8443 |
+| 운영 서버 | 메인 도메인 + https | application-prod.yml | 443 |
+* 위에서 설정해주는 포트는 각 yml 파일들에서 오버라이드되기 때문에 docker compose의 port 에서는 운영용 포트만 선언해주시면 됩니다. 
 
 
-### 개발 계획
-1. Gateway Application 프로젝트 생성
-2. eureka client 등록  
-2. cloud config client (새로운 repo 생성)
-3. cloud config server 
-5. Spring cloud bus 
+#### 서비스별 포트 
+* 서비스 포트는 서브도메인/메인도메인 동일하게 사용함
+
+| 서비스 | path | 포트 (외부:내부) |
+| --- | --- | --- |
+| grafana | /grafana | 3000:3000 |
+| 멤버 서비스  | /api/v1/member | 8082:8082 |
+| 질문 서비스  | /api/v1/questions |8081:8082 |
+| 프론트 엔드  | / | 81:80 |
+| Eureka  | 운영용 | 8761 (todo) |
+| config server  | 운영용 | todo |
+
+* API 별 path는 서비스 개발 팀에서 올려준 docs 참고함. 변경 시 이 문서도 업데이트 예정 
+ 
+
+### docker compose 요청 사항 
+
+#### grafana 추가 사항 
+```
+environment:
+  - GF_SERVER_ROOT_URL=https://dev.mumulbo.com/grafana/
+  - GF_SERVER_SERVE_FROM_SUB_PATH=true 
+```
+grafana는 최상위 경로에서 login으로 redirect 하고 있기 때문에, mumulbo API GW 에서 /grafana로 진입 시 mmb의 login path 로 리다이렉트 됩니다.         
+이를 방지하기 위해 grafana 내부에서 진행하도록 grafana 컨테이너 environment 에서 위 설정값을 세팅해줘야 합니다. 
+
 
 ### 배포 및 운영
 - docker compose 환경에서 
