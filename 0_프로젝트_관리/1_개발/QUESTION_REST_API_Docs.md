@@ -270,8 +270,10 @@ N/A
 
 |Key|Value|Required|Description|
 |------|---|---|---|
+|id|1|O|질문 고유 번호|
 |subject|"수정된 제목입니다."|O|질문 제목|
 |content|"수정된 내용입니다."|O|질문 내용|
+|status|"ING"|O|질문 상태|
 
 ### 2.4.2. Response
 
@@ -298,8 +300,10 @@ PUT https://mumulbo.com/api/v1/questions/{id}
 Content-Type: application/json
 
 {
+    "id": 3,
     "subject": "수정된 제목입니다.",
     "content": "수정된 내용입니다.",
+    "status": "ING"
 }
 ```
 
