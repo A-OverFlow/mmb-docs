@@ -41,8 +41,11 @@ REFRESH_TOKEN_EXPIRE_TIME=7200
 
 docker-compose.yml
 ```
+    # 방법 1. env파일을 사용
     env_file:
       - .env
+
+    # 방법 2. 개별 맵핑, 실행시 --env-file 옵션 사용 필요
     environment:
       - MEMBER_SERVICE_NAME=${MEMBER_SERVICE_NAME}
       - MEMBER_SERVICE_PORT=${MEMBER_SERVICE_PORT}
@@ -54,10 +57,18 @@ docker-compose.yml
       - REFRESH_TOKEN_EXPIRE_TIME=${REFRESH_TOKEN_EXPIRE_TIME}
 ```
 
+도커 컴포즈 내에서 `env_file` 같이 파일 경롤 설정하는 방법도 지원
+다수의 .env파일 사용시 같은 값이면 마지막 파일에 값으로 overwrite됨
+환경 변수가 많다면 파일 env파일 설정 하는 방법 사용
+
+환경 변수가 많지 않다면 개별 맵핑을 하여 사용하는 방법 사용
+서비스 별 편리한 방법을 통해 구동하도록 한다
+
 실행 명령어
 ```bash
 docker-compose --env-file .env
 ```
+실행시에 .env파일 경로 설정을 통해 구동 가능
 
 설정 확인
 ```bash
