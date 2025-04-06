@@ -83,7 +83,7 @@
 
 #### 2.1.3.1 Request Syntax
 
-```json
+``` json
 POST https://mumulbo.com/api/v1/member
 Content-Type: application/json
 
@@ -96,7 +96,7 @@ Content-Type: application/json
 
 #### 2.1.3.2. Response Syntax
 
-```json
+``` json
 {
     "message": "ok"
 }
@@ -110,7 +110,7 @@ Content-Type: application/json
 |------|---|---|
 |POST|https://mumulbo.com/api/v1/member|회원가입|
 
-### 2.2.1. Reqeust
+### 2.2.1. Request
 
 #### 2.2.1.1. Header
 

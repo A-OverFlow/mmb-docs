@@ -6,11 +6,12 @@
 
 * HTTP Error Code가 아닌 Custom Error Code 입니다.
 
-| Error Code | Description  |
-|------------|--------------|
-| 1000       | 잘못된 argument |
-| 1001       | 데이터 없음       |
-| 1002       | 알수없는 에러      |
+| Error Code | Description            |
+|------------|------------------------|
+| SYSTEM-001 | 유효하지 않은 MethodArgument |
+| AUTH-002   | 유효하지 않은 Token          |
+| MEMBER-001 | 존재하지 않는 회원             |
+| MEMBER-002 | 이미 가입한 회원              |
 
 ---
 
@@ -22,6 +23,7 @@
 |-------------|------------------------------------------------------|--------------|
 | POST        | https://mumulbo.com/api/v1/auth/sign-up              | 회원가입         |
 | POST        | https://mumulbo.com/api/v1/auth/sign-in              | 로그인          |
+| POST        | https://mumulbo.com/api/v1/auth/refresh-token        | 토큰 재발행       |
 | GET         | https://mumulbo.com/api/v1/member/{memberId}         | 회원 정보 조회     |
 | PUT         | https://mumulbo.com/api/v1/member/{memberId}         | 회원 정보 수정     |
 | DELETE      | https://mumulbo.com/api/v1/member/{memberId}         | 회원탈퇴         |
@@ -105,10 +107,10 @@ Content-Type: application/json
 
 #### 2.2.2.1. Body
 
-| Key          | Value | Description   |
-|--------------|-------|---------------|
-| accessToken  | ---   | access token  |
-| refreshToken | ---   | refresh token |
+| Key          | Value        | Description   |
+|--------------|--------------|---------------|
+| accessToken  | accessToken  | access token  |
+| refreshToken | refreshToken | refresh token |
 
 ### 2.2.3. Syntax
 
@@ -128,7 +130,54 @@ Content-Type: application/json
 
 ``` json
 {
-    "accessToken": "String",
-    "refreshToken": "String"
+    "accessToken": "accessToken",
+    "refreshToken": "refreshToken"
+}
+```
+
+---
+
+### 2.3. Token 재발행
+
+| HTTP Method | URL                                           | 비고 |
+|-------------|-----------------------------------------------|----|
+| POST        | https://mumulbo.com/api/v1/auth/refresh-token | -  |
+
+### 2.3.1. Request
+
+#### 2.3.1.1. Body
+
+| Key          | Value        | Required | Description   |
+|--------------|--------------|----------|---------------|
+| refreshToken | refreshToken | O        | refresh token |
+
+### 2.3.2. Response
+
+#### 2.3.2.1. Body
+
+| Key          | Value        | Description   |
+|--------------|--------------|---------------|
+| refreshToken | refreshToken | refresh token |
+| accessToken  | accessToken  | access token  |
+
+### 2.3.3. Syntax
+
+#### 2.1.3.1 Request Syntax
+
+``` json
+POST https://mumulbo.com/api/v1/auth/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken": "refreshToken"
+}
+```
+
+#### 2.1.3.2. Response Syntax
+
+``` json
+{
+    "accessToken": "accessToken",
+    "refreshToken": "refreshToken"
 }
 ```
