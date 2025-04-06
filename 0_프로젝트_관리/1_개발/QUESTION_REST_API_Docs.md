@@ -41,30 +41,7 @@
 |GET|https://mumulbo.com/api/v1/questions|-|
 
 ### 2.1.1. Request
-
-#### 2.1.1.1. Header
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
-
-#### 2.1.1.2. Path Variables
-
-|Key|Description|
-|------|---|
-|-|-|
-
-#### 2.1.1.3. Params
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
-
-#### 2.1.1.4. Body
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 ### 2.1.2. Response
 
@@ -135,10 +112,7 @@ Content-Type: application/json
 ### 2.2.1. Request
 
 #### 2.2.1.1. Header
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.2.1.2. Path Variables
 
@@ -147,16 +121,10 @@ Content-Type: application/json
 |id|질문 고유 번호|
 
 #### 2.2.1.3. Params
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.2.1.4. Body
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 ### 2.2.2. Response
 
@@ -215,22 +183,13 @@ Content-Type: application/json
 ### 2.3.1. Request
 
 #### 2.3.1.1. Header
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.3.1.2. Path Variables
-
-|Key|Description|
-|------|---|
-|-|-|
+N/A
 
 #### 2.3.1.3. Params
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.3.1.4. Body
 
@@ -296,10 +255,7 @@ Location: https://mumulbo.com/api/v1/questions/{id}
 ### 2.4.1. Request
 
 #### 2.4.1.1. Header
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.4.1.2. Path Variables
 
@@ -308,10 +264,7 @@ Location: https://mumulbo.com/api/v1/questions/{id}
 |id|질문 고유 번호|
 
 #### 2.4.1.3. Params
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.4.1.4. Body
 
@@ -374,10 +327,7 @@ Content-Type: application/json
 ### 2.5.1. Request
 
 #### 2.5.1.1. Header
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.5.1.2. Path Variables
 
@@ -386,16 +336,10 @@ Content-Type: application/json
 |id|질문 고유 번호|
 
 #### 2.5.1.3. Params
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 #### 2.5.1.4. Body
-
-|Key|Value|Required|Description|
-|------|---|---|---|
-|-|-|-|-|
+N/A
 
 ### 2.5.2. Response
 
@@ -408,10 +352,7 @@ Content-Type: application/json
 |TBD|...|...|
 
 #### 2.5.2.2. Body
-
-|Key|Value|Description|
-|------|---|---|
-|-|-|-|-|
+N/A
 
 ### 2.5.3. Syntax
 
