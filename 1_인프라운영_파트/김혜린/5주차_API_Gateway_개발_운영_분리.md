@@ -16,7 +16,9 @@ PR도 문서 작성 후 올릴 예정.
 
 ### 도메인 분리 
 - EC2 Route 53 에 서브 도메인 추가 완료함. 
-이지미1
+![intro](../../9_images/hlkim_5_1.png)
+
+![intro](../../9_images/hlkim5_2.png)
 
 
 - dev.mumulbo.com 은 개발용으로 사용 예정. 
@@ -40,7 +42,7 @@ PR도 문서 작성 후 올릴 예정.
 #### 서비스 포트는 모든 도메인에 다 동일하게 적용함. 
 | 서비스 | path | 파일 | 포트 (외부:내부) |
 | --- | --- | --- | --- |
-| grafana | /grafana | application-local.yml |  3000:3000 |
+| grafana  | /grafana | application-local.yml |  3000:3000 |
 | 멤버 서비스  | /api/v1/member | application-dev.yml | 8082:8082 |
 | 질문 서비스  | /api/v1/questions | application-dev.yml |8081:8082 |
 | 프론트 엔드  | / | application-prod.yml | 81:80 |
