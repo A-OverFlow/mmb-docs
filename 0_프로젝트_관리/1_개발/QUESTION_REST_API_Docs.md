@@ -6,13 +6,11 @@
 
 * HTTP Error Code가 아닌 Custom Error Code 입니다.
 
-|Error Code|Description|
-|------|---|
-|`QUESTION-4000`|잘못된 요청|
-|`QUESTION-4010`|인증 실패|
-|`QUESTION-4040`|질문 not found|
-|`QUESTION-4090`|질문 중복|
-|`QUESTION-5000`|질문 서버 에러|
+|HTTP Status Code|Custom Error Code|Description|응답 예시(Body)|
+|------|---|---|---|
+|**400** BAD_REQUEST|`QUESTION-4000`|잘못된 요청|<pre lang="json">{&#13;  "status": 400,&#13;  "name": "QUESTION_INVALID_INPUT_VALUE",&#13;  "code": "QUESTION-4000",&#13;  "message": null&#13;}</pre>|
+|**404** NOT_FOUND|`QUESTION-4040`|질문 not found|<pre lang="json">{&#13;  "status": 404,&#13;  "name": "QUESTION_NOT_FOUND",&#13;  "code": "QUESTION-4040",&#13;  "message": null&#13;}</pre>|
+|**500** INTERNAL_SERVER_ERROR|`QUESTION-5000`|질문 서버 에러|<pre lang="json">{&#13;  "status": 500,&#13;  "name": "QUESTION_INTERNAL_SERVER_ERROR",&#13;  "code": "QUESTION-5000",&#13;  "message": null&#13;}</pre>|
 
 <br/><br/>
 
@@ -27,14 +25,14 @@
 |GET|https://mumulbo.com/api/v1/questions|전체 질문 조회|
 |GET|https://mumulbo.com/api/v1/questions/{id}|특정 질문 조회|
 |POST|https://mumulbo.com/api/v1/questions|질문 생성|
-|PUT|https://mumulbo.com/api/v1/questions/{id}|질문 수정|
+|PUT|https://mumulbo.com/api/v1/questions|질문 수정|
 |DELETE|https://mumulbo.com/api/v1/questions/{id}|질문 삭제|
 
 <br/>
 
 ---
 
-### 2.1. 전체 질문 조회
+### 2.1. 질문 전체 조회
 
 |HTTP Method|URL|비고|
 |------|---|---|
@@ -46,22 +44,17 @@ N/A
 ### 2.1.2. Response
 
 #### 2.1.2.1. Header
-
-|Key|Value|Description|
-|------|---|---|
-|X-RateLimit-Limit|500|분당 최대 요청량|
-|X-RateLimit-Remaining|499|남은 요청량|
-|TBD|...|...|
+N/A
 
 #### 2.1.2.2. Body
 
 |Key|Value|Description|
 |------|---|---|
-|subject|"제목입니다."|제목|
-|content|"내용입니다."|내용|
-|author|"joonsub.lim"|작성자|
+|subject|"제목입니다."|질문 제목|
+|content|"내용입니다."|질문 내용|
+|author|"joonsub.lim"|작성자 이름|
 |status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answersCount|3|답변 개수|
+|answers|[]|답변 목록|
 
 ### 2.1.3. Syntax
 
@@ -77,33 +70,31 @@ GET https://mumulbo.com/api/v1/questions
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-    [
-        {
-            "id": 1,
-            "subject": "제목입니다.",
-            "content": "내용입니다.",
-            "author": "joonsub.lim",
-            "status": "NEW",
-            "answersCount": 3,
-        },
-        {
-            "id": 2,
-            "subject": "안녕하세요?",
-            "content": "반갑습니다.",
-            "author": "heejaykong",
-            "status": "DONE",
-            "answersCount": 1,
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "subject": "제목입니다.",
+        "content": "내용입니다.",
+        "author": "joonsub.lim",
+        "status": "NEW",
+        "answers": [],
+    },
+    {
+        "id": 2,
+        "subject": "안녕하세요?",
+        "content": "반갑습니다.",
+        "author": "heejaykong",
+        "status": "DONE",
+        "answers": [],
+    }
+]
 ```
 
 <br/>
 
 ---
 
-### 2.2. 특정 질문 조회
+### 2.2. 질문 단건 조회
 
 |HTTP Method|URL|비고|
 |------|---|---|
@@ -129,22 +120,18 @@ N/A
 ### 2.2.2. Response
 
 #### 2.2.2.1. Header
-
-|Key|Value|Description|
-|------|---|---|
-|X-RateLimit-Limit|500|분당 최대 요청량|
-|X-RateLimit-Remaining|499|남은 요청량|
-|TBD|...|...|
+N/A
 
 #### 2.2.2.2. Body
 
 |Key|Value|Description|
 |------|---|---|
-|subject|"제목입니다."|제목|
-|content|"내용입니다."|내용|
-|author|"joonsub.lim"|작성자|
+|id|1|질문 고유 번호|
+|subject|"제목입니다."|질문 제목|
+|content|"내용입니다."|질문 내용|
+|author|"joonsub.lim"|작성자 이름|
 |status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|TBD|...|
+|answers|[]|답변 목록|
 
 ### 2.2.3. Syntax
 
@@ -166,7 +153,7 @@ Content-Type: application/json
     "content": "내용입니다.",
     "author": "joonsub.lim",
     "status": "NEW",
-    "answers": [{}, {}, ...],  // TBD
+    "answers": []
 }
 ```
 
@@ -197,23 +184,23 @@ N/A
 |------|---|---|---|
 |subject|"제목입니다."|O|질문 제목|
 |content|"내용입니다."|O|질문 내용|
-|author|1? "heejaykong"? (TBD)|O|작성자 고유 번호? 이름? (TBD)|
+|author|"heejaykong"|O|작성자 이름|
 
 ### 2.3.2. Response
 
 #### 2.3.2.1. Header
-
-|Key|Value|Description|
-|------|---|---|
-|X-RateLimit-Limit|500|분당 최대 요청량|
-|X-RateLimit-Remaining|499|남은 요청량|
-|TBD|...|...|
+N/A
 
 #### 2.3.2.2. Body
 
 |Key|Value|Description|
 |------|---|---|
 |id|3|질문 고유 번호|
+|subject|"제목입니다."|질문 제목|
+|content|"내용입니다."|질문 내용|
+|author|"heejaykong"|작성자 이름|
+|status|"NEW"|질문 상태(NEW/ING/DONE)|
+|answers|[]|답변 목록|
 
 ### 2.3.3. Syntax
 
@@ -226,7 +213,7 @@ Content-Type: application/json
 {
     "subject": "제목입니다.",
     "content": "내용입니다.",
-    "author": 1? "heejaykong"?,  // TBD
+    "author": "heejaykong"
 }
 ```
 
@@ -235,10 +222,15 @@ Content-Type: application/json
 ```json
 HTTP/1.1 201 Created
 Content-Type: application/json
-Location: https://mumulbo.com/api/v1/questions/{id}
+Location: /questions/{id}
 
 {
     "id": 3,
+    "subject": "제목입니다.",
+    "content": "내용입니다.",
+    "author": "heejaykong",
+    "status": "NEW",
+    "answers": []
 }
 ```
 
@@ -250,7 +242,7 @@ Location: https://mumulbo.com/api/v1/questions/{id}
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|PUT|https://mumulbo.com/api/v1/questions/{id}|-|
+|PUT|https://mumulbo.com/api/v1/questions|-|
 
 ### 2.4.1. Request
 
@@ -258,10 +250,7 @@ Location: https://mumulbo.com/api/v1/questions/{id}
 N/A
 
 #### 2.4.1.2. Path Variables
-
-|Key|Description|
-|------|---|
-|id|질문 고유 번호|
+N/A
 
 #### 2.4.1.3. Params
 N/A
@@ -278,18 +267,18 @@ N/A
 ### 2.4.2. Response
 
 #### 2.4.2.1. Header
-
-|Key|Value|Description|
-|------|---|---|
-|X-RateLimit-Limit|500|분당 최대 요청량|
-|X-RateLimit-Remaining|499|남은 요청량|
-|TBD|...|...|
+N/A
 
 #### 2.4.2.2. Body
 
 |Key|Value|Description|
 |------|---|---|
-|id|3|질문 고유 번호|
+|id|1|질문 고유 번호|
+|subject|"수정된 제목입니다."|질문 제목|
+|content|"수정된 내용입니다."|질문 내용|
+|author|"heejaykong"|작성자 이름|
+|status|"ING"|질문 상태(NEW/ING/DONE)|
+|answers|[]|답변 목록|
 
 ### 2.4.3. Syntax
 
@@ -315,6 +304,11 @@ Content-Type: application/json
 
 {
     "id": 3,
+    "subject": "수정된 제목입니다.",
+    "content": "수정된 내용입니다.",
+    "author": "heejaykong",
+    "status": "ING",
+    "answers": []
 }
 ```
 
@@ -346,16 +340,6 @@ N/A
 N/A
 
 ### 2.5.2. Response
-
-#### 2.5.2.1. Header
-
-|Key|Value|Description|
-|------|---|---|
-|X-RateLimit-Limit|500|분당 최대 요청량|
-|X-RateLimit-Remaining|499|남은 요청량|
-|TBD|...|...|
-
-#### 2.5.2.2. Body
 N/A
 
 ### 2.5.3. Syntax
