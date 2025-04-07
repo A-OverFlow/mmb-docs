@@ -24,6 +24,9 @@
     * **추후 헬스체크 추가 예정**
   
 ### .env
+.env.dev, .env.prod 파일을 이용해 Docker compose 실행 시 환경 별 변수를 분리해 관리합니다.
+
+프로젝트 루트 경로에 docker compose, .env.{환경} 파일이 위치
 #### .env.dev
 ```
 MYSQL_URL=jdbc:mysql://localhost:3306/aof?serverTimezone=Asia/Seoul
@@ -42,8 +45,8 @@ MYSQL_USERNAME=root
 MYSQL_PASSWORD=root1234
 
 # 포트 설정 - 내부는 고정(8080), 외부는 개발용 포트
-MEMBER_SERVICE_PORT=9082
-QUESTION_SERVICE_PORT=9081
+MEMBER_SERVICE_PORT=8082
+QUESTION_SERVICE_PORT=8081
 ```
 
 
