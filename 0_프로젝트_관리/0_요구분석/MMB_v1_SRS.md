@@ -76,14 +76,23 @@
 
 #### 1. **API Gateway 설정**
 
-- SSL 인증서 설정
-    - 인증서 경로
-    - 인증서 갱신 (추후)
-    - 인증서 설정 방법
-- 라우팅 설정
-    - 회원서비스 라우팅 (dev/prod)
-    - 질문답변서비스 라우팅 (dev/prod)
-    - 그라파나 라우팅
+(1) SSL 인증서 설정
+
+- 인증서 경로
+    - /home/ec2-user/certs
+- 인증서 갱신 (추후)
+    - 90일 마다 갱신되는 cron 추가예정
+- 인증서 설정 방법
+    - sudo certbot certonly —standalone -d dev.mumulbo.com —config-dir /home/ec2-user/certs
+      —logs-dir /home/ec2-user/certs/logs —work-dir /home/ec2-user/certs/work
+
+(2) 라우팅 설정
+
+[참고 링크](https://github.com/A-OverFlow/mmb-docs/blob/main/1_%EC%9D%B8%ED%94%84%EB%9D%BC%EC%9A%B4%EC%98%81_%ED%8C%8C%ED%8A%B8/%EA%B9%80%ED%98%9C%EB%A6%B0/5%EC%A3%BC%EC%B0%A8_API_Gateway_%EA%B0%9C%EB%B0%9C_%EC%9A%B4%EC%98%81_%EB%B6%84%EB%A6%AC.md)
+
+- 회원서비스 라우팅 (dev/prod)
+- 질문답변서비스 라우팅 (dev/prod)
+- 그라파나 라우팅
 
 #### 2. **컨테이너 관리 및 설정**
 
@@ -105,48 +114,73 @@
 
 #### 3. 자동 배포
 
-(1) **github action**
+##### **github action**
+
+### ![system-architecture-diagram.png](..%2F..%2F9_images%2Fci_cd1.png)
+
+(1) Branch 구조
+
+- feature: 새로운 기능을 개발하는 브랜치
+- develop: 개발 완료 후 병합되는 브랜치
+- main: 운영 배포를 위한 최종 브랜치
+
+(2) CI (Continuous Integration)
+
+- PR이 생성될 때 수행
+    - feature → develop
+    - develop → main
+
+(3) CD (Continuous Deployment)
+
+- Dev 환경 배포
+    - PR이 merge될 때 (feature → develop)
+    - Docker 이미지 빌드 및 Docker Hub 푸시
+    - EC2 서버에 배포
+- Prod 환경 배포
+    - PR이 merge될 때 (develop → main)
+    - Docker 이미지 빌드 및 Docker Hub 푸시
+    - EC2 서버에 배포
 
 #### 4. 모니터링
 
 (1)) **그라파나**
 
 - **접속 방법**
-  - http://mumulbo.com:3000
-  - 각 팀원 별 계정 별도 생성 및 권한 부여
-- **모니터링 대상 지표**  
-  - 기본
-    - CPU, Memory, Network, Disk 기본 정보
-    - CPU, Memory, Network, Disk 사용률
-  - 상세
-    - CPU, Memory, Network, Disk 상세 정보  
-    - 프로세스별 CPU/메모리 사용량
+    - http://mumulbo.com:3000
+    - 각 팀원 별 계정 별도 생성 및 권한 부여
+- **모니터링 대상 지표**
+    - 기본
+        - CPU, Memory, Network, Disk 기본 정보
+        - CPU, Memory, Network, Disk 사용률
+    - 상세
+        - CPU, Memory, Network, Disk 상세 정보
+        - 프로세스별 CPU/메모리 사용량
 
 - **대시보드 구성**
-  - 기본적으로 확인해야 할 지표들은 상단에 배치, 각 지표들에 대한 상세 내용은 하단에 배치  
+    - 기본적으로 확인해야 할 지표들은 상단에 배치, 각 지표들에 대한 상세 내용은 하단에 배치
 
 - **대시보드 예시**  
-![grafana](../../9_images/srs_grafana_dashboard.jpg)
+  ![grafana](../../9_images/srs_grafana_dashboard.jpg)
 
-- **경보 알림**  
-  - 주요 지표( CPU, 메모리, 디스크, 네트워크)의 임계치 초과 시 경보(알림) 기능 제공
+- **경보 알림**
+    - 주요 지표( CPU, 메모리, 디스크, 네트워크)의 임계치 초과 시 경보(알림) 기능 제공
 
 (2) **프로메테우스**
 
 - **`prometheus.yml` 설정 파일 구성**
-  - scrape_interval(스크랩 간격) : 60s 
-  - job_name(스크랩 대상(노드, 프로세스)) : node_exporter, process_exporter
+    - scrape_interval(스크랩 간격) : 60s
+    - job_name(스크랩 대상(노드, 프로세스)) : node_exporter, process_exporter
 
-- **스크랩 대상**  
-  - **node-exporter**: `http://<EC2_IP>:9100`  
-  - **process-exporter**: `http://<EC2_IP>:9256`  
+- **스크랩 대상**
+    - **node-exporter**: `http://<EC2_IP>:9100`
+    - **process-exporter**: `http://<EC2_IP>:9256`
 
 (3) **익스포터**
 
-- **node-exporter**  
-  - 호스트(EC2) 시스템 레벨 메트릭(CPU, 메모리, 디스크 I/O, 네트워크, 파일시스템 등) 제공  
+- **node-exporter**
+    - 호스트(EC2) 시스템 레벨 메트릭(CPU, 메모리, 디스크 I/O, 네트워크, 파일시스템 등) 제공
 
-- **process-exporter**  
-  - 프로세스 단위의 CPU, 메모리 사용량 제공  
-  - 주요 프로세스(예: 마이크로서비스, DB, Redis 등)가 시스템 자원을 얼마나 소비하는지 확인 가능  
+- **process-exporter**
+    - 프로세스 단위의 CPU, 메모리 사용량 제공
+    - 주요 프로세스(예: 마이크로서비스, DB, Redis 등)가 시스템 자원을 얼마나 소비하는지 확인 가능  
 
