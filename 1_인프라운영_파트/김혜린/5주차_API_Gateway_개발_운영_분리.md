@@ -42,9 +42,10 @@ PR도 문서 작성 후 올릴 예정.
 | 서비스 | path | 포트 (외부:내부) |
 | --- | --- | --- |
 | grafana | /grafana | 3000:3000 |
-| 멤버 서비스  | /api/v1/member | 8082:8082 |
-| 질문 서비스  | /api/v1/questions |8081:8082 |
-| 프론트 엔드  | / | 81:80 |
+| 멤버 서비스  | /api/v1/members | 8082:8082 |
+| oAuth 서비스  | /api/v1/auth | 8082:8082 |
+| 질문 서비스  | /api/v1/questions |8081:8081 |
+| 프론트 엔드  | / | - |
 | Eureka  | 운영용 | 8761 (todo) |
 | config server  | 운영용 | todo |
 
