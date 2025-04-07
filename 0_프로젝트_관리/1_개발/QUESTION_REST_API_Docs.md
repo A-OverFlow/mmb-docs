@@ -50,6 +50,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
+|id|1|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
 |author|"joonsub.lim"|작성자 이름|
