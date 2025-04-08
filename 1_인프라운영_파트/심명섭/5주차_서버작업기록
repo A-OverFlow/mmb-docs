@@ -22,6 +22,11 @@
    - GF_SERVER_ROOT_URL 관련설정 임시로 http://localhost:3000/ 으로 변경
    - api 를 통한 라우팅은 되지않는 상황으로 마무리됨 
    - https://dev.mumulbo.com:3000/ 으로 접속가능
+8. docker-compose 실행시 docker 허브에서 이미지를 pull 받기때문에 docker login 과 정확한 docker image 이름을 입력해야했음
+  - 위 이유로 CI/CD 구성시 docker hub 계정은 통일해야함
+  - docker login 명령어 입력후 계정입력해야함
+  - 도커이미지 이름을 정확히 써야함 member-service (x) -> myeongseob91/member-service 
+  - myeongseob91/member-service:latest 이런식으로 뒤에 붙는것을 태그라고하고 latest 가 default  로 붙음. 이 태그에 prod, dev 등 사용가능
 
 
 ACTION ITEM
