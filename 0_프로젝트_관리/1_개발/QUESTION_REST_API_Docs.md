@@ -286,7 +286,7 @@ N/A
 #### 2.4.3.1 Request Syntax
 
 ```json
-PUT https://mumulbo.com/api/v1/questions/{id}
+PUT https://mumulbo.com/api/v1/questions
 Content-Type: application/json
 
 {
