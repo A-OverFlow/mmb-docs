@@ -1,0 +1,49 @@
+21:00 ~ 01:30
+명섭,윤진,혜린,유연
+
+1. docker-compose.yml 파일에 그라파나 볼륨이 없었음
+2. 멤버서비스에 dev , prod 태그가 붙어있어서 레이티스트 대신 태그
+3. 인프라파트에서 정의한 .env 파일에 회원 서비스 env 파일값들이 없는것들이 있어서 추가함
+  - https://github.com/A-OverFlow/mmb-member-service/blob/main/.env
+4. apigateway 에 ssl 인증서 볼륨이 마운트 되지않았었음.
+5. https ssl 인증서 https://dev.mumulbo.com/ 포함된걸로 다시발급
+  - 발급 과정에서 아더사용자에 읽기권한이 없어서 인증서 폴더에 권한부여함 (755)
+6. apigateway 구동시 dev경우 8443 , prod 경우 443 으로 바인딩 되는데 docker-compose.yml 파일에 포트가 안적혀있어서 포트수정
+  - ports : 443:8443
+7. apigateway -> 다른 서비스로 라우팅시 문제
+  - 라우팅 정보 : https://github.com/A-OverFlow/mmb-apigateway/blob/main/src/main/resources/application-dev.yml
+  - apigateway -> nginx -> frontend
+    - https://dev.mumulbo.com/ 로 접속시 브라우저 url 이 http://frontend/ 로 리디렉션 되는 현상이 있었음
+      - frontend 컨테이너 내부로 들어가서 curl "localhost:80" 결과시 404에러가 나오는것 확인하여 프론트앤드가 정상구동안된것 확인
+      - frontend 에 적용되어있던 nginx 에 ssl 설정이 되어있던 부분을 전부제거하고 nginx 설정을 기본설정으로 변경함
+      - frontend 컨테이너 내부로 들어가서 curl "localhost:80" 결과가 status 200이 나오는것을 확인함
+      - status 200나오는것 확인후에도 접속이 정상적으로 되지않다가 브라우저 캐시를 지우고나니 정상동작함
+  - apigateway -> grafana 로 리디렉션시에 무한리디렉션으로 빠지는 문제가있었음
+   - GF_SERVER_ROOT_URL 관련설정 임시로 http://localhost:3000/ 으로 변경
+   - api 를 통한 라우팅은 되지않는 상황으로 마무리됨 
+   - https://dev.mumulbo.com:3000/ 으로 접속가능
+
+
+ACTION ITEM
+1. github actino 관련작업들 필요
+ - 질문서비스 적용필요
+ - apigateway 적용필요
+ - frontend 및 member-service 에 적용된 부분 docker-compose 명령어로 배포되도록 수정필요
+
+2. prod 환경 배포필요(현재는 dev만됨)
+ 아래 2가지 경로로 들어오는것이고 같은 443포트로 들어온다는 가정하에 apigateway 소스레벨에서 분기처리하도록 반영필요해보임
+ 현재는 dev용 apigateway 가 8443 포트 바인딩 , prod 용 apigateway 가 443 포트로 바인딩 되도록 개발된 상태임
+ - prod :  https://mumulbo.com 
+ - dev :   https://dev.mumulbo.com 
+
+3. .env 파일관리방법 확인필요
+  - ec2 특정경로에 .env.dev 와 .env.prod 파일이 존재해야함
+  
+4. 질문서비스 배포필요 main 브랜치에 소스머지 필요 , docker-compose.yml 주석제거 필요
+
+5. 그라파나 볼륨경로가 달라져서 대시보드 및 사용자가 리셋되는 현상 조치필요
+
+6. 현재 docker-compose.yml 을 통한 컨테이너 up 명령어 실행시 .env.dev 를 파라미터로 넘기는데
+   member-service와 question-service 의 경우 하나의 도커파일에 dev, prod 가 있는 상태이므로 
+   각각의 컨테이너에 env 파일을 적용하는 방식으로 변경필요해보임
+ 
