@@ -43,12 +43,12 @@
 
 #### 2.1.1.1. Body
 
-| Key      | Value                   | Required | Description |
-|----------|-------------------------|----------|-------------|
-| name     | 송준희                     | O        | 이름          |
-| email    | joonhee.song@ahnlab.com | O        | 이메일         |
-| username | joonhee.song            | O        | 아이디         |
-| password | password                | O        | 비밀번호        |
+| Key      | Value                   | Required | Description | 비고                       |
+|----------|-------------------------|----------|-------------|--------------------------|
+| name     | 송준희                     | O        | 이름          | 최대 100글자까지 허용            |
+| email    | joonhee.song@ahnlab.com | O        | 이메일         | 이메일 형식만 하용. 최대 254자까지 허용 |
+| username | joonhee.song            | O        | 아이디         | 최대 20자까지 허용              |
+| password | password                | O        | 비밀번호        | 최대 20자까지 허용              |
 
 ### 2.1.2. Response
 
@@ -79,10 +79,19 @@ Content-Type: application/json
 #### 2.1.3.2. Response Syntax
 
 ``` json
+요청이 성공한 경우 HttpStatus: 201
 {
     "name": "송준희",
     "email": "joonhee.song@ahnlab.com",
     "username": "joonhee.song",
+}
+
+이미 가입된 회원인 경우 HttpStatus: 409
+{
+    "timestamp": "2025-04-09T12:41:18.126777888",
+    "status": 409,
+    "error": "MEMBER-002",
+    "message": "이미 가입한 회원입니다."
 }
 ```
 
@@ -98,10 +107,10 @@ Content-Type: application/json
 
 #### 2.2.1.1. Body
 
-| Key      | Value        | Required | Description |
-|----------|--------------|----------|-------------|
-| username | joonhee.song | O        | 아이디         |
-| password | password     | O        | 비밀번호        |
+| Key      | Value        | Required | Description | 비고          |
+|----------|--------------|----------|-------------|-------------|
+| username | joonhee.song | O        | 아이디         | 최대 20자까지 허용 |
+| password | password     | O        | 비밀번호        | 최대 20자까지 허용 |
 
 ### 2.2.2. Response
 
@@ -129,9 +138,18 @@ Content-Type: application/json
 #### 2.2.3.2. Response Syntax
 
 ``` json
+요청이 성공한 경우 HttpStatus: 201
 {
     "accessToken": "accessToken",
     "refreshToken": "refreshToken"
+}
+
+일치하는 회언 정보가 없는 경우 HttpStatus: 409
+{
+    "timestamp": "2025-04-09T12:44:17.264602263",
+    "status": 404,
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
 }
 ```
 
@@ -176,9 +194,26 @@ Content-Type: application/json
 #### 2.1.3.2. Response Syntax
 
 ``` json
+토큰 재발급 성공한 경우 HttpStatus: 200
 {
     "accessToken": "accessToken",
     "refreshToken": "refreshToken"
+}
+
+탈퇴한 회원이 요청한 경우 HttpStatus: 404
+{
+    "timestamp": "2025-04-09T12:44:17.264602263",
+    "status": 404,
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
+}
+
+토큰이 유효하지 않은 경우 HttpStatus: 409
+{
+    "timestamp": "2025-04-09T22:40:04.295863",
+    "status": 409,
+    "error": "AUTH-002",
+    "message": "유효하지 않은 토큰입니다."
 }
 ```
 
@@ -213,9 +248,26 @@ Content-Type: application/json
 #### 2.4.3.2. Response Syntax
 
 ``` json
+요청에 성공한 경우: HttpStatus: 200
 {
     "name": "송준희",
     "username": "joonhee.song",
     "email": "joonhee.song@ahnlab.com",
+}
+
+토큰이 Header에 없는 경우 HttpStatus: 401
+{
+    "timestamp": "2025-04-09T22:49:09.192843",
+    "status": 401,
+    "error": "AUTH-001",
+    "message": "인증되지 않은 요청입니다."
+}
+
+토큰이 유효하지 않은 경우 HttpStatus: 409
+{
+    "timestamp": "2025-04-09T22:48:42.099408",
+    "status": 409,
+    "error": "AUTH-002",
+    "message": "유효하지 않은 토큰입니다."
 }
 ```
