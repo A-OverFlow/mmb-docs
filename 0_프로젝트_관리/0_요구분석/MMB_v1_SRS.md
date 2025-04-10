@@ -12,63 +12,63 @@
 
 ## 회원 관리
 
-### 로그인
+### 기능 상세
 
-* `소셜 로그인` 버튼 클릭
-* 로그인 진행 (계정 정보 입력)
-* 로그인 완료
-* 무뭅보 메인 페이지로 이동
+* 로그인
+    * `소셜 로그인` 버튼 클릭
+    * 로그인 진행 (계정 정보 입력)
+    * 로그인 완료
+    * 무뭅보 메인 페이지로 이동
+* 로그아웃
+    * `로그아웃` 버튼 클릭
+    * 정말 로그아웃 하시겠습니까? 팝업 창 표시 (`예` 클릭시 로그아웃 요청)
+    * 서비스에서 토큰 삭제
+* 회원 가입
+    * `소셜 로그인` 버튼 클릭
+    * 계정 정보 입력을 통한 로그인 진행
+    * 무뭅보 서비스로 회원 가입 요청 (회원 가입 요청)
+    * 회원 가입 완료시 토큰 발급 (access_token, refresh_token)
+* 회원 탈퇴
+    * `회원 탈퇴` 버튼 클릭
+    * 정말 회원탈퇴 하시겠습니까? 팝업 창 표시 (`예` 클릭시 회원탈퇴 요청)
+    * 토큰 삭제, 회원 작성글 (게시글, 답변, 질문) 삭제, 회원 정보 삭제
 
-### 로그아웃
+### 구성도
 
-1. `로그아웃` 버튼 클릭
-2. 정말 로그아웃 하시겠습니까? 팝업 창 표시 (`예` 클릭시 로그아웃 요청)
-3. 서비스에서 토큰 삭제
-
-### 회원 가입
-
-1. `소셜 로그인` 버튼 클릭
-2. 계정 정보 입력을 통한 로그인 진행
-3. 무뭅보 서비스로 회원 가입 요청 (회원 가입 요청)
-4. 회원 가입 완료시 토큰 발급 (access_token, refresh_token)
-
-### 회원 탈퇴
-
-1. `회원 탈퇴` 버튼 클릭
-2. 정말 회원탈퇴 하시겠습니까? 팝업 창 표시 (`예` 클릭시 회원탈퇴 요청)
-3. 토큰 삭제, 회원 작성글 (게시글, 답변, 질문) 삭제, 회원 정보 삭제
+- todo
+    - 비지니스 로직 중심으로 구성도 그리기
+    - ex) gateway -> 서비스 -> DB
 
 ## QnA 게시판
 
-### 게시글 리스트 조회
+### 기능 상세
 
-* 게시글 `리스트` 조회 (리스트 조회 요청)
-    * 전체 게시글을 조회하도록 한다.
-    * 페이징 방식(no-offset, cursor)은 후에 지원
+* 게시글 리스트 조회
+    * 게시글 `리스트` 조회 (리스트 조회 요청)
+        * 전체 게시글을 조회하도록 한다.
+        * 페이징 방식(no-offset, cursor)은 후에 지원
+* 게시글 단일 조회
+    * 게시글 리스트에서 `게시글` 클릭
+    * 게시글 단건 조회 (단건 조회 요청)
+* 게시글 작성
+    * 게시글 제목 입력
+    * 게시글 내용 입력
+    * `저장` 버튼 클릭시 저장
+* 게시글 수정
+    * 게시글 클릭 (단건 조회 요청)
+    * 게시글 내부 `수정` 버튼 클릭
+    * 기존 내용 수정
+    * 수정 버튼 클릭시 수정 (수정 요청)
+* 게시글 삭제
+    * 개시글 목록에서 게시글 클릭 (단건 조회 요청)
+    * 게시글 내부 `삭제` 버튼 클릭
+    * 게시글 목록으로 이동
 
-### 게시글 단일 조회
+### 데이터 흐름
 
-* 게시글 리스트에서 `게시글` 클릭
-* 게시글 단건 조회 (단건 조회 요청)
-
-### 게시글 작성
-
-* 게시글 제목 입력
-* 게시글 내용 입력
-* `저장` 버튼 클릭시 저장
-
-### 게시글 수정
-
-* 게시글 클릭 (단건 조회 요청)
-* 게시글 내부 `수정` 버튼 클릭
-* 기존 내용 수정
-* 수정 버튼 클릭시 수정 (수정 요청)
-
-### 게시글 삭제
-
-* 개시글 목록에서 게시글 클릭 (단건 조회 요청)
-* 게시글 내부 `삭제` 버튼 클릭
-* 게시글 목록으로 이동
+- todo
+    - 비지니스 로직 중심으로 구성도 그리기
+    - ex) gateway -> 서비스 -> DB
 
 # 인증 프로세스
 
@@ -85,12 +85,12 @@
 
 ## ✅ 서비스별 역할 정리
 
-| 서비스 이름               | 주요 책임            | 주요 기능                                                                                                                                                                                                                             | 주요 통신 대상                                                 |
-|----------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| **API Gateway**      | 요청 라우팅, 인증 필터 처리 | - 경로 기반 라우팅 (`/api/v1/members/**`, `/api/v1/questions/**`, `/api/v1/auth/**`)<br>- Auth Service를 통한 JWT 검증<br>- 사용자 정보(ID, 권한 등) 서비스로 전달<br>- 인증 예외 경로 관리 (로그인 없이 호출 가능한 API 경로. ex:게시글 조회 API)<br>- 요청 로깅, Rate Limiting 등 확장 가능 | - Auth Service<br>- Member Service<br>- Question Service |
-| **Auth Service**     | 인증 전용 책임         | - 구글 소셜 로그인 (OAuth2)<br>- JWT 발급 (Access, Refresh)<br>- 토큰 검증 (`/api/v1/auth/verify`)<br>- 토큰 갱신 (`/api/v1/auth/refresh`)<br>                                                                                                     | - API Gateway<br>- Member Service                        |
-| **Member Service**   | 사용자 정보 관리 책임     | - 회원 가입/조회/수정<br>- 소셜 계정 기반 회원 존재 확인<br>- 회원 탈퇴 처리<br>- 사용자 상세 정보 제공<br>                                                                                                                                                          | - Auth Service<br>- API Gateway                          |
-| **Question Service** | 게시글 도메인 책임       | - 게시글 등록/수정/삭제/조회<br>- 사용자 ID 기반 게시글 관리<br>                                                                                                                                                                                       | - API Gateway<br>- Member Service                        |
+| 서비스 이름               | 주요 책임            | 주요 기능                                                                                                                                                                                                                                            | 주요 통신 대상                                                 |
+|----------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| **API Gateway**      | 요청 라우팅, 인증 필터 처리 | - 경로 기반 라우팅 (`/api/v1/members/**`, `/api/v1/questions/**`, `/api/v1/auth/**`)<br>- Auth Service를 통한 JWT 검증<br>- 사용자 정보(ID, 권한 등) 서비스로 전달<br>- 인증 예외 경로 관리 (구글 로그인 이후 리다이렉트 경로, 전체 게시글 조회 API 등)<br>- 모니터링을 위한 요청 로깅<br>- 요청 횟수 제한(Rate Limiting) | - Auth Service<br>- Member Service<br>- Question Service |
+| **Auth Service**     | 인증 전용 책임         | - 구글 소셜 로그인 (OAuth2)<br>- JWT 발급 (Access, Refresh)<br>- 토큰 검증 (`/api/v1/auth/verify`)<br>- 토큰 갱신 (`/api/v1/auth/refresh`)<br>                                                                                                                    | - API Gateway<br>- Member Service                        |
+| **Member Service**   | 사용자 정보 관리 책임     | - 회원 가입/조회/수정<br>- 소셜 계정 기반 회원 존재 확인<br>- 회원 탈퇴 처리<br>- 사용자 상세 정보 제공<br>                                                                                                                                                                         | - Auth Service<br>- API Gateway                          |
+| **Question Service** | 게시글 도메인 책임       | - 게시글 등록/수정/삭제/조회<br>- 사용자 ID 기반 게시글 관리<br>                                                                                                                                                                                                      | - API Gateway<br>- Member Service                        |
 
 ## 전체 시나리오
 
@@ -141,11 +141,11 @@
 
 ## 서비스 구성도
 
-### ![system-architecture-diagram.png](..%2F..%2F9_images%2Fsystem-architecture-diagram.png)
+![system-architecture-diagram.png](..%2F..%2F9_images%2Fsystem-architecture-diagram.png)
 
-#### 1. **API Gateway 설정**
+## API Gateway 설정
 
-(1) SSL 인증서 설정
+### SSL 인증서 설정
 
 - 인증서 경로
     - /home/ec2-user/certs
@@ -155,7 +155,7 @@
     - sudo certbot certonly —standalone -d dev.mumulbo.com —config-dir /home/ec2-user/certs
       —logs-dir /home/ec2-user/certs/logs —work-dir /home/ec2-user/certs/work
 
-(2) 라우팅 설정
+### 라우팅 설정
 
 [참고 링크](https://github.com/A-OverFlow/mmb-docs/blob/main/1_%EC%9D%B8%ED%94%84%EB%9D%BC%EC%9A%B4%EC%98%81_%ED%8C%8C%ED%8A%B8/%EA%B9%80%ED%98%9C%EB%A6%B0/5%EC%A3%BC%EC%B0%A8_API_Gateway_%EA%B0%9C%EB%B0%9C_%EC%9A%B4%EC%98%81_%EB%B6%84%EB%A6%AC.md)
 
@@ -163,9 +163,9 @@
 - 질문답변서비스 라우팅 (dev/prod)
 - 그라파나 라우팅
 
-#### 2. **컨테이너 관리 및 설정**
+## 컨테이너 관리 및 설정
 
-(1) docker-compose.yml 설정
+### docker-compose.yml 설정
 
 - 개발 / 운영 환경분리는 env 파일 경로를 docker-compose 실행시 파라미터로 넘긴다.
     - docker-compose --env-file <env 파일 경로>
@@ -181,25 +181,25 @@
     - 백앤드와 모니터링은 별도의 네트워크를 갖도록 설정한다
         - backend , monitoring
 
-#### 3. 자동 배포
+## 자동 배포
 
-##### **github action**
+**github action**
 
-### ![system-architecture-diagram.png](..%2F..%2F9_images%2Fci_cd1.png)
+![system-architecture-diagram.png](..%2F..%2F9_images%2Fci_cd1.png)
 
-(1) Branch 구조
+### Branch 구조
 
 - feature: 새로운 기능을 개발하는 브랜치
 - develop: 개발 완료 후 병합되는 브랜치
 - main: 운영 배포를 위한 최종 브랜치
 
-(2) CI (Continuous Integration)
+### CI (Continuous Integration)
 
 - PR이 생성될 때 수행
     - feature → develop
     - develop → main
 
-(3) CD (Continuous Deployment)
+### CD (Continuous Deployment)
 
 - Dev 환경 배포
     - PR이 merge될 때 (feature → develop)
@@ -210,9 +210,9 @@
     - Docker 이미지 빌드 및 Docker Hub 푸시
     - EC2 서버에 배포
 
-#### 4. 모니터링
+## 모니터링
 
-(1)) **그라파나**
+### 그라파나
 
 - **접속 방법**
     - http://mumulbo.com:3000
@@ -234,7 +234,7 @@
 - **경보 알림**
     - 주요 지표( CPU, 메모리, 디스크, 네트워크)의 임계치 초과 시 경보(알림) 기능 제공
 
-(2) **프로메테우스**
+### 프로메테우스
 
 - **`prometheus.yml` 설정 파일 구성**
     - scrape_interval(스크랩 간격) : 60s
@@ -244,7 +244,7 @@
     - **node-exporter**: `http://<EC2_IP>:9100`
     - **process-exporter**: `http://<EC2_IP>:9256`
 
-(3) **익스포터**
+### 익스포터
 
 - **node-exporter**
     - 호스트(EC2) 시스템 레벨 메트릭(CPU, 메모리, 디스크 I/O, 네트워크, 파일시스템 등) 제공
