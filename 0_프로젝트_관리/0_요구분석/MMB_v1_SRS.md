@@ -97,45 +97,43 @@
 ### 요약
 
 ```plaintext
-[1]  Front        →  Google OAuth (구글 로그인)
-[2]  Front        →  Gateway  →  Auth (사용자 정보 확인)
-[3]  Auth         →  Member (자동 회원 가입, 로그인, JWT 발급)
-[4]  Auth         →  Gateway  →  Front (인증 정보 저장)
-
-[5]  Front        →  Gateway (게시글 작성 요청)
-[6]  Gateway      →  Auth (토큰 검증)
-[7]  Gateway      →  Question (요청 라우팅)
-[8]  Question     →  Question DB (게시글 저장) 
+[1]  Front        →  Google Login 버튼 클릭 
+[2]  Front        →  Gateway  →  Auth (로그인 API 호출)
+[3]  Auth         →  Gateway  →  Front  →  Google OAuth (Google OAuth 서버로 리디렉션) 
+[4]  Google OAuth →  Front (로그인 창 생성. 로그인 진행) 
+[5]  Front        →  Gateway  →  Auth (로그인 완료. 인가 코드와 함께 Auth 서비스로 리디렉션)
+[6]  Auth         →  Google Resource (인가 코드 사용하여 구글 리소스 서버에서 사용자 정보 획득) 
+[7]  Auth         →  Member (회원 가입 API 호출)
+[8]  Auth         →  Gateway  →  Front (JWT 발급 후 Front 전달)
+[9]  Front        → (전달받은 JWT 저장. 이후 모든 요청에 JWT 포함)
+[10]  Front        →  Gateway (게시글 작성 요청)
+[11]  Gateway      →  Auth (토큰 검증)
+[12]  Gateway      →  Question (요청 라우팅)
+[13]  Question     →  Question DB (게시글 저장) 
 ```
 
 ### 상세
 
-1. 구글 로그인
-    1. 구글 로그인 버튼을 클릭
-    2. 로그인 시도
-    3. 구글 OAuth 서버가 인가코드 발급과 함께 지정된 서버(Auth)로 리다이렉트 시킴
-2. 사용자 정보 확인
-    1. Auth 서버는 전달받은 인가 코드를 사용해서 구글 리소스 서버에 접근
-    2. 구글 리소스 서버에서 인가 코드에 해당하는 사용자 정보를 수집 (이메일, 아이디, 프로필 등등)
-3. 자동 회원 가입 및 로그인
-    1. 수집한 사용자 정보로 Member 서비스 API 호출하여 회원 유무 판단
-    2. 회원 아닐 경우 자동 가입
-    3. 로그인 절차에 해당하는 JWT 발급(Access, Refresh)하여 프론트로 전달
-4. 인증 정보 저장
-    1. 발급 받은 JWT를 프론트에서 저장
-    2. 로그인 절차가 완료 됐으므로 이후 모든 요청에 JWT를 포함
-5. 게시글 작성 요청
-    1. JWT를 포함하여 게시글 작성 API 호출
-6. 토큰 검증
-    1. GW는 요청을 라우팅하기 전에 JWT 검증
-    2. 이때, 토큰 검증은 직접하는 것이 아닌 Auth 서버의 토큰 검증 API 호출
-7. 요청 라우팅
-    1. 검증된 토큰일 경우 토큰에 포함된 사용자 정보를 요청에 추가하여 해당 서비스로 라우팅
-        1. 토큰 검증 API가 토큰에 포함된 사용자 정보를 응답에 포함
-        2. GW는 응답받은 사용자 정보를 헤더에 설정
-8. 게시글 저장
-    1. Question 서비스는 요청 정보의 헤더를 확인하여 사용자를 구분
-    2. 요청 받은 데이터를 DB에 삽입
+전체 과정에서 리디렉션이 2번 발생함.
+
+1. 구글 로그인 버튼 클릭
+2. Auth 서비스 API 호출
+   1. mumulbo.com/api/v1/oauth2/authorization/google
+3. Auth 서비스는 구글 OAuth 서버로 **리디렉션** 시킴
+   1. accounts.google.com/o/oauth2/v2/auth
+4. 구글 OAuth 서버는 사용자에게 로그인 페이지를 출력
+5. 로그인을 완료하면 구글 OAuth 서버가 사전에 등록한 URL로 인가 코드와 함께 **리디렉션** 시킴
+   1. mumulbo.com/api/v1/login/oauth2/code/google?code=xxx&state=yyy
+   2. URL 파라미터로 인가 코드(code) 설정하여 리디렉션 해줌
+   2. 리디렉션으로 인하여 Auth 서비스 API가 자동으로 호출됨
+6. Auth 서비스는 전달받은 인가 토큰으로 구글 리소스 서버에 접근하여 사용자 정보 획득
+7. Auth 서비스는 사용자 정보를 사용하여 Member 서비스의 회원 가입 API 호출
+8. Auth 서비스는 JWT를 발급하여 Front로 전달
+9. JWT를 응답받은 Front는 JWT를 저장하고 앞으로의 모든 요청에 JWT를 포함
+10. 게시글 작성 API 호출
+11. GW는 JWT 검증을 위해 Auth 서비스의 JWT 검증 API 호출
+12. 정상적인 토큰이라면 요청 헤더(x-user-id)에 사용자 ID를 추가하여 Question 서비스로 라우팅
+13. Question 서비스는 요청을 수신하고 DB에 게시글 저장
 
 # 서비스 운영
 
