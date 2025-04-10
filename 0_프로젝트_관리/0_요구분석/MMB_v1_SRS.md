@@ -99,7 +99,7 @@
 ```plaintext
 [1]  Front        →  Google OAuth (구글 로그인)
 [2]  Front        →  Gateway  →  Auth (사용자 정보 확인)
-[3]  Auth         →  Gateway  →  Member (자동 회원 가입, 로그인, JWT 발급)
+[3]  Auth         →  Member (자동 회원 가입, 로그인, JWT 발급)
 [4]  Auth         →  Gateway  →  Front (인증 정보 저장)
 
 [5]  Front        →  Gateway (게시글 작성 요청)
