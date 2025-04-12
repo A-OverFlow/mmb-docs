@@ -25,44 +25,88 @@
 
 ### 2.0. API 리스트
 
-| HTTP Method | URL                                     | 비고       |
-|-------------|-----------------------------------------|----------|
-| POST        | https://mumulbo.com/api/v1/members      | 회원가입     |
-| GET         | https://mumulbo.com/api/v1/members/{id} | 회원 정보 조회 |
-| PUT         | https://mumulbo.com/api/v1/members/{id} | 회원 정보 수정 |
-| DELETE      | https://mumulbo.com/api/v1/members/{id} | 회원 탈퇴    |
+| HTTP Method | URL                                      | 비고       |
+|-------------|------------------------------------------|----------|
+| POST        | https://mumulbo.com/api/v1/members/check | 회원 여부 확인 |
+| POST        | https://mumulbo.com/api/v1/members       | 회원가입     |
+| GET         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 조회 |
+| PUT         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 수정 |
+| DELETE      | https://mumulbo.com/api/v1/members/{id}  | 회원 탈퇴    |
 
 ---
 
-### 2.1. 회원가입
+### 2.1. 회원 여부 확인
 
-| HTTP Method | URL                                | 비고 |
-|-------------|------------------------------------|----|
-| POST        | https://mumulbo.com/api/v1/members | -  |
+| HTTP Method | URL                                      | 비고                       |
+|-------------|------------------------------------------|--------------------------|
+| POST        | https://mumulbo.com/api/v1/members/check | 로그인 시 일치하는 회원 정보가 있는지 확인 |
 
 ### 2.1.1. Request
 
 #### 2.1.1.1. Body (아직 미정)
 
-| Key      | Value                   | Description |
-|----------|-------------------------|-------------|
-| name     | 송준희                     | 이름          |
-| email    | joonhee.song@ahnlab.com | 이메일         |
-| username | joonhee.song            | 아이디         |
+| Key   | Value                   | Description |
+|-------|-------------------------|-------------|
+| email | joonhee.song@ahnlab.com | 이메일         |
 
 ### 2.1.2. Response
 
 #### 2.1.2.1. Body (아직 미정)
 
+| Key | Value | Description |
+|-----|-------|-------------|
+| id  | 1     | 회원 id       |
+
+### 2.1.3. Syntax
+
+#### 2.1.3.1. Response Syntax
+
+``` json
+요청에 성공한 경우: HttpStatus: 200
+{
+    "id": 1
+}
+
+일치하는 회원이 없는 경우: HttpStatus: 404
+{
+    "timestamp": "2025-04-09T22:48:42.099408",
+    "status": 404,
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
+}
+```
+
+---
+
+### 2.2. 회원가입
+
+| HTTP Method | URL                                | 비고 |
+|-------------|------------------------------------|----|
+| POST        | https://mumulbo.com/api/v1/members | -  |
+
+### 2.2.1. Request
+
+#### 2.2.1.1. Body (아직 미정)
+
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
 | name     | 송준희                     | 이름          |
 | email    | joonhee.song@ahnlab.com | 이메일         |
 | username | joonhee.song            | 아이디         |
 
-### 2.1.3. Syntax
+### 2.2.2. Response
 
-#### 2.1.3.1. Response Syntax
+#### 2.2.2.1. Body (아직 미정)
+
+| Key      | Value                   | Description |
+|----------|-------------------------|-------------|
+| name     | 송준희                     | 이름          |
+| email    | joonhee.song@ahnlab.com | 이메일         |
+| username | joonhee.song            | 아이디         |
+
+### 2.2.4. Syntax
+
+#### 2.2.4.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 201
@@ -83,23 +127,23 @@
 
 ---
 
-### 2.2. 회원 정보 조회
+### 2.3. 회원 정보 조회
 
 | HTTP Method | URL                                     | 비고 |
 |-------------|-----------------------------------------|----|
 | GET         | https://mumulbo.com/api/v1/members/{id} | -  |
 
-### 2.2.1. Request
+### 2.3.1. Request
 
-#### 2.2.1.1. Path Variables
+#### 2.3.1.1. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
 | id  | 1     | 회원 아이디      |
 
-### 2.2.2. Response
+### 2.3.2. Response
 
-#### 2.2.2.1. Body (아직 미정)
+#### 2.3.2.1. Body (아직 미정)
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -107,9 +151,9 @@
 | email    | joonhee.song@ahnlab.com | 이메일         |
 | username | joonhee.song            | 아이디         |
 
-### 2.2.3. Syntax
+### 2.3.3. Syntax
 
-#### 2.2.3.1. Response Syntax
+#### 2.3.3.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 200
@@ -130,21 +174,21 @@
 
 ---
 
-### 2.3. 회원 정보 수정
+### 2.4. 회원 정보 수정
 
 | HTTP Method | URL                                     | 비고 |
 |-------------|-----------------------------------------|----|
 | PUT         | https://mumulbo.com/api/v1/members/{id} | -  |
 
-### 2.3.1. Request
+### 2.4.1. Request
 
-#### 2.3.1.1. Path Variables
+#### 2.4.1.1. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
 | id  | 1     | 회원 아이디      |
 
-#### 2.3.1.2. Body (아직 미정)
+#### 2.4.1.2. Body (아직 미정)
 
 | Key      | Value                    | Description |
 |----------|--------------------------|-------------|
@@ -152,9 +196,9 @@
 | email    | joonhee.song2@ahnlab.com | 이메일         |
 | username | joonhee.song2            | 아이디         |
 
-### 2.3.2. Response
+### 2.4.2. Response
 
-#### 2.3.2.1. Body (아직 미정)
+#### 2.4.2.1. Body (아직 미정)
 
 | Key      | Value                    | Description | 비고      |
 |----------|--------------------------|-------------|---------|
@@ -162,9 +206,9 @@
 | email    | joonhee.song2@ahnlab.com | 이메일         | 최대 254자 |
 | username | joonhee.song2            | 아이디         | 최대 20자  |
 
-### 2.3.3. Syntax
+### 2.4.3. Syntax
 
-#### 2.3.3.1. Response Syntax
+#### 2.4.3.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 200
@@ -186,23 +230,23 @@
 
 ---
 
-### 2.4. 회원 탈퇴
+### 2.5. 회원 탈퇴
 
 | HTTP Method | URL                                     | 비고 |
 |-------------|-----------------------------------------|----|
 | DELETE      | https://mumulbo.com/api/v1/members/{id} | -  |
 
-### 2.4.1. Request
+### 2.5.1. Request
 
-#### 2.4.1.1. Path Variables
+#### 2.5.1.1. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
 | id  | 1     | 회원 아이디      |
 
-### 2.4.3. Syntax
+### 2.5.2. Syntax
 
-#### 2.4.3.1. Response Syntax
+#### 2.5.2.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 204
