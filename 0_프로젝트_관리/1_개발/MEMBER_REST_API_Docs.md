@@ -17,6 +17,7 @@
 | Error Code | Description |
 |------------|-------------|
 | MEMBER-001 | 존재하지 않는 회원  |
+| MEMBER-002 | 이미 존재하는 회원  |
 
 ---
 
@@ -24,30 +25,34 @@
 
 ### 2.0. API 리스트
 
-| HTTP Method | URL                                   | 비고       |
-|-------------|---------------------------------------|----------|
-| GET         | https://mumulbo.com/api/v1/members/me | 회원 정보 조회 |
-| PUT         | https://mumulbo.com/api/v1/members/me | 회원 정보 수정 |
+| HTTP Method | URL                                     | 비고       |
+|-------------|-----------------------------------------|----------|
+| POST        | https://mumulbo.com/api/v1/members      | 회원가입     |
+| GET         | https://mumulbo.com/api/v1/members/{id} | 회원 정보 조회 |
+| PUT         | https://mumulbo.com/api/v1/members/{id} | 회원 정보 수정 |
+| DELETE      | https://mumulbo.com/api/v1/members/{id} | 회원 탈퇴    |
 
 ---
 
-### 2.1. 회원 정보 조회
+### 2.1. 회원가입
 
-| HTTP Method | URL                                   | 비고 |
-|-------------|---------------------------------------|----|
-| GET         | https://mumulbo.com/api/v1/members/me | -  |
+| HTTP Method | URL                                | 비고 |
+|-------------|------------------------------------|----|
+| POST        | https://mumulbo.com/api/v1/members | -  |
 
 ### 2.1.1. Request
 
-#### 2.1.1.1. Header
+#### 2.1.1.1. Body (아직 미정)
 
-| Key       | Type | Value | Required | Description |
-|-----------|------|-------|----------|-------------|
-| X-USER-ID | Long | 1     | O        | 회원 아이디      |
+| Key      | Value                   | Description |
+|----------|-------------------------|-------------|
+| name     | 송준희                     | 이름          |
+| email    | joonhee.song@ahnlab.com | 이메일         |
+| username | joonhee.song            | 아이디         |
 
 ### 2.1.2. Response
 
-#### 2.1.2.1. Body (OAuth에서 제공하는 데이터 일부. 아직 미정)
+#### 2.1.2.1. Body (아직 미정)
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -58,6 +63,53 @@
 ### 2.1.3. Syntax
 
 #### 2.1.3.1. Response Syntax
+
+``` json
+요청에 성공한 경우: HttpStatus: 201
+{
+    "name": "송준희",
+    "username": "joonhee.song",
+    "email": "joonhee.song@ahnlab.com",
+}
+
+이미 가입한 회원인 경우 HttpStatus: 409
+{
+    "timestamp": "2025-04-09T22:48:42.099408",
+    "status": 409,
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
+}
+```
+
+---
+
+### 2.2. 회원 정보 조회
+
+| HTTP Method | URL                                     | 비고 |
+|-------------|-----------------------------------------|----|
+| GET         | https://mumulbo.com/api/v1/members/{id} | -  |
+
+### 2.2.1. Request
+
+#### 2.2.1.1. Path Variables
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| id  | 1     | 회원 아이디      |
+
+### 2.2.2. Response
+
+#### 2.2.2.1. Body (아직 미정)
+
+| Key      | Value                   | Description |
+|----------|-------------------------|-------------|
+| name     | 송준희                     | 이름          |
+| email    | joonhee.song@ahnlab.com | 이메일         |
+| username | joonhee.song            | 아이디         |
+
+### 2.2.3. Syntax
+
+#### 2.2.3.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 200
@@ -78,57 +130,82 @@
 
 ---
 
-### 2.2. 회원 정보 수정
+### 2.3. 회원 정보 수정
 
-| HTTP Method | URL                                   | 비고 |
-|-------------|---------------------------------------|----|
-| PUT         | https://mumulbo.com/api/v1/members/me | -  |
+| HTTP Method | URL                                     | 비고 |
+|-------------|-----------------------------------------|----|
+| PUT         | https://mumulbo.com/api/v1/members/{id} | -  |
 
-### 2.2.1. Request
+### 2.3.1. Request
 
-#### 2.2.1.1. Header
+#### 2.3.1.1. Path Variables
 
-| Key       | Type | Value | Required | Description |
-|-----------|------|-------|----------|-------------|
-| X-USER-ID | Long | 1     | O        | 회원 아이디      |
+| Key | Value | Description |
+|-----|-------|-------------|
+| id  | 1     | 회원 아이디      |
 
-#### 2.2.1.2. Body (OAuth에서 제공하는 데이터 일부. 아직 미정)
+#### 2.3.1.2. Body (아직 미정)
 
-| Key      | Value                   | Description |
-|----------|-------------------------|-------------|
-| name     | 송준희                     | 이름          |
-| email    | joonhee.song@ahnlab.com | 이메일         |
-| username | joonhee.song            | 아이디         |
+| Key      | Value                    | Description |
+|----------|--------------------------|-------------|
+| name     | 송준희2                     | 이름          |
+| email    | joonhee.song2@ahnlab.com | 이메일         |
+| username | joonhee.song2            | 아이디         |
 
-### 2.2.2. Response
+### 2.3.2. Response
 
-#### 2.2.2.1. Body (OAuth에서 제공하는 데이터 일부. 아직 미정)
+#### 2.3.2.1. Body (아직 미정)
 
-| Key      | Value                   | Description | 비고      |
-|----------|-------------------------|-------------|---------|
-| name     | 송준희                     | 이름          | 최대 100자 |
-| email    | joonhee.song@ahnlab.com | 이메일         | 최대 254자 |
-| username | joonhee.song            | 아이디         | 최대 20자  |
+| Key      | Value                    | Description | 비고      |
+|----------|--------------------------|-------------|---------|
+| name     | 송준희2                     | 이름          | 최대 100자 |
+| email    | joonhee.song2@ahnlab.com | 이메일         | 최대 254자 |
+| username | joonhee.song2            | 아이디         | 최대 20자  |
 
-### 2.2.3. Syntax
+### 2.3.3. Syntax
 
-#### 2.2.3.1. Response Syntax
+#### 2.3.3.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
-    "name": "송준희",
-    "username": "joonhee.song",
-    "email": "joonhee.song@ahnlab.com",
+    "name": "송준희2",
+    "username": "joonhee.song2",
+    "email": "joonhee.song2@ahnlab.com",
 }
 
-잘못된 데이터로 요청한 경우 HttpStatus: 400
+회원이 존재하지 않는 경우 HttpStatus: 404
 {
     "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 400,
-    "error": "SYSTEM-001",
-    "message": "-"
+    "status": 404,
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
 }
+
+```
+
+---
+
+### 2.4. 회원 탈퇴
+
+| HTTP Method | URL                                     | 비고 |
+|-------------|-----------------------------------------|----|
+| DELETE      | https://mumulbo.com/api/v1/members/{id} | -  |
+
+### 2.4.1. Request
+
+#### 2.4.1.1. Path Variables
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| id  | 1     | 회원 아이디      |
+
+### 2.4.3. Syntax
+
+#### 2.4.3.1. Response Syntax
+
+``` json
+요청에 성공한 경우: HttpStatus: 204
 
 회원이 존재하지 않는 경우 HttpStatus: 404
 {
