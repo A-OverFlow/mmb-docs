@@ -118,14 +118,14 @@
 
 1. 구글 로그인 버튼 클릭
 2. Auth 서비스 API 호출
-   1. mumulbo.com/api/v1/oauth2/authorization/google
+    1. mumulbo.com/api/v1/oauth2/authorization/google
 3. Auth 서비스는 구글 OAuth 서버로 **리디렉션** 시킴
-   1. accounts.google.com/o/oauth2/v2/auth
+    1. accounts.google.com/o/oauth2/v2/auth
 4. 구글 OAuth 서버는 사용자에게 로그인 페이지를 출력
 5. 로그인을 완료하면 구글 OAuth 서버가 사전에 등록한 URL로 인가 코드와 함께 **리디렉션** 시킴
-   1. mumulbo.com/api/v1/login/oauth2/code/google?code=xxx&state=yyy
-   2. URL 파라미터로 인가 코드(code) 설정하여 리디렉션 해줌
-   2. 리디렉션으로 인하여 Auth 서비스 API가 자동으로 호출됨
+    1. mumulbo.com/api/v1/login/oauth2/code/google?code=xxx&state=yyy
+    2. URL 파라미터로 인가 코드(code) 설정하여 리디렉션 해줌
+    2. 리디렉션으로 인하여 Auth 서비스 API가 자동으로 호출됨
 6. Auth 서비스는 전달받은 인가 토큰으로 구글 리소스 서버에 접근하여 사용자 정보 획득
 7. Auth 서비스는 사용자 정보를 사용하여 Member 서비스의 회원 가입 API 호출
 8. Auth 서비스는 JWT를 발급하여 Front로 전달
@@ -139,7 +139,7 @@
 
 ## 서비스 구성도
 
-![system-architecture-diagram.png](..%2F..%2F9_images%2Fsystem-architecture-diagram.png)
+![system-architecture-diagram2.png](..%2F..%2F9_images%2Fsystem-architecture-diagram2.png)
 
 ## API Gateway 설정
 
