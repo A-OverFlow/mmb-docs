@@ -100,6 +100,7 @@
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
+| id       | 1                       | 회원 id       |
 | name     | 송준희                     | 이름          |
 | email    | joonhee.song@ahnlab.com | 이메일         |
 | username | joonhee.song            | 아이디         |
@@ -111,6 +112,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 201
 {
+    "id": 1,
     "name": "송준희",
     "username": "joonhee.song",
     "email": "joonhee.song@ahnlab.com",
