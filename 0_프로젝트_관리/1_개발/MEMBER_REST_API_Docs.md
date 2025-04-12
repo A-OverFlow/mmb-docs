@@ -28,10 +28,10 @@
 | HTTP Method | URL                                      | 비고       |
 |-------------|------------------------------------------|----------|
 | POST        | https://mumulbo.com/api/v1/members/check | 회원 여부 확인 |
-| POST        | https://mumulbo.com/api/v1/members       | 회원가입     |
+| POST        | https://mumulbo.com/api/v1/members       | 회원 정보 저장 |
 | GET         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 조회 |
 | PUT         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 수정 |
-| DELETE      | https://mumulbo.com/api/v1/members/{id}  | 회원 탈퇴    |
+| DELETE      | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 삭제 |
 
 ---
 
@@ -192,21 +192,19 @@
 
 #### 2.4.1.2. Body (아직 미정)
 
-| Key      | Value                    | Description |
-|----------|--------------------------|-------------|
-| name     | 송준희2                     | 이름          |
-| email    | joonhee.song2@ahnlab.com | 이메일         |
-| username | joonhee.song2            | 아이디         |
+| Key      | Value         | Description |
+|----------|---------------|-------------|
+| name     | 송준희2          | 이름          |
+| username | joonhee.song2 | 아이디         |
 
 ### 2.4.2. Response
 
 #### 2.4.2.1. Body (아직 미정)
 
-| Key      | Value                    | Description | 비고      |
-|----------|--------------------------|-------------|---------|
-| name     | 송준희2                     | 이름          | 최대 100자 |
-| email    | joonhee.song2@ahnlab.com | 이메일         | 최대 254자 |
-| username | joonhee.song2            | 아이디         | 최대 20자  |
+| Key      | Value         | Description | 비고      |
+|----------|---------------|-------------|---------|
+| name     | 송준희2          | 이름          | 최대 100자 |
+| username | joonhee.song2 | 아이디         | 최대 20자  |
 
 ### 2.4.3. Syntax
 
@@ -216,8 +214,7 @@
 요청에 성공한 경우: HttpStatus: 200
 {
     "name": "송준희2",
-    "username": "joonhee.song2",
-    "email": "joonhee.song2@ahnlab.com",
+    "username": "joonhee.song2"
 }
 
 회원이 존재하지 않는 경우 HttpStatus: 404
@@ -227,7 +224,6 @@
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
-
 ```
 
 ---
@@ -260,5 +256,4 @@
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
-
 ```
