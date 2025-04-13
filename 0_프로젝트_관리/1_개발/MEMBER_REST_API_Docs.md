@@ -195,10 +195,10 @@
 
 #### 2.4.2.1. Body (아직 미정)
 
-| Key      | Value         | Description | 비고      |
-|----------|---------------|-------------|---------|
-| name     | 송준희2          | 이름          | 최대 100자 |
-| username | joonhee.song2 | 아이디         | 최대 20자  |
+| Key      | Value         | Description |
+|----------|---------------|-------------|
+| name     | 송준희2          | 이름          |
+| username | joonhee.song2 | 아이디         |
 
 ### 2.4.3. Syntax
 
