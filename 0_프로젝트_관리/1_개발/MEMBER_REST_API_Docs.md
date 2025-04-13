@@ -69,8 +69,6 @@
 
 일치하는 회원이 없는 경우: HttpStatus: 404
 {
-    "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 404,
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
@@ -120,8 +118,6 @@
 
 이미 가입한 회원인 경우 HttpStatus: 409
 {
-    "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 409,
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
@@ -167,8 +163,6 @@
 
 회원이 존재하지 않는 경우 HttpStatus: 404
 {
-    "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 404,
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
@@ -219,8 +213,6 @@
 
 회원이 존재하지 않는 경우 HttpStatus: 404
 {
-    "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 404,
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
@@ -251,8 +243,6 @@
 
 회원이 존재하지 않는 경우 HttpStatus: 404
 {
-    "timestamp": "2025-04-09T22:48:42.099408",
-    "status": 404,
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
 }
