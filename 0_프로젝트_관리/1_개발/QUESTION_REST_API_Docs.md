@@ -8,9 +8,9 @@
 
 |HTTP Status Code|Custom Error Code|Description|응답 예시(Body)|
 |------|---|---|---|
-|**400** BAD_REQUEST|`QUESTION-4000`|잘못된 요청|<pre lang="json">{&#13;  "status": 400,&#13;  "name": "QUESTION_INVALID_INPUT_VALUE",&#13;  "code": "QUESTION-4000",&#13;  "message": null&#13;}</pre>|
-|**404** NOT_FOUND|`QUESTION-4040`|질문 not found|<pre lang="json">{&#13;  "status": 404,&#13;  "name": "QUESTION_NOT_FOUND",&#13;  "code": "QUESTION-4040",&#13;  "message": null&#13;}</pre>|
-|**500** INTERNAL_SERVER_ERROR|`QUESTION-5000`|질문 서버 에러|<pre lang="json">{&#13;  "status": 500,&#13;  "name": "QUESTION_INTERNAL_SERVER_ERROR",&#13;  "code": "QUESTION-5000",&#13;  "message": null&#13;}</pre>|
+|**400** BAD_REQUEST|`QUESTION-4000`|잘못된 요청|<pre lang="json">{&#13;  "code": "QUESTION-4000",&#13;  "message": null&#13;}</pre>|
+|**404** NOT_FOUND|`QUESTION-4040`|질문 not found|<pre lang="json">{&#13;  "code": "QUESTION-4040",&#13;  "message": null&#13;}</pre>|
+|**500** INTERNAL_SERVER_ERROR|`QUESTION-5000`|질문 서버 에러|<pre lang="json">{&#13;  "code": "QUESTION-5000",&#13;  "message": null&#13;}</pre>|
 
 <br/><br/>
 
