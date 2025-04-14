@@ -27,7 +27,7 @@
 
 | HTTP Method | URL                                      | 비고       |
 |-------------|------------------------------------------|----------|
-| POST        | https://mumulbo.com/api/v1/members/check | 회원 여부 확인 |
+| GET         | https://mumulbo.com/api/v1/members/check | 회원 여부 확인 |
 | POST        | https://mumulbo.com/api/v1/members       | 회원 정보 저장 |
 | GET         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 조회 |
 | PUT         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 수정 |
@@ -39,11 +39,11 @@
 
 | HTTP Method | URL                                      | 비고                       |
 |-------------|------------------------------------------|--------------------------|
-| POST        | https://mumulbo.com/api/v1/members/check | 로그인 시 일치하는 회원 정보가 있는지 확인 |
+| GET         | https://mumulbo.com/api/v1/members/check | 로그인 시 일치하는 회원 정보가 있는지 확인 |
 
 ### 2.1.1. Request
 
-#### 2.1.1.1. Body (아직 미정)
+#### 2.1.1.1. Params
 
 | Key   | Value                   | Description |
 |-------|-------------------------|-------------|
@@ -51,7 +51,7 @@
 
 ### 2.1.2. Response
 
-#### 2.1.2.1. Body (아직 미정)
+#### 2.1.2.1. Body
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -84,7 +84,7 @@
 
 ### 2.2.1. Request
 
-#### 2.2.1.1. Body (아직 미정)
+#### 2.2.1.1. Body
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -94,7 +94,7 @@
 
 ### 2.2.2. Response
 
-#### 2.2.2.1. Body (아직 미정)
+#### 2.2.2.1. Body
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -141,7 +141,7 @@
 
 ### 2.3.2. Response
 
-#### 2.3.2.1. Body (아직 미정)
+#### 2.3.2.1. Body
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
@@ -184,7 +184,7 @@
 |-----|-------|-------------|
 | id  | 1     | 회원 아이디      |
 
-#### 2.4.1.2. Body (아직 미정)
+#### 2.4.1.2. Body
 
 | Key      | Value         | Description |
 |----------|---------------|-------------|
@@ -193,7 +193,7 @@
 
 ### 2.4.2. Response
 
-#### 2.4.2.1. Body (아직 미정)
+#### 2.4.2.1. Body
 
 | Key      | Value         | Description |
 |----------|---------------|-------------|
