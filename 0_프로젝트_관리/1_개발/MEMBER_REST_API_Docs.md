@@ -133,7 +133,13 @@
 
 ### 2.3.1. Request
 
-#### 2.3.1.1. Path Variables
+#### 2.3.1.1. Header
+
+| Key           | Value        | Required | Description |
+|---------------|--------------|----------|-------------|
+| Authorization | Bearer <JWT> | O        | 토큰          |
+
+#### 2.3.1.2. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -178,7 +184,13 @@
 
 ### 2.4.1. Request
 
-#### 2.4.1.1. Path Variables
+#### 2.4.1.1. Header
+
+| Key           | Value        | Required | Description |
+|---------------|--------------|----------|-------------|
+| Authorization | Bearer <JWT> | O        | 토큰          |
+
+#### 2.4.1.2. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -228,7 +240,13 @@
 
 ### 2.5.1. Request
 
-#### 2.5.1.1. Path Variables
+#### 2.5.1.1. Header
+
+| Key           | Value        | Required | Description |
+|---------------|--------------|----------|-------------|
+| Authorization | Bearer <JWT> | O        | 토큰          |
+
+#### 2.5.1.2. Path Variables
 
 | Key | Value | Description |
 |-----|-------|-------------|
