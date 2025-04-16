@@ -8,6 +8,44 @@
     - 2차 : 25.04.17 (예정)
 - 접속 URL : https://mumulbo.com
 
+# 전체 구성도
+
+![mmb_v1.drawio.png](../../9_images/mmb_v1.drawio.png)
+
+## 구성도 설명
+
+```plaintext
+[HTTPS 요청 (443)] or [HTTP 요청 (80)]
+        ▼
+        │
+        ├── / (root) → React 컨테이너 (Nginx, 프론트 앱 서빙) ▶ 외부 포트 (80, 443)
+        │              (index.html 등 정적 리소스 응답. 80 -> 443 리다이렉트)
+        │
+        └── /api/** → API Gateway ▶ 내부 포트 (ex. 8080)
+                    │
+                    ├── Auth Service ▶ 내부 포트 (ex. 8081)
+                    ├── Member Service ▶ 내부 포트 (ex. 8082)
+                    └── Question Service ▶ 내부 포트 (ex. 8083)
+```
+
+- React (Nginx)
+    - 프론트엔드 애플리케이션(React)를 서빙하는 Nginx 컨테이너
+    - path가 /api 로 시작하는 요청은 모두 API Gateway로 전달
+    - 이외의 요청은 정적 파일(index.html)이 처리
+    - 모든 요청의 진입점이며 인증서 처리도 여기서 진행
+- API Gateway
+    - API 요청을 처리하는 모든 API 진입점
+
+## 컨테이너 포트 구성
+
+| 컨테이너                 | 외부 포트     | 내부 포트     | 역할            |
+|----------------------|-----------|-----------|---------------|
+| **nginx**            | `80, 443` | `80, 443` | / 요청 처리       |
+| **api-gateway**      | -         | `8080`    | /api/** 요청 처리 |
+| **auth-service**     | -         | `8081`    | 인증 처리         |
+| **member-service**   | -         | `8082`    | 회원 관리         |
+| **question-service** | -         | `8083`    | 질문 관리         |
+
 # 서비스 기능
 
 ## 회원 관리
