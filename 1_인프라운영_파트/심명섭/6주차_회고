@@ -1,0 +1,124 @@
+# 📅 주간 작업 회고 (2025.04.16)
+
+---
+
+## 1. 지난주 목표
+
+- 질문 서비스 dev/prod CI/CD 구성
+- Auth 서비스 dev/prod CI/CD 구성
+- Docker 이미지에 `myeongseob91` 을 `mumulbo` 로 변경
+- 프론트엔드 dev/prod CI/CD 구성
+- API Gateway dev/prod CI/CD 구성
+- Gateway로 들어오는 request 정보 로그 출력
+- Gateway에서 라우팅 된 이후정보 출력
+- local/dev/prod 별 로그 레벨 설정
+- minimal srs에 시스템 구성도 최신화
+- 컨테이너 관리 및 설정
+
+---
+
+## 2. 완료한 작업
+
+- 질문 서비스 dev/prod CI/CD 구성
+- Auth 서비스 prod CI/CD 구성
+- Docker 이미지에 `myeongseob91` 포함 제거
+- 프론트엔드 dev/prod CI/CD 구성
+- API Gateway dev/prod CI/CD 구성
+- Gateway request 로그 출력
+- Gateway 로우팅 정보 로그 출력
+- 로그 레벨 환경별 구분 설정
+- minimal srs에 시스템 구성도 최신화
+- 컨테이너 관리 및 설정
+
+---
+
+## 3. 진행 중인 작업
+
+- Minimal SRS의 “컨테이너 관리 및 설정” 항목 업데이트 필요 (2025.04.16 작업 기준)
+- 프론트엔드 dev CD 과정에서 docker pull 오류 확인 중
+
+---
+
+## 4. 배우점
+
+### 🔹 Gateway 로깅을 하며 느낀점
+
+Spring Cloud Gateway의 필터 체계는 레이어 형태로 순차적으로 쌓여 있는 구조임
+각 필터는 요청 처리의 특정 단계를 담당하기때문에, 로깅하는 위치가 중요함
+
+#### 요청 처리 흐름 예시
+```
+[REQUEST] →
+  RoutePredicateEvaluator      → ✅ routeId 결정
+  RouteToRequestUrlFilter      → ✅ targetUri 계산
+  NettyRoutingFilter           → ❌ 여기서 실제 연결 시도
+```
+
+✅ 이처럼 각 필터는 역할이 명확하게 분리되어 있으므로,
+로깅 작업을 할 때는 원하는 정보가 설정되는 필터 시점에 정확하게 로그를 남기는 것이 중요함
+
+---
+
+### 🔹 Dockerfile의 CMD vs ENTRYPOINT
+
+| 항목 | CMD | ENTRYPOINT |
+|--------|-----|-------------|
+| 기능 | 기본 실행 명령 | 고정된 명령 |
+| 변경 가능성 | 모든 명령 대체 | 인자만 변경 가능 |
+| 사용 패턴 | 하나만 사용가능 | CMD과 같이 사용 권용 |
+
+####  예시:
+```dockerfile
+ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["--spring.profiles.active=dev"]
+```
+- `docker run myapp` → `java -jar app.jar --spring.profiles.active=dev`
+- `docker run myapp --spring.profiles.active=prod` → `java -jar app.jar --spring.profiles.active=prod`
+
+---
+
+### 🔹 GitHub Actions 디버깅 인사이트
+
+- Shell에 접속한 것처럼 로그를 자유롭게 찍으면서 디버깅 가능
+
+예시 (docker pull 이 안되는 상황에서 네트워크가 정상동작하는지 로그로 디버깅해보는법)
+echo "==== NETWORK TEST ===="
+ping -c 3 google.com || true
+nslookup registry-1.docker.io || true
+curl -s https://registry-1.docker.io/v2/ || true
+
+---
+
+## 5. 개선할 점
+
+- EC2 내 사용안하는 폴더 정리
+- EC2에서 필요 없는 포트 차단
+- Docker/컨테이너 관리에 통일되는 명령들을 배시 스크립트로 정리 필요
+- docker-compose.yml의 CI/CD 구성 개선 (현재는 공중 사마와 도트 복사 및 포인터 수정 필요)
+
+### 🔹 `.env.dev` 및 `docker-compose.yml` 변수 관계 필요
+
+- `.env.dev`에서 정의된 변수가 `docker-compose.yml`에서 사용 되지 않을 경우 디버깅 에러 발생
+
+#### 해결 방안
+
+1. bash 스크립트로 **정의 vs 사용 변수 비교**
+2. `docker-compose --env-file .env.dev config`
+   - 실제 주입된 YAML 결과 확인 가능
+   - 정의되지 않은 변수는 `${VAR}`로 표시됨
+
+### 🔹 Docker image가 dev 태그로 달린 구조
+
+- dev 이미지가 매번 덮어씌워짐
+- Git SHA 또는 트랙스 ID로 tag 구성필요
+
+---
+
+## 6. 다음 주 계획
+
+- 개선점 처리
+- docker-compose.yml 파일 및 env파일  CI/CD 적용
+- 프론트엔드 dev 배포 시 docker pull 오류 해결
+- Minimal SRS 최신화 (컨테이너 및 설정 구조 반영)
+
+---
