@@ -106,10 +106,12 @@ github action 에서 deploy 까지 한다면 ec2 서버에서 컨테이너 띄�
 - Organization 범위 : 프로젝트 전체에 적용됨
 - Repository 범위 : 레포 전체에 적용됨 
 - Environments 범위 : 실행 환경 별로 적용됨
+     
 ![intro](../../9_images/벽외조사_1.png)
 
 
-Environments 범위 
+Environments 범위 						
+
 ![intro](../../9_images/벽외조사_2.png)
 
 
