@@ -12,7 +12,8 @@
 -------
 ## 환경 변수 관리 방법
 
-### 어떤 것을 환경 변수로 사용하나요 ? 
+### 어떤 것을 환경 변수로 사용하나요 ? 	
+
 - **Docker Hub 정보**: 이미지 푸시/풀을 위한 Docker Hub `username`, `password`, `repository`
 - **EC2 서버 정보**: 배포 대상 서버의 `IP 주소`, `접속 계정`, `SSH 키`
 - **애플리케이션 정보**: 각 컨테이너에서 사용하는 `포트`, `실행 경로`, `서비스 이름`
@@ -21,22 +22,29 @@
 이것이 어떤 것에 대한 환경변수 ?? 
 > "각 서비스 들이 컨테이너로 동작하고, 서버환경에서 서비스로 배포될 수 있도록 필요한 정보들"
 
+<br>
+
 ### 환경 변수의 종류 
 
 | 종류                   | 설명                                  | 사용 위치                  |
 | -------------------- | ----------------------------------- | ---------------------- |
-| .env                 | 환경 변수 파일                            | docker-compose 실행 시 필요 |
+| .env 변수                 | 환경 변수 파일에 명시된 변수                            | docker-compose 실행 시 필요 |
 | github secrets       | 보안 변수 (비밀번호, 토큰, 계정명)               | Github Actions         |
 | github variables     | 일반 변수 (서비스 이름)                      | Github Actions         |
 | docker compose 환경 변수 | docker-compose.yml 에서 환경 변수 사용      | 서비스별 실행 설정             |
 | ec2 환경 자체의 환경 변수     | EC2 내 .env , .bashrc 등 서버 내부의 환경 설정 | 서버 내 실행되는 서비스들이 참조     |
 
-### 로컬 / 개발/ 운영 환경에서의 환경 변수 관리
+<br>
+
+### 로컬 / 개발/ 운영 환경에서의 환경 변수 사용
+
 - 로컬 환경 : .env 에 바로 적음
 - 개발/운영 환경: github secrets , variables 에 적음
 
+<br>
 
-### 로컬 환경 : .env 
+### 로컬 환경 : .env 파일의 변수
+
 - .env 파일 내 변수 범위
 	- .env와 docker-compose.yml 은 프로젝트의 최상위에 존재 (서비스 레포의 최상위)
 	- application.yml 은 Spring boot 어플리케이션 resources 아래에서 관리 
@@ -48,7 +56,7 @@ APIGATEWAY_PORT=8080
 JWT_SECRET_KEY=어쩌고저쩌고
 ```
 
-```
+```yml
 # docker-compose.yml 
 services:
   backend:
@@ -57,7 +65,7 @@ services:
 	...
 ```
 
-```
+```yml
 # application.yml
 server:  
   port: ${APIGATEWAY_PORT:8888}  # default값 8888
@@ -79,28 +87,30 @@ jwt:
 docker-compose --env-file .env up
 ```
 
+<br>
 
 ### 개발 / 운영 환경 : Github Secrets & Variables
 .env 에서 관리하는 변수를 파일로 저장하지 않고, 레포 설정에서 관리할 수 있음. 
 github action 에서 deploy 까지 한다면 ec2 서버에서 컨테이너 띄울 때 자동으로 .env 파일 생성해서 docker compose deploy 까지 보장함. 
 
-#### 📌 GitHub Secrets
+#### 📌 Secrets
 - 민감한 정보 (예: DockerHub 패스워드, EC2 SSH 키, DB 비밀번호)
-- GitHub UI → Settings > Secrets and Variables > Actions
-- 워크플로우에서 `${{ secrets.SECRET_NAME }}` 으로 사용
+- `${{ secrets.SECRET_NAME }}` 으로 사용
 
 `- run: echo "Deploying with ${{ secrets.DOCKER_PASSWORD }}"`
 
-#### ⚙️ GitHub Variables
+#### ⚙️ Variables
 - 서비스 이름, 경로, 도메인 등 비민감 설정 값 저장
 - `${{ vars.SERVICE_NAME }}` 형태로 사용
 
 `- run: echo "Deploy path: ${{ vars.DEPLOY_PATH }}"`
 
 
-어디에서 보나요 ? 
-액션 로그에서 그 차이를 알 수 있습니다. 
+어디에서 보나요 ? 		
+액션 로그에서 그 차이를 알 수 있습니다. 				
 시크릿은 비평문으로, variables 는 평문으로 값이 적용되어져서 보임. 
+
+<br>
 
 #### 범위 
 - Organization 범위 : 프로젝트 전체에 적용됨
@@ -139,7 +149,7 @@ jobs:
         run: echo "Value is ${{ vars.포트  }}"
 ```
 
-
+<br>
 그럼 어디에 어떤 변수를 써야 할까요? 이건 추후 .. 얘기해보아야 합니다. 
 
 ###### Organization level 
@@ -163,11 +173,14 @@ jobs:
 	- service version
 
 
+<br>
 
 ##### 그럼 위 변수들을 어떻게 EC2에 전달할 것인가 ? 
 1. github action 스크립트에서 빌드할 때, 런타임 변수로 해당 키 값들을 env: 로 넣어줄 수 있음.  
-2. github action 스크립트에서 ">>.env.apigateway , .env.question" 처럼 docker compose.yml 파일과 함께 복사될 .env 파일을 만든다 
-	**예시** 
+2. github action 스크립트에서 ">>.env.apigateway , .env.question" 처럼 docker compose.yml 파일과 함께 복사될 .env 파일을 만든다. 		
+	
+ 
+ **예시** 
 
 ```
 name: Deploy to EC2 from Docker Hub
@@ -183,7 +196,7 @@ jobs:
     environment:
       name: dev# 환경
 
-## env: 로 값 할당 
+## env: 로 값 할당 
     env: 
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
