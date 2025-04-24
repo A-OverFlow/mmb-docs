@@ -2,6 +2,19 @@
 
 # 7주차 - Spring Boot 설정파일(`.yml`) 관리하기
 
+
+*목차*
+* `1) application.yml 작성법`
+* `2) application.yml 동작 원리`
+* `3) application.yml 관리법`
+  * `1. 환경별 설정 분리 (application-{profile}.yml)`
+  * `2. 환경변수 사용하기`
+    * `(1) .env 파일을 개발자가 직접 작성해서 사용`
+    * `(2) IntelliJ의 환경 변수 메뉴를 활용`
+* `4) 그렇다면 무물보 프로젝트에서는?`
+
+---
+
 Spring Boot로 애플리케이션의 설정파일을 작성하고 관리하는 방법을 알아봅시다.
 
 우리는 보통 Spring Boot로 애플리케이션을 만들 때 주요 설정값들을 관리하기 위해<br/>
