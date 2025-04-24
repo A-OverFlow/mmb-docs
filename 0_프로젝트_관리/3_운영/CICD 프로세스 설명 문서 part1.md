@@ -34,13 +34,13 @@
 - 환경변수는 GitHub UI > Settings 에서 설정할 수 있음 
 ![github_action_secrets](../../9_images/w7_github_action_fsecrets.jpg)
 -  Secrets : 민감 정보(암호화됨, 출력 안 됨)
-  -  Environment Secrets : 특정 환경에서만 사용 가능 (운영서버 SSH 키 등)
-  -  Repository Secrets : 현재 레포지토리 전용 (배포용 docker 계정 정보 등)
-  -  Organization Secrets : 조직 전체 공유 가능 (슬랙 알림 Webhook URL 등)
+         -  Environment Secrets : 특정 환경에서만 사용 가능 (운영서버 SSH 키 등)
+         -  Repository Secrets : 현재 레포지토리 전용 (배포용 docker 계정 정보 등)
+         -  Organization Secrets : 조직 전체 공유 가능 (슬랙 알림 Webhook URL 등)
 -  Variables : 비민감 정보(비암호화, 출력됨)
-  -  Environment Variables
-  -  Repository Variables
-  -  Organization Variables
+         -  Environment Variables
+         -  Repository Variables
+         -  Organization Variables
 -  Workflow 실행 직전, GitHub가 Runner에 환경변수를 주입
 
  ```
