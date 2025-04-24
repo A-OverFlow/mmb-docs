@@ -225,36 +225,14 @@ jobs:
 
 ## 서비스 개별 배포 시 유의할 점 
 ### depends_on 관리 
-depends_on 은 컨테이너의 실행 순서만을 보장하고, 정상 동작하는 것은 관여하지 않음. --> 운영 배포 시에는 못씀 ㄷ
+depends_on 은 컨테이너의 **실행 순서만을 보장**하고, 정상 동작하는 것은 관여하지 않음. 즉, depends_on 아래에 명시된 서비스를 먼저 실행시키고, 종료할 때도 자신이 종료되고 난 후에 나머지도 종료되도록 함. 
+오로지 컨테이너의 실행 순서만. 종속성(runtime dependency) 개념이 아님 
 
-우회 방법 1 : 컨테이너 내에서 상대 컨테이너의 포트를 기다리는 방법으로 우회해야함 .
-- wait-for-it 이라는 바이너리를 사용해서 컨테이너가 기다리게 하는 방법 .. 흠 ([https://github.com/vishnubob/wait-for-it](https://github.com/vishnubob/wait-for-it))
-
-```
-dockerfile 
-COPY wait-for-it.sh /usr/local/bin/wait-for-it
-
-RUN chmod +x /usr/local/bin/wait-for-it
-```
-
-
-```
-docker-compose.yml 
-services:
-  frontend:
-    image: my-frontend
-    networks:
-      - common
-    depends_on:
-      - backend  # 실행 순서만 보장
-    command: >
-      sh -c "wait-for-it backend:8080 -- npm start"
-
-```
-
-우회 방법 2 : 헬스 체크와 함께 사용
-- 근데 헬스 체크는 docker compose v2 에서는 deprecated 되어서;; wait-for-it 이나 bash 로 ping보내는 쉘로 하는게 더 안전하다고 함.
-- 코드 ㄹㅈㄷ 복잡 
+#### Health check 로 의존 서비스의 정상 동작 확인 
+- healthcheck 기능은 컨테이너의 이상 동작을 감지하여, 실행/종료를 확인한다.
+- depends_on 으로 명시한 서비스에는 헬스 체크 조건을 명시한다.
+- health check 가 있는 서비스를 사용할 곳에서는 depends_on.condition: 에 service_healthy 로 입력해서, 다른 서비스와의 정상 연결을 목표한다.
+- 참고) healthcheck는 docker compose 버전에 따라 deprecated 될 수도 있어서 확인 필요
 ```
 
 services:
@@ -275,11 +253,21 @@ services:
       backend:
         condition: service_healthy
 
-
-
-
 ```
 
+#### 의존 서비스가 없을 때 개별 컨테이너 실행은?
+--no-deps 옵션을 통해 순서 지정 없이 실행이 가능 함.
+```
+
+docker pull mumulbo/mmb-frontend:dev
+docker-compose --env-file .env.dev up -d --no-deps --force-recreate mmb-frontend
+
+```
+어차피 다른 서비스와의 연결은 도커 네트워크 안에 포함된 서비스라면 상관없이 동작함. 
+
+
+
+<br>
 
 ### docker network 관리
 
@@ -291,6 +279,7 @@ services:
 근데 도커 네트워크를 설정해주기 전, 해당 도커 네트워크를 명시한 서비스 컨테이너가 먼저 실행된다면 에러가 남.
 
 이를 방지하기 위해 , Ec2 서버에 docker network 를 최초로 실행해주거나, action 스크립트에 만약 도커 네트워크가 없다면 생성해주는 예외 처리를 넣어주면 됨. ec2에 docker network 를 삭제하지 않는 한 최초 세팅 시. 계속 남아있음.
+
 
 안2 ) 상위 공통의 docker compose.yml 선언 (docker_composer.override.yml )
  
