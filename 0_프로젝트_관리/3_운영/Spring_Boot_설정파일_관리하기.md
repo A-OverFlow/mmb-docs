@@ -2,6 +2,19 @@
 
 # 7주차 - Spring Boot 설정파일(`.yml`) 관리하기
 
+
+*목차*
+* `1) application.yml 작성법`
+* `2) application.yml 동작 원리`
+* `3) application.yml 관리법`
+  * `1. 환경별 설정 분리 (application-{profile}.yml)`
+  * `2. 환경변수 사용하기`
+    * `(1) .env 파일을 개발자가 직접 작성해서 사용`
+    * `(2) IntelliJ의 환경 변수 메뉴를 활용`
+* `4) 그렇다면 무물보 프로젝트에서는?`
+
+---
+
 Spring Boot로 애플리케이션의 설정파일을 작성하고 관리하는 방법을 알아봅시다.
 
 우리는 보통 Spring Boot로 애플리케이션을 만들 때 주요 설정값들을 관리하기 위해<br/>
@@ -150,20 +163,20 @@ spring:
     # ...
 ```
 
-`*환경변수를 정의*`
+`*환경변수를 설정*`
 ```
 DEV_DATASOURCE_URL=jdbc:mysql://localhost:3306/devdb
 DEV_DATASOURCE_USERNAME=devuser
 DEV_DATASOURCE_PASSWORD=devpassword
 ```
 
-위에 `*환경변수를 정의*`라고 애매하게 작성한 이유는 몰까요.<br/>
-환경변수를 정의하는 방법에는 여러가지가 있기 때문입니다.
+위에 `*환경변수를 설정*`이라고 애매하게 작성한 이유는 몰까요.<br/>
+환경변수를 설정하는 방법에는 여러가지가 있기 때문입니다.
 1. `.env` 파일을 개발자가 직접 작성해서 사용
 2. IntelliJ의 환경 변수 메뉴를 활용
 3. Docker로 확장해서 구성해 사용... 등
 
-이중에서 1번과 2번 방법을 알아 봅시다. 3번은 Docker 관련 문서를 참조하시죠
+이중에서 1번과 2번 방법을 알아 봅시다. 3번은 Docker 토픽 문서에서 참조하시죠
 
 #### **(1) `.env` 파일을 개발자가 직접 작성해서 사용**
 로컬에서 `.env` 파일을 직접 작성하는 예제를 살펴 봅시다.<br/>
@@ -243,11 +256,19 @@ spring:
 
 <br/><br/>
 
-## 4) 그렇다면 무물보 프로젝트에서는? (TBD)
+## 4) 그렇다면 무물보 프로젝트에서는?
 그렇다면 비즈니스 파트 서비스에서는 어케 관리할까요<br/>
-현재로선 서비스 내에선 환경 분리 없이 하나의 `application.yml` 파일 다음과 같이 관리하고 있음
+현재로선 서비스 내에선 환경 분리 없이 하나의 `application.yml` 파일을 아래 예시와 같이 설정했으며<br/>
+변수화해 관리하는 정보들은 다음과 같습니다. 이제 환경 분리가 필요합니다~
+* `server.port`
+* `spring.application.name`
+* `spring.datasource.url`
+* `spring.datasource.username`
+* `spring.datasource.password`
 
-`application.yml` (Question Service 예시)
+<br/>
+
+Question Service `application.yml` 예시:
 ```yml
 server:
   port: ${QUESTION_SERVICE_PORT}
@@ -281,8 +302,6 @@ logging:
     org.hibernate.SQL: debug
     org.hibernate.orm.jdbc.bind: off
 ```
-
-이제 환경 분리해 작성 필요함
 
 
 끝.
