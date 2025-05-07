@@ -32,7 +32,7 @@
 
 ---
 
-### 2.1. 질문 전체 조회
+### 2.1. 질문 목록 조회
 
 |HTTP Method|URL|비고|
 |------|---|---|
@@ -53,9 +53,11 @@ N/A
 |id|1|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
-|author|"joonsub.lim"|작성자 이름|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
 |status|"NEW"|질문 상태(NEW/ING/DONE)|
 |answers|[]|답변 목록|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
 ### 2.1.3. Syntax
 
@@ -76,17 +78,27 @@ Content-Type: application/json
         "id": 1,
         "subject": "제목입니다.",
         "content": "내용입니다.",
-        "author": "joonsub.lim",
+        "author": {
+            "id": 123,
+            "name": "joonsub.lim"
+        },
         "status": "NEW",
         "answers": [],
+        "createdAt": "2025-05-06T23:26:04.436588",
+        "editedAt": "2025-05-06T23:26:04.436588"
     },
     {
         "id": 2,
         "subject": "안녕하세요?",
         "content": "반갑습니다.",
-        "author": "heejaykong",
+        "author": {
+            "id": 321,
+            "name": "heejaykong"
+        },
         "status": "DONE",
         "answers": [],
+        "createdAt": "2025-05-06T23:26:04.436588",
+        "editedAt": "2025-05-06T23:33:04.333333"
     }
 ]
 ```
@@ -130,9 +142,11 @@ N/A
 |id|1|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
-|author|"joonsub.lim"|작성자 이름|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
 |status|"NEW"|질문 상태(NEW/ING/DONE)|
 |answers|[]|답변 목록|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
 ### 2.2.3. Syntax
 
@@ -152,9 +166,14 @@ Content-Type: application/json
     "id": 1,
     "subject": "제목입니다.",
     "content": "내용입니다.",
-    "author": "joonsub.lim",
+    "author": {
+        "id": 321,
+        "name": "heejaykong"
+    },
     "status": "NEW",
-    "answers": []
+    "answers": [],
+    "createdAt": "2025-05-06T23:26:04.436588",
+    "editedAt": "2025-05-06T23:26:04.436588"
 }
 ```
 
@@ -185,7 +204,8 @@ N/A
 |------|---|---|---|
 |subject|"제목입니다."|O|질문 제목|
 |content|"내용입니다."|O|질문 내용|
-|author|"heejaykong"|O|작성자 이름|
+|authorId|321|O|작성자 고유 번호|
+|authorName|"heejaykong"|O|작성자 이름|
 
 ### 2.3.2. Response
 
@@ -199,9 +219,11 @@ N/A
 |id|3|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
-|author|"heejaykong"|작성자 이름|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
 |status|"NEW"|질문 상태(NEW/ING/DONE)|
 |answers|[]|답변 목록|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
 ### 2.3.3. Syntax
 
@@ -214,7 +236,8 @@ Content-Type: application/json
 {
     "subject": "제목입니다.",
     "content": "내용입니다.",
-    "author": "heejaykong"
+    "authorId": 321,
+    "authorName": "heejaykong",
 }
 ```
 
@@ -229,9 +252,14 @@ Location: /questions/{id}
     "id": 3,
     "subject": "제목입니다.",
     "content": "내용입니다.",
-    "author": "heejaykong",
+    "author": {
+        "id": 321,
+        "name": "heejaykong"
+    },
     "status": "NEW",
-    "answers": []
+    "answers": [],
+    "createdAt": "2025-05-06T23:26:04.436588",
+    "editedAt": "2025-05-06T23:26:04.436588"
 }
 ```
 
@@ -277,9 +305,11 @@ N/A
 |id|1|질문 고유 번호|
 |subject|"수정된 제목입니다."|질문 제목|
 |content|"수정된 내용입니다."|질문 내용|
-|author|"heejaykong"|작성자 이름|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
 |status|"ING"|질문 상태(NEW/ING/DONE)|
 |answers|[]|답변 목록|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|editedAt|"2025-05-06T23:33:04.333333"|수정 시간|
 
 ### 2.4.3. Syntax
 
@@ -307,9 +337,14 @@ Content-Type: application/json
     "id": 3,
     "subject": "수정된 제목입니다.",
     "content": "수정된 내용입니다.",
-    "author": "heejaykong",
+    "author": {
+        "id": 321,
+        "name": "heejaykong"
+    },
     "status": "ING",
-    "answers": []
+    "answers": [],
+    "createdAt": "2025-05-06T23:26:04.436588",
+    "editedAt": "2025-05-06T23:33:04.333333"
 }
 ```
 
