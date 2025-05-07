@@ -269,11 +269,9 @@ jobs:
 
 ### 5. 작업 스크린샷
 
-> 아래는 실제 적용 과정에서 직접 수행한 작업의 스크린샷입니다. 작성자가 직접 테스트 및 반영한 내역입니다.
-
 ![w9_ms_msaplus_locallog.png](..%2F..%2F9_images%2Fw9_ms_msaplus_locallog.png)
 ![w9_ms_msaplus_locallogview.png](..%2F..%2F9_images%2Fw9_ms_msaplus_locallogview.png)
 ![w9_ms_msaplus_action_variable.png](..%2F..%2F9_images%2Fw9_ms_msaplus_action_variable.png)
+![w9_ms_msaplus_dockerhub.png](..%2F..%2F9_images%2Fw9_ms_msaplus_dockerhub.png)
 ![w9_ms_msaplus_ec2dockercomposeview.png](..%2F..%2F9_images%2Fw9_ms_msaplus_ec2dockercomposeview.png)
 ![w9_ms_msaplus_ec2logview.png](..%2F..%2F9_images%2Fw9_ms_msaplus_ec2logview.png)
-> 이미지 경로는 작성자가 문서 완성 후 적절한 경로에 업로드하여 교체해 주세요.
