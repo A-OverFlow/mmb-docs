@@ -39,7 +39,23 @@
 |GET|https://mumulbo.com/api/v1/questions|-|
 
 ### 2.1.1. Request
+
+#### 2.1.1.1. Header
 N/A
+
+#### 2.1.1.2. Path Variables
+N/A
+
+#### 2.1.1.3. Params
+|Key|Value|Required|Description|
+|------|---|---|---|
+|page|0|X (default: 0)|페이지 번호|
+|size|10|X (default: 10)|페이지 크기|
+|sort|createdAt,desc|X (default: createdAt,desc&id,desc)|정렬 조건|
+
+#### 2.1.1.4. Body
+N/A
+
 
 ### 2.1.2. Response
 
@@ -73,34 +89,61 @@ GET https://mumulbo.com/api/v1/questions
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[
-    {
-        "id": 1,
-        "subject": "제목입니다.",
-        "content": "내용입니다.",
-        "author": {
-            "id": 123,
-            "name": "joonsub.lim"
+{
+    "content": [
+        {
+            "id": 12,
+            "subject": "질문입니다.",
+            "content": "내용입니다.",
+            "author": {
+                "id": 123,
+                "name": "heejaykong"
+            },
+            "status": "NEW",
+            "answers": [],
+            "createdAt": "2025-05-07T23:09:21.899321",
+            "editedAt": "2025-05-07T23:09:21.899321"
         },
-        "status": "NEW",
-        "answers": [],
-        "createdAt": "2025-05-06T23:26:04.436588",
-        "editedAt": "2025-05-06T23:26:04.436588"
+        {
+            "id": 11,
+            "subject": "질문입니다.",
+            "content": "내용입니다.",
+            "author": {
+                "id": 123,
+                "name": "heejaykong"
+            },
+            "status": "NEW",
+            "answers": [],
+            "createdAt": "2025-05-07T23:09:21.179749",
+            "editedAt": "2025-05-07T23:09:21.179749"
+        }
+    ],
+    "pageable": {
+        "pageNumber": 0,
+        "pageSize": 2,
+        "sort": {
+            "sorted": true,
+            "empty": false,
+            "unsorted": false
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
     },
-    {
-        "id": 2,
-        "subject": "안녕하세요?",
-        "content": "반갑습니다.",
-        "author": {
-            "id": 321,
-            "name": "heejaykong"
-        },
-        "status": "DONE",
-        "answers": [],
-        "createdAt": "2025-05-06T23:26:04.436588",
-        "editedAt": "2025-05-06T23:33:04.333333"
-    }
-]
+    "totalPages": 6,
+    "totalElements": 12,
+    "last": false,
+    "size": 2,
+    "number": 0,
+    "sort": {
+        "sorted": true,
+        "empty": false,
+        "unsorted": false
+    },
+    "numberOfElements": 2,
+    "first": true,
+    "empty": false
+}
 ```
 
 <br/>
