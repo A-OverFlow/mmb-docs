@@ -8,16 +8,15 @@
 
 #### 1.1.1. 시스템 에러 코드
 
-| Error Code | Description    |
-|------------|----------------|
-| SYSTEM-001 | 유효하지 않은 데이터 요청 |
+| Error Code | Description |
+|------------|-------------|
+| -          | -           |
 
 #### 1.1.2. 회원 에러 코드
 
 | Error Code | Description |
 |------------|-------------|
 | MEMBER-001 | 존재하지 않는 회원  |
-| MEMBER-002 | 이미 존재하는 회원  |
 
 ---
 
@@ -25,29 +24,31 @@
 
 ### 2.0. API 리스트
 
-| HTTP Method | URL                                      | 비고       |
-|-------------|------------------------------------------|----------|
-| GET         | https://mumulbo.com/api/v1/members/check | 회원 여부 확인 |
-| POST        | https://mumulbo.com/api/v1/members       | 회원 정보 저장 |
-| GET         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 조회 |
-| PUT         | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 수정 |
-| DELETE      | https://mumulbo.com/api/v1/members/{id}  | 회원 정보 삭제 |
+| HTTP Method | URL                                   | Description   | 비고     |
+|-------------|---------------------------------------|---------------|--------|
+| POST        | https://mumulbo.com/api/v1/members    | 회원 정보 저장 및 조회 | 내부 통신용 |
+| GET         | https://mumulbo.com/api/v1/members/me | 회원 정보 조회      | -      |
+| PUT         | https://mumulbo.com/api/v1/members/me | 회원 정보 수정      | -      |
+| DELETE      | https://mumulbo.com/api/v1/members/me | 회원 정보 삭제      | -      |
 
 ---
 
-### 2.1. 회원 여부 확인
+### 2.1. 회원 정보 저장 및 조회
 
-| HTTP Method | URL                                      | 비고                       |
-|-------------|------------------------------------------|--------------------------|
-| GET         | https://mumulbo.com/api/v1/members/check | 로그인 시 일치하는 회원 정보가 있는지 확인 |
+| HTTP Method | URL                                | 비고                          |
+|-------------|------------------------------------|-----------------------------|
+| POST        | https://mumulbo.com/api/v1/members | 회원 정보 저장(가입되지 않은 사용자만) 및 조회 |
 
 ### 2.1.1. Request
 
-#### 2.1.1.1. Params
+#### 2.1.1.1. Body
 
-| Key   | Value                   | Description |
-|-------|-------------------------|-------------|
-| email | joonhee.song@ahnlab.com | 이메일         |
+| Key        | Value                 | Description           |
+|------------|-----------------------|-----------------------|
+| provider   | GOOGLE                | Authentication Server |
+| providerId | 012345678901234567890 | idToken               |
+| name       | 송준희                   | 이름                    |
+| email      | mike.urssu@gmail.com  | 이메일                   |
 
 ### 2.1.2. Response
 
@@ -66,57 +67,45 @@
 {
     "id": 1
 }
-
-일치하는 회원이 없는 경우: HttpStatus: 404
-{
-    "error": "MEMBER-001",
-    "message": "존재하지 않는 회원입니다."
-}
 ```
 
 ---
 
-### 2.2. 회원가입
+### 2.2. 회원 정보 조회
 
-| HTTP Method | URL                                | 비고 |
-|-------------|------------------------------------|----|
-| POST        | https://mumulbo.com/api/v1/members | -  |
+| HTTP Method | URL                                   | 비고 |
+|-------------|---------------------------------------|----|
+| GET         | https://mumulbo.com/api/v1/members/me | -  |
 
 ### 2.2.1. Request
 
-#### 2.2.1.1. Body
+#### 2.2.1.1. Header
 
-| Key      | Value                   | Description |
-|----------|-------------------------|-------------|
-| name     | 송준희                     | 이름          |
-| email    | joonhee.song@ahnlab.com | 이메일         |
-| username | joonhee.song            | 아이디         |
+| Key           | Value        | Required | Description |
+|---------------|--------------|----------|-------------|
+| Authorization | Bearer <JWT> | O        | 토큰          |
 
 ### 2.2.2. Response
 
 #### 2.2.2.1. Body
 
-| Key      | Value                   | Description |
-|----------|-------------------------|-------------|
-| id       | 1                       | 회원 id       |
-| name     | 송준희                     | 이름          |
-| email    | joonhee.song@ahnlab.com | 이메일         |
-| username | joonhee.song            | 아이디         |
+| Key   | Value                | Description |
+|-------|----------------------|-------------|
+| name  | 송준희                  | 이름          |
+| email | mike.urssu@gmail.com | 이메일         |
 
-### 2.2.4. Syntax
+### 2.2.3. Syntax
 
-#### 2.2.4.1. Response Syntax
+#### 2.2.3.1. Response Syntax
 
 ``` json
-요청에 성공한 경우: HttpStatus: 201
+요청에 성공한 경우: HttpStatus: 200
 {
-    "id": 1,
     "name": "송준희",
-    "username": "joonhee.song",
-    "email": "joonhee.song@ahnlab.com",
+    "email": "mike.urssu@gmail.com"
 }
 
-이미 가입한 회원인 경우 HttpStatus: 409
+회원이 존재하지 않는 경우 HttpStatus: 404
 {
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
@@ -125,11 +114,11 @@
 
 ---
 
-### 2.3. 회원 정보 조회
+### 2.3. 회원 정보 수정
 
-| HTTP Method | URL                                     | 비고 |
-|-------------|-----------------------------------------|----|
-| GET         | https://mumulbo.com/api/v1/members/{id} | -  |
+| HTTP Method | URL                                   | 비고 |
+|-------------|---------------------------------------|----|
+| PUT         | https://mumulbo.com/api/v1/members/me | -  |
 
 ### 2.3.1. Request
 
@@ -139,21 +128,19 @@
 |---------------|--------------|----------|-------------|
 | Authorization | Bearer <JWT> | O        | 토큰          |
 
-#### 2.3.1.2. Path Variables
+#### 2.3.1.2. Body
 
-| Key | Value | Description |
-|-----|-------|-------------|
-| id  | 1     | 회원 아이디      |
+| Key   | Value                 | Description |
+|-------|-----------------------|-------------|
+| email | mike.urssu2@gmail.com | 이메일         |
 
 ### 2.3.2. Response
 
 #### 2.3.2.1. Body
 
-| Key      | Value                   | Description |
-|----------|-------------------------|-------------|
-| name     | 송준희                     | 이름          |
-| email    | joonhee.song@ahnlab.com | 이메일         |
-| username | joonhee.song            | 아이디         |
+| Key   | Value                 | Description |
+|-------|-----------------------|-------------|
+| email | mike.urssu2@gmail.com | 이메일         |
 
 ### 2.3.3. Syntax
 
@@ -162,9 +149,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
-    "name": "송준희",
-    "username": "joonhee.song",
-    "email": "joonhee.song@ahnlab.com",
+    "email": "mike.urssu2@gmail.com"
 }
 
 회원이 존재하지 않는 경우 HttpStatus: 404
@@ -176,11 +161,11 @@
 
 ---
 
-### 2.4. 회원 정보 수정
+### 2.4. 회원 탈퇴
 
-| HTTP Method | URL                                     | 비고 |
-|-------------|-----------------------------------------|----|
-| PUT         | https://mumulbo.com/api/v1/members/{id} | -  |
+| HTTP Method | URL                                   | 비고 |
+|-------------|---------------------------------------|----|
+| DELETE      | https://mumulbo.com/api/v1/members/me | -  |
 
 ### 2.4.1. Request
 
@@ -190,71 +175,9 @@
 |---------------|--------------|----------|-------------|
 | Authorization | Bearer <JWT> | O        | 토큰          |
 
-#### 2.4.1.2. Path Variables
+### 2.4.2. Syntax
 
-| Key | Value | Description |
-|-----|-------|-------------|
-| id  | 1     | 회원 아이디      |
-
-#### 2.4.1.2. Body
-
-| Key      | Value         | Description |
-|----------|---------------|-------------|
-| name     | 송준희2          | 이름          |
-| username | joonhee.song2 | 아이디         |
-
-### 2.4.2. Response
-
-#### 2.4.2.1. Body
-
-| Key      | Value         | Description |
-|----------|---------------|-------------|
-| name     | 송준희2          | 이름          |
-| username | joonhee.song2 | 아이디         |
-
-### 2.4.3. Syntax
-
-#### 2.4.3.1. Response Syntax
-
-``` json
-요청에 성공한 경우: HttpStatus: 200
-{
-    "name": "송준희2",
-    "username": "joonhee.song2"
-}
-
-회원이 존재하지 않는 경우 HttpStatus: 404
-{
-    "error": "MEMBER-001",
-    "message": "존재하지 않는 회원입니다."
-}
-```
-
----
-
-### 2.5. 회원 탈퇴
-
-| HTTP Method | URL                                     | 비고 |
-|-------------|-----------------------------------------|----|
-| DELETE      | https://mumulbo.com/api/v1/members/{id} | -  |
-
-### 2.5.1. Request
-
-#### 2.5.1.1. Header
-
-| Key           | Value        | Required | Description |
-|---------------|--------------|----------|-------------|
-| Authorization | Bearer <JWT> | O        | 토큰          |
-
-#### 2.5.1.2. Path Variables
-
-| Key | Value | Description |
-|-----|-------|-------------|
-| id  | 1     | 회원 아이디      |
-
-### 2.5.2. Syntax
-
-#### 2.5.2.1. Response Syntax
+#### 2.4.2.1. Response Syntax
 
 ``` json
 요청에 성공한 경우: HttpStatus: 204
