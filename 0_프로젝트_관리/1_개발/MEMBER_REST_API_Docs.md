@@ -43,12 +43,13 @@
 
 #### 2.1.1.1. Body
 
-| Key        | Value                 | Description           |
-|------------|-----------------------|-----------------------|
-| provider   | GOOGLE                | Authentication Server |
-| providerId | 012345678901234567890 | idToken               |
-| name       | 송준희                   | 이름                    |
-| email      | mike.urssu@gmail.com  | 이메일                   |
+| Key        | Value                                       | Description           |
+|------------|---------------------------------------------|-----------------------|
+| provider   | GOOGLE                                      | Authentication Server |
+| providerId | 012345678901234567890                       | idToken               |
+| name       | 송준희                                         | 이름                    |
+| email      | mike.urssu@gmail.com                        | 이메일                   |
+| profile    | https://lh3.googleusercontent.com/a/abcdefg | 프로필 url               |
 
 ### 2.1.2. Response
 
@@ -89,10 +90,11 @@
 
 #### 2.2.2.1. Body
 
-| Key   | Value                | Description |
-|-------|----------------------|-------------|
-| name  | 송준희                  | 이름          |
-| email | mike.urssu@gmail.com | 이메일         |
+| Key     | Value                                       | Description |
+|---------|---------------------------------------------|-------------|
+| name    | 송준희                                         | 이름          |
+| email   | mike.urssu@gmail.com                        | 이메일         |
+| profile | https://lh3.googleusercontent.com/a/abcdefg | 프로필 url     |
 
 ### 2.2.3. Syntax
 
@@ -102,7 +104,8 @@
 요청에 성공한 경우: HttpStatus: 200
 {
     "name": "송준희",
-    "email": "mike.urssu@gmail.com"
+    "email": "mike.urssu@gmail.com",
+    "profile": "https://lh3.googleusercontent.com/a/abcdefg"
 }
 
 회원이 존재하지 않는 경우 HttpStatus: 404
