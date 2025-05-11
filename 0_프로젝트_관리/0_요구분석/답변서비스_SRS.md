@@ -72,6 +72,18 @@ ID|항목|설명|
 
 ## 5. 시스템 아키텍처
 ## 6. 데이터 설계
+### 6-1. 주요 Entity
+Answer
+필드명|타입|설명|
+|------|---|---|
+|id|Long|답변 ID|
+|questionId|Long|관련 질문 ID|
+|anthorId|Long|작성자 회원 ID|
+|content|String|답변 본문|
+|status|Enum|ADOPTED / NOT_ADOPTED|
+|createdAt|Timestamp|생성 일시|
+|updateAt|Timestamp|수정 일시|
+
 ## 7. API 명세 요약
 ## 8. 테스트
 ## 9. 참고
