@@ -11,13 +11,13 @@
 
 ### 1.1. ~~내컴에서 되는데?~~
 
-![it_works_on_my_machine.png](../../9_images/it_works_on_my_machine.png)
+![it_works_on_my_machine.png](../../../9_images/it_works_on_my_machine.png)
 
 실행 환경(나는 Windows, 너는 Ubuntu)이 달라도 Docker만 설치되어 있다면 이미지를 기반으로 동일한 환경으로 서비스를 실행할 수 있음
 
 ### 1.2. VM에 비해 가볍다! 빠르다!
 
-![vm_container.png](../../9_images/vm_container.png)
+![vm_container.png](../../../9_images/vm_container.png)
 
 VM은 실행 시 하나의 운영체제(Guest OS)를 부팅해야 함 => 커널, 드라이브, 시스템 서비스 등 준비하는데 시간, 리소스 큼  
 반면, **호스트 OS를 공유**하기 때문에 운영체제 부팅 없이 바로 실행 가능. 그래서 VM보다 빠름
@@ -38,11 +38,11 @@ But, Docker Compose는 docker-compose 파일을 기반으로 여러 서비스를
 
 ## 3. 자동 배포를 해야 하는 이유 = 개발 생산성 향상!
 
-![ci_cd_automation.png](../../9_images/ci_cd_automation.png)
+![ci_cd_automation.png](../../../9_images/ci_cd_automation.png)
 
 ### 3.1. 숙도 (Human Error 방지)
 
-![ci_cd_pipeline.png](../../9_images/ci_cd_pipeline.png)
+![ci_cd_pipeline.png](../../../9_images/ci_cd_pipeline.png)
 
 #### 사람이 수작업으로 하면?
 
