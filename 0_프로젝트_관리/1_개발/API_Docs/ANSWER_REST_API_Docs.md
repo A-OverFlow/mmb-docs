@@ -8,9 +8,9 @@
 
 |HTTP Status Code|Custom Error Code|Description|응답 예시(Body)|
 |------|---|---|---|
-||||<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
-||||<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
-||||<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
+|400 BAD_REQUEST|`ANSWER-4000`|잘못된 요청|<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
+|404 NOT_FOUND|`ANSWER-4004`|답변 Not Found|<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
+|500 INTERNAL_SERVER_ERROR|`ANSWER-5000`|답변 서버 에러|<pre lang="json">{&#13;  "code": "",&#13;  "message": &#13;}</pre>|
 
 <br/><br/>
 
