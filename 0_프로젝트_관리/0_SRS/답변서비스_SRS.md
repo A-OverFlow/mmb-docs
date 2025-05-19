@@ -118,7 +118,7 @@ Answer
 |------|---|---|
 |id|Long|답변 ID|
 |questionId|Long|관련 질문 ID|
-|anthorId|Long|작성자 회원 ID|
+|memberId|Long|작성자 회원 ID|
 |content|String|답변 본문|
 |status|Enum|ADOPTED / NOT_ADOPTED|
 |createdAt|Timestamp|생성 일시|
