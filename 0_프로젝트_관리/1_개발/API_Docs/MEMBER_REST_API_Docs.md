@@ -35,8 +35,8 @@
 | POST        | https://mumulbo.com/api/v1/members    | 회원 정보 저장    | 내부 통신용 |
 | GET         | https://mumulbo.com/api/v1/members/me | 회원 정보 조회    | -      |
 | DELETE      | https://mumulbo.com/api/v1/members/me | 회원 정보 삭제    | -      |
-| GET         | https://mumulbo.com/api/v1/me/profile | 프로필 조회      | -      |
-| PUT         | https://mumulbo.com/api/v1/me/profile | 프로필 수정      | -      |
+| GET         | https://mumulbo.com/api/v1/members/me/profile | 프로필 조회      | -      |
+| PUT         | https://mumulbo.com/api/v1/members/me/profile | 프로필 수정      | -      |
 
 ---
 
