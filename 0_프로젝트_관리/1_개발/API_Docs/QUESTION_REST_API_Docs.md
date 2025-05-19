@@ -70,8 +70,6 @@ N/A
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
 |author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
@@ -90,7 +88,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "content": [
+    "questions": [
         {
             "id": 12,
             "subject": "질문입니다.",
@@ -99,8 +97,6 @@ Content-Type: application/json
                 "id": 123,
                 "name": "heejaykong"
             },
-            "status": "NEW",
-            "answers": [],
             "createdAt": "2025-05-07T23:09:21.899321",
             "editedAt": "2025-05-07T23:09:21.899321"
         },
@@ -112,8 +108,6 @@ Content-Type: application/json
                 "id": 123,
                 "name": "heejaykong"
             },
-            "status": "NEW",
-            "answers": [],
             "createdAt": "2025-05-07T23:09:21.179749",
             "editedAt": "2025-05-07T23:09:21.179749"
         }
@@ -186,8 +180,6 @@ N/A
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
 |author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
@@ -213,8 +205,6 @@ Content-Type: application/json
         "id": 321,
         "name": "heejaykong"
     },
-    "status": "NEW",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
 }
@@ -263,8 +253,6 @@ N/A
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
 |author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
@@ -299,8 +287,6 @@ Location: /questions/{id}
         "id": 321,
         "name": "heejaykong"
     },
-    "status": "NEW",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
 }
@@ -334,7 +320,6 @@ N/A
 |id|1|O|질문 고유 번호|
 |subject|"수정된 제목입니다."|O|질문 제목|
 |content|"수정된 내용입니다."|O|질문 내용|
-|status|"ING"|O|질문 상태|
 
 ### 2.4.2. Response
 
@@ -349,8 +334,6 @@ N/A
 |subject|"수정된 제목입니다."|질문 제목|
 |content|"수정된 내용입니다."|질문 내용|
 |author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"ING"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:33:04.333333"|수정 시간|
 
@@ -366,7 +349,6 @@ Content-Type: application/json
     "id": 3,
     "subject": "수정된 제목입니다.",
     "content": "수정된 내용입니다.",
-    "status": "ING"
 }
 ```
 
@@ -384,8 +366,6 @@ Content-Type: application/json
         "id": 321,
         "name": "heejaykong"
     },
-    "status": "ING",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:33:04.333333"
 }
