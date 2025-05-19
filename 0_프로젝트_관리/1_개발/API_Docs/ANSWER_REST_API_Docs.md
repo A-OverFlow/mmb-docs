@@ -23,11 +23,11 @@
 |HTTP Method|URL|비고|
 |------|---|---|
 |GET|https://mumulbo.com/api/v1/questions/{questionId}/answers|질문의 답변 전체 조회|
-|GET|https://mumulbo.com/api/v1/answers/{answerId}|답변 단건 조회|
+|GET|~~https://mumulbo.com/api/v1/answers/{answerId}~~|~~답변 단건 조회~~ 스펙 아웃|
 |POST|https://mumulbo.com/api/v1/questions/{questionId}/answers|답변 생성|
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
 |DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
-|PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|답변 채택|
+|PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|답변 채택 -> NEXT |
 
 <br/>
 
