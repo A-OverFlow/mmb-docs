@@ -30,11 +30,11 @@
 
 ### 2.0. API 리스트
 
-| HTTP Method | URL                                   | Description | 비고     |
-|-------------|---------------------------------------|-------------|--------|
-| POST        | https://mumulbo.com/api/v1/members    | 회원 정보 저장    | 내부 통신용 |
-| GET         | https://mumulbo.com/api/v1/members/me | 회원 정보 조회    | -      |
-| DELETE      | https://mumulbo.com/api/v1/members/me | 회원 정보 삭제    | -      |
+| HTTP Method | URL                                           | Description | 비고     |
+|-------------|-----------------------------------------------|-------------|--------|
+| POST        | https://mumulbo.com/api/v1/members            | 회원 정보 저장    | 내부 통신용 |
+| GET         | https://mumulbo.com/api/v1/members/me         | 회원 정보 조회    | -      |
+| DELETE      | https://mumulbo.com/api/v1/members/me         | 회원 정보 삭제    | -      |
 | GET         | https://mumulbo.com/api/v1/members/me/profile | 프로필 조회      | -      |
 | PUT         | https://mumulbo.com/api/v1/members/me/profile | 프로필 수정      | -      |
 
@@ -50,13 +50,13 @@
 
 #### 2.1.1.1. Body
 
-| Key        | Value                               | Description           |
-|------------|-------------------------------------|-----------------------|
-| provider   | GOOGLE                              | Authentication Server |
-| providerId | 012345678901234567890               | idToken               |
-| name       | 송준희                                 | 이름                    |
-| email      | mike.urssu@gmail.com                | 이메일                   |
-| picture    | https://mumulbo.com/mumulbo/abcdefg | 프로필 url               |
+| Key        | Value                                              | Description             |
+|------------|----------------------------------------------------|-------------------------|
+| provider   | GOOGLE                                             | Authentication Server   |
+| providerId | 012345678901234567890                              | idToken                 |
+| name       | 송준희                                                | 이름                      |
+| email      | mike.urssu@gmail.com                               | 이메일                     |
+| picture    | https://lh3.googleusercontent.com/a/abcdefg1234567 | `Google`에서 제공하는 프로필 url |
 
 ### 2.1.2. Response
 
@@ -97,11 +97,11 @@
 
 #### 2.2.2.1. Body
 
-| Key     | Value                               | Description |
-|---------|-------------------------------------|-------------|
-| name    | 송준희                                 | 이름          |
-| email   | mike.urssu@gmail.com                | 이메일         |
-| picture | https://mumulbo.com/mumulbo/abcdefg | 프로필 url     |
+| Key     | Value                   | Description |
+|---------|-------------------------|-------------|
+| name    | 송준희                     | 이름          |
+| email   | mike.urssu@gmail.com    | 이메일         |
+| picture | images/profiles/abcdefg | 프로필 url     |
 
 ### 2.2.3. Syntax
 
@@ -112,7 +112,7 @@
 {
     "name": "송준희",
     "email": "mike.urssu@gmail.com",
-    "picture": "https://mumulbo.com/mumulbo/abcdefg"
+    "picture": "images/profiles/abcdefg"
 }
 
 회원이 존재하지 않는 경우 HttpStatus: 404
@@ -172,13 +172,13 @@
 
 #### 2.4.2.1. Body
 
-| Key          | Value                               | Description |
-|--------------|-------------------------------------|-------------|
-| name         | 송준희                                 | 이름          |
-| email        | mike.urssu@gmail.com                | 이메일         |
-| picture      | https://mumulbo.com/mumulbo/abcdefg | 프로필 url     |
-| introduction | 안녕하세요! 뚱땅뚱땅입니다!                     | 자기소개 문구     |
-| website      | https://github.com/mike-urssu       | 개인 website  |
+| Key          | Value                         | Description |
+|--------------|-------------------------------|-------------|
+| name         | 송준희                           | 이름          |
+| email        | mike.urssu@gmail.com          | 이메일         |
+| picture      | images/profiles/abcdefg       | 프로필 url     |
+| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
+| website      | https://github.com/mike-urssu | 개인 website  |
 
 ### 2.4.3. Syntax
 
@@ -189,7 +189,7 @@
 {
     "name": "송준희",
     "email": "mike.urssu@gmail.com",
-    "picture": "https://mumulbo.com/mumulbo/abcdefg",
+    "picture": "images/profiles/abcdefg",
     "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
     "website": "https://github.com/mike-urssu"
 }
@@ -231,11 +231,11 @@
 
 #### 2.5.2.1. Body
 
-| Key          | Value                               | Description |
-|--------------|-------------------------------------|-------------|
-| picture      | https://mumulbo.com/mumulbo/abcdefg | 프로필 url     |
-| introduction | 안녕하세요! 뚱땅뚱땅입니다!                     | 자기소개 문구     |
-| website      | https://github.com/mike-urssu       | 개인 website  |
+| Key          | Value                         | Description |
+|--------------|-------------------------------|-------------|
+| picture      | images/profiles/hijklmn       | 프로필 url     |
+| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
+| website      | https://github.com/mike-urssu | 개인 website  |
 
 ### 2.5.3. Syntax
 
@@ -244,7 +244,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
-    "picture": "https://mumulbo.com/mumulbo/abcdefg",
+    "picture": "images/profiles/hijklmn",
     "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
     "website": "https://github.com/mike-urssu"
 }
