@@ -225,7 +225,15 @@ Answer
 
 
 ## 9. API 명세 요약
-
+https://github.com/A-OverFlow/mmb-docs/blob/main/0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B4%80%EB%A6%AC/1_%EA%B0%9C%EB%B0%9C/API_Docs/ANSWER_REST_API_Docs.md
+|HTTP Method|URL|비고|
+|------|---|---|
+|GET|https://mumulbo.com/api/v1/questions/{questionId}/answers|질문의 답변 전체 조회|
+|GET|~~https://mumulbo.com/api/v1/answers/{answerId}~~|~~답변 단건 조회~~ 스펙 아웃|
+|POST|https://mumulbo.com/api/v1/answers|답변 생성|
+|PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
+|DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
+|PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|채택(NEXT)
 
 ## 10. 테스트
 
