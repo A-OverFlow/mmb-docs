@@ -70,7 +70,7 @@ N/A
 |author|"yuyeon.choe"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|updatedAt|"2025-05-06T23:26:04.436588"|수정 시간|
+|updatedAt|"2025-05-07T23:26:04.436588"|수정 시간|
 
 ### 2.1.3. Syntax
 
@@ -93,7 +93,7 @@ Content-Type: application/json
         "author": "yuyeon.choe",
         "status": "ACCEPTED",
         "createdAt": "2025-05-06T23:26:04.436588",
-        "editedAt": "2025-05-06T23:26:04.436588"
+        "updatedAt": "2025-05-07T23:26:04.436588"
     },
     {
         "answerId": 2,
@@ -101,7 +101,7 @@ Content-Type: application/json
         "author": "heejaykong",
         "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-06T23:26:04.436588",
-        "editedAt": "2025-05-06T23:26:04.436588"
+        "updatedAt": null
     }
 ]
 ```
@@ -147,6 +147,8 @@ N/A
 |content|"답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|updatedAt|null|수정 시간|
 
 ### 2.2.3. Syntax
 
@@ -172,6 +174,8 @@ Location: https://mumulbo.com/api/v1/answers/1
     "content": "답변입니다.",
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED"
+    "createdAt": "2025-05-06T23:26:04.436588",
+    "updatedAt": null
 }
 ```
 
@@ -219,6 +223,8 @@ N/A
 |content|"수정된 답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"NOT_ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|updatedAt|"2025-05-07T23:26:04.436588"|수정 시간|
 
 ### 2.3.3. Syntax
 
@@ -244,7 +250,9 @@ Content-Type: application/json
     "answerId": 1,
     "content": "수정된 답변입니다.",
     "author": "joonsub.lim",
-    "status": "NOT_ACCEPTED"
+    "status": "NOT_ACCEPTED",
+    "createdAt": "2025-05-06T23:26:04.436588",
+    "updatedAt": "2025-05-07T23:26:04.436588"
 }
 ```
 
