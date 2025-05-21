@@ -101,7 +101,7 @@ Content-Type: application/json
         "author": "heejaykong",
         "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-06T23:26:04.436588",
-        "updatedAt": null
+        "updatedAt": "2025-05-06T23:26:04.436588"
     }
 ]
 ```
@@ -175,7 +175,7 @@ Location: https://mumulbo.com/api/v1/answers/1
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED"
     "createdAt": "2025-05-06T23:26:04.436588",
-    "updatedAt": null
+    "updatedAt": "2025-05-06T23:26:04.436588"
 }
 ```
 
