@@ -148,7 +148,7 @@ N/A
 |author|"joonsub.lim"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|updatedAt|null|수정 시간|
+|updatedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
 ### 2.2.3. Syntax
 
