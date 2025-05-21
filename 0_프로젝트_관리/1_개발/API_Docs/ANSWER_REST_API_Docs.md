@@ -27,7 +27,7 @@
 |POST|https://mumulbo.com/api/v1/answers|답변 생성|
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
 |DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
-|PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|답변 채택 -> NEXT |
+|PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 채택 -> NEXT |
 
 <br/>
 
