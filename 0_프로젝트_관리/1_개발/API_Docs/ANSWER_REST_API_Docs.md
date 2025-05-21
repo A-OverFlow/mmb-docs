@@ -65,7 +65,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|id|1|답변 고유 번호|
+|answerId|1|답변 고유 번호|
 |content|"답변이다냥"|답변 내용|
 |author|"yuyeon.choe"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
@@ -88,7 +88,7 @@ Content-Type: application/json
 
 [
     {
-        "id": 1,
+        "answerId": 1,
         "content": "답변이다냥.",
         "author": "yuyeon.choe",
         "status": "ACCEPTED",
@@ -96,7 +96,7 @@ Content-Type: application/json
         "editedAt": "2025-05-06T23:26:04.436588"
     },
     {
-        "id": 2,
+        "answerId": 2,
         "content": "다른 답변이다냥.",
         "author": "heejaykong",
         "status": "NOT_ACCEPTED"
@@ -131,6 +131,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
+|questionId|1|질문 고유 번호|
 |content|"답변입니다."|답변 내용|
 
 ### 2.2.2. Response
@@ -142,7 +143,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|id|1|답변 고유 번호|
+|answerId|1|답변 고유 번호|
 |content|"답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
@@ -155,6 +156,7 @@ N/A
 POST https://mumulbo.com/api/v1/answers
 
 {
+    "questionId" 1,
     "content": "답변입니다."
 }
 ```
@@ -166,7 +168,7 @@ HTTP/1.1 201 Created
 Content-Type: application/json
 Location: https://mumulbo.com/api/v1/answers/1
 {
-    "id": 1,
+    "answerId": 1,
     "content": "답변입니다.",
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED"
@@ -201,7 +203,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|id|1|답변 고유 번호|
+|answerId|1|답변 고유 번호|
 |content|"수정된 답변입니다."|답변 내용|
 
 ### 2.3.2. Response
@@ -213,7 +215,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|id|1|답변 고유 번호|
+|answerId|1|답변 고유 번호|
 |content|"수정된 답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"NOT_ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
@@ -227,7 +229,7 @@ PUT https://mumulbo.com/api/v1/answers/{answerId}
 Content-Type: application/json
 
 {
-    "id": 1,
+    "answerId": 1,
     "content": "수정된 답변입니다."
 }
 ```
@@ -239,7 +241,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "id": 1,
+    "answerId": 1,
     "content": "수정된 답변입니다.",
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED"
