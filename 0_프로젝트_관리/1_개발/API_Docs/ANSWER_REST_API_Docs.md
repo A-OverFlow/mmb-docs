@@ -66,9 +66,11 @@ N/A
 |Key|Value|Description|
 |------|---|---|
 |id|1|답변 고유 번호|
-|content|"답변입니다."|답변 내용|
-|author|"joonsub.lim"|작성자 이름|
+|content|"답변이다냥"|답변 내용|
+|author|"yuyeon.choe"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
+|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
+|updatedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
 ### 2.1.3. Syntax
 
@@ -87,15 +89,19 @@ Content-Type: application/json
 [
     {
         "id": 1,
-        "content": "답변입니다.",
-        "author": "joonsub.lim",
-        "status": "ACCEPTED"
+        "content": "답변이다냥.",
+        "author": "yuyeon.choe",
+        "status": "ACCEPTED",
+        "createdAt": "2025-05-06T23:26:04.436588",
+        "editedAt": "2025-05-06T23:26:04.436588"
     },
     {
         "id": 2,
-        "content": "또 다른 답변입니다.",
+        "content": "다른 답변이다냥.",
         "author": "heejaykong",
         "status": "NOT_ACCEPTED"
+        "createdAt": "2025-05-06T23:26:04.436588",
+        "editedAt": "2025-05-06T23:26:04.436588"
     }
 ]
 ```
@@ -126,7 +132,6 @@ N/A
 |Key|Value|Description|
 |------|---|---|
 |content|"답변입니다."|답변 내용|
-|author|"joonsub.lim"|작성자 이름|
 
 ### 2.2.2. Response
 
@@ -150,8 +155,7 @@ N/A
 POST https://mumulbo.com/api/v1/answers
 
 {
-    "content": "답변입니다.",
-    "author": "joonsub.lim",
+    "content": "답변입니다."
 }
 ```
 
@@ -165,9 +169,7 @@ Location: https://mumulbo.com/api/v1/answers/1
     "id": 1,
     "content": "답변입니다.",
     "author": "joonsub.lim",
-    "status": "ACCEPTED",
-    "comments": [],
-    "emotions": []
+    "status": "NOT_ACCEPTED"
 }
 ```
 
@@ -201,7 +203,6 @@ N/A
 |------|---|---|
 |id|1|답변 고유 번호|
 |content|"수정된 답변입니다."|답변 내용|
-|status|"NOT_ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 
 ### 2.3.2. Response
 
@@ -227,8 +228,7 @@ Content-Type: application/json
 
 {
     "id": 1,
-    "content": "수정된 답변입니다.",
-    "status": "NOT_ACCEPTED",
+    "content": "수정된 답변입니다."
 }
 ```
 
