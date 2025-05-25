@@ -223,7 +223,10 @@ Content-Type: application/json
 ### 2.3.1. Request
 
 #### 2.3.1.1. Header
-N/A
+
+|Key|Value|Required|Description|
+|------|---|---|---|
+|X-User-Id|123|O|작성자 고유 번호|
 
 #### 2.3.1.2. Path Variables
 N/A
@@ -237,7 +240,6 @@ N/A
 |------|---|---|---|
 |subject|"제목입니다."|O|질문 제목|
 |content|"내용입니다."|O|질문 내용|
-|authorId|321|O|작성자 고유 번호|
 |authorName|"heejaykong"|O|작성자 이름|
 
 ### 2.3.2. Response
@@ -261,13 +263,13 @@ N/A
 #### 2.3.3.1 Request Syntax
 
 ```json
-POST https://mumulbo.com/api/v1/questions
+POST /api/v1/questions
 Content-Type: application/json
+X-User-Id: 123
 
 {
     "subject": "제목입니다.",
     "content": "내용입니다.",
-    "authorId": 321,
     "authorName": "heejaykong",
 }
 ```
@@ -284,7 +286,7 @@ Location: /questions/{id}
     "subject": "제목입니다.",
     "content": "내용입니다.",
     "author": {
-        "id": 321,
+        "id": 123,
         "name": "heejaykong"
     },
     "createdAt": "2025-05-06T23:26:04.436588",
