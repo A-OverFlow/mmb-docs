@@ -207,7 +207,6 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|answerId|1|답변 고유 번호|
 |content|"수정된 답변입니다."|답변 내용|
 
 ### 2.3.2. Response
@@ -235,7 +234,6 @@ PUT https://mumulbo.com/api/v1/answers/{answerId}
 Content-Type: application/json
 
 {
-    "answerId": 1,
     "content": "수정된 답변입니다."
 }
 ```
