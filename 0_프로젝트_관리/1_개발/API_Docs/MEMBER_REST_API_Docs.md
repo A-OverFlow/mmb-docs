@@ -30,13 +30,14 @@
 
 ### 2.0. API 리스트
 
-| HTTP Method | URL                                           | Description | 비고     |
-|-------------|-----------------------------------------------|-------------|--------|
-| POST        | https://mumulbo.com/api/v1/members            | 회원 정보 저장    | 내부 통신용 |
-| GET         | https://mumulbo.com/api/v1/members/me         | 회원 정보 조회    | -      |
-| DELETE      | https://mumulbo.com/api/v1/members/me         | 회원 정보 삭제    | -      |
-| GET         | https://mumulbo.com/api/v1/members/me/profile | 프로필 조회      | -      |
-| PUT         | https://mumulbo.com/api/v1/members/me/profile | 프로필 수정      | -      |
+| HTTP Method | URL                                                   | Description | 비고     |
+|-------------|-------------------------------------------------------|-------------|--------|
+| POST        | https://mumulbo.com/api/v1/members                    | 회원 정보 저장    | 내부 통신용 |
+| GET         | https://mumulbo.com/api/v1/members/me                 | 회원 정보 조회    | -      |
+| DELETE      | https://mumulbo.com/api/v1/members/me                 | 회원 정보 삭제    | -      |
+| GET         | https://mumulbo.com/api/v1/members/me/profile         | 프로필 조회      | -      |
+| PUT         | https://mumulbo.com/api/v1/members/me/profile/picture | 프로필 이미지 수정  | -      |
+| PATCH       | https://mumulbo.com/api/v1/members/me/profile/info    | 프로필 정보 수정   | -      |
 
 ---
 
@@ -203,11 +204,11 @@
 
 ---
 
-### 2.5. 프로필 수정
+### 2.5. 프로필 이미지 수정
 
-| HTTP Method | URL                                           | 비고 |
-|-------------|-----------------------------------------------|----|
-| PUT         | https://mumulbo.com/api/v1/members/me/profile | -  |
+| HTTP Method | URL                                                   | 비고 |
+|-------------|-------------------------------------------------------|----|
+| PUT         | https://mumulbo.com/api/v1/members/me/profile/picture | -  |
 
 ### 2.5.1. Request
 
@@ -217,25 +218,19 @@
 |---------------|--------------|----------|-------------|
 | Authorization | Bearer <JWT> | O        | 토큰          |
 
-#### 2.5.1.2. Body
+#### 2.5.1.2. Body (⚠️ `form-data`로 요청)
 
-##### ⚠️ `form-data`로 요청
-
-| Key          | Value                         | Description | 비고                 |
-|--------------|-------------------------------|-------------|--------------------|
-| picture      | `이미지 파일`                      | 프로필 url     | `null`이 아닌 경우에만 갱신 |
-| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     | -                  |
-| website      | https://github.com/mike-urssu | 개인 website  | -                  |
+| Key  | Value    | Description |
+|------|----------|-------------|
+| file | `이미지 파일` | 프로필 url     |
 
 ### 2.5.2. Response
 
 #### 2.5.2.1. Body
 
-| Key          | Value                         | Description |
-|--------------|-------------------------------|-------------|
-| picture      | images/profiles/hijklmn       | 프로필 url     |
-| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
-| website      | https://github.com/mike-urssu | 개인 website  |
+| Key     | Value                   | Description |
+|---------|-------------------------|-------------|
+| picture | images/profiles/hijklmn | 프로필 url     |
 
 ### 2.5.3. Syntax
 
@@ -244,9 +239,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
-    "picture": "images/profiles/hijklmn",
-    "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
-    "website": "https://github.com/mike-urssu"
+    "picture": "images/profiles/hijklmn"
 }
 
 회원이 존재하지 않는 경우 HttpStatus: 404
@@ -255,9 +248,59 @@
     "message": "존재하지 않는 회원입니다."
 }
 
-이미지 확장자를 지원하지 않는 경우 HttpStatus: 415
+이미지 파일이 아닌 경우 HttpStatus: 415
 {
     "error": "PROFILE-001",
     "message": "지원하지 않는 파일입니다."
+}
+```
+
+---
+
+### 2.6. 프로필 정보 수정
+
+| HTTP Method | URL                                                | 비고 |
+|-------------|----------------------------------------------------|----|
+| PATCH       | https://mumulbo.com/api/v1/members/me/profile/info | -  |
+
+### 2.6.1. Request
+
+#### 2.6.1.1. Header
+
+| Key           | Value        | Required | Description |
+|---------------|--------------|----------|-------------|
+| Authorization | Bearer <JWT> | O        | 토큰          |
+
+#### 2.6.1.2. Body
+
+| Key          | Value                         | Description | 비고              |
+|--------------|-------------------------------|-------------|-----------------|
+| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     | 요청에 포함된 경우에만 갱신 |
+| website      | https://github.com/mike-urssu | 개인 website  | 요청에 포함된 경우에만 갱신 |
+
+### 2.6.2. Response
+
+#### 2.6.2.1. Body
+
+| Key          | Value                         | Description |
+|--------------|-------------------------------|-------------|
+| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
+| website      | https://github.com/mike-urssu | 개인 website  |
+
+### 2.6.3. Syntax
+
+#### 2.6.3.1. Response Syntax
+
+``` json
+요청에 성공한 경우: HttpStatus: 200
+{
+    "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
+    "website": "https://github.com/mike-urssu"
+}
+
+회원이 존재하지 않는 경우 HttpStatus: 404
+{
+    "error": "MEMBER-001",
+    "message": "존재하지 않는 회원입니다."
 }
 ```
