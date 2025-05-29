@@ -132,7 +132,7 @@ N/A
 |Key|Value|Description|
 |------|---|---|
 |questionId|1|질문 고유 번호|
-|content|"답변입니다."|답변 내용|
+|answer|"답변입니다."|답변 내용|
 
 ### 2.2.2. Response
 
@@ -144,7 +144,7 @@ N/A
 |Key|Value|Description|
 |------|---|---|
 |answerId|1|답변 고유 번호|
-|content|"답변입니다."|답변 내용|
+|answer|"답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
@@ -159,7 +159,7 @@ POST https://mumulbo.com/api/v1/answers
 
 {
     "questionId" 1,
-    "content": "답변입니다."
+    "answer": "답변입니다."
 }
 ```
 
@@ -171,7 +171,7 @@ Content-Type: application/json
 Location: https://mumulbo.com/api/v1/answers/1
 {
     "answerId": 1,
-    "content": "답변입니다.",
+    "answer": "답변입니다.",
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED"
     "createdAt": "2025-05-06T23:26:04.436588",
@@ -207,7 +207,7 @@ N/A
 
 |Key|Value|Description|
 |------|---|---|
-|content|"수정된 답변입니다."|답변 내용|
+|answer|"수정된 답변입니다."|답변 내용|
 
 ### 2.3.2. Response
 
@@ -219,7 +219,7 @@ N/A
 |Key|Value|Description|
 |------|---|---|
 |answerId|1|답변 고유 번호|
-|content|"수정된 답변입니다."|답변 내용|
+|answer|"수정된 답변입니다."|답변 내용|
 |author|"joonsub.lim"|작성자 이름|
 |status|"NOT_ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
@@ -234,7 +234,7 @@ PUT https://mumulbo.com/api/v1/answers/{answerId}
 Content-Type: application/json
 
 {
-    "content": "수정된 답변입니다."
+    "answer": "수정된 답변입니다."
 }
 ```
 
@@ -246,7 +246,7 @@ Content-Type: application/json
 
 {
     "answerId": 1,
-    "content": "수정된 답변입니다.",
+    "answer": "수정된 답변입니다.",
     "author": "joonsub.lim",
     "status": "NOT_ACCEPTED",
     "createdAt": "2025-05-06T23:26:04.436588",
