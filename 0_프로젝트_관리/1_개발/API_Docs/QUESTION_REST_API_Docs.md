@@ -240,7 +240,6 @@ N/A
 |------|---|---|---|
 |subject|"제목입니다."|O|질문 제목|
 |content|"내용입니다."|O|질문 내용|
-|authorName|"heejaykong"|O|작성자 이름|
 
 ### 2.3.2. Response
 
@@ -269,8 +268,7 @@ X-User-Id: 123
 
 {
     "subject": "제목입니다.",
-    "content": "내용입니다.",
-    "authorName": "heejaykong",
+    "content": "내용입니다."
 }
 ```
 
