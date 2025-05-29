@@ -98,11 +98,12 @@
 
 #### 2.2.2.1. Body
 
-| Key     | Value                   | Description |
-|---------|-------------------------|-------------|
-| name    | 송준희                     | 이름          |
-| email   | mike.urssu@gmail.com    | 이메일         |
-| picture | images/profiles/abcdefg | 프로필 url     |
+| Key      | Value                   | Description |
+|----------|-------------------------|-------------|
+| name     | 송준희                     | 이름          |
+| email    | mike.urssu@gmail.com    | 이메일         |
+| nickname | nickname                | 닉네임         |
+| picture  | images/profiles/abcdefg | 프로필 url     |
 
 ### 2.2.3. Syntax
 
@@ -113,6 +114,7 @@
 {
     "name": "송준희",
     "email": "mike.urssu@gmail.com",
+    "nickname": "nickname",
     "picture": "images/profiles/abcdefg"
 }
 
@@ -177,6 +179,7 @@
 |--------------|-------------------------------|-------------|
 | name         | 송준희                           | 이름          |
 | email        | mike.urssu@gmail.com          | 이메일         |
+| nickname     | nickname                      | 닉네임         |
 | picture      | images/profiles/abcdefg       | 프로필 url     |
 | introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
 | website      | https://github.com/mike-urssu | 개인 website  |
@@ -190,6 +193,7 @@
 {
     "name": "송준희",
     "email": "mike.urssu@gmail.com",
+    "nickname": "nickname",
     "picture": "images/profiles/abcdefg",
     "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
     "website": "https://github.com/mike-urssu"
@@ -273,10 +277,11 @@
 
 #### 2.6.1.2. Body
 
-| Key          | Value                         | Description | 비고              |
-|--------------|-------------------------------|-------------|-----------------|
-| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     | 요청에 포함된 경우에만 갱신 |
-| website      | https://github.com/mike-urssu | 개인 website  | 요청에 포함된 경우에만 갱신 |
+| Key          | Value                         | Description | Required | 비고                  |
+|--------------|-------------------------------|-------------|----------|---------------------|
+| nickname     | new nickname                  | 닉네임         | X        | `null` 값을 보내면 갱신 안함 |
+| introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     | X        | 요청에 포함된 경우에만 갱신     |
+| website      | https://github.com/mike-urssu | 개인 website  | X        | 요청에 포함된 경우에만 갱신     |
 
 ### 2.6.2. Response
 
@@ -284,6 +289,7 @@
 
 | Key          | Value                         | Description |
 |--------------|-------------------------------|-------------|
+| nickname     | new nickname                  | 닉네임         |
 | introduction | 안녕하세요! 뚱땅뚱땅입니다!               | 자기소개 문구     |
 | website      | https://github.com/mike-urssu | 개인 website  |
 
@@ -294,6 +300,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
+    "nickname": "new nickname",
     "introduction": "안녕하세요! 뚱땅뚱땅입니다!",
     "website": "https://github.com/mike-urssu"
 }
