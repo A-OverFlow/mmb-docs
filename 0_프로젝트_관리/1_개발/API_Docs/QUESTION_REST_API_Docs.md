@@ -22,7 +22,7 @@
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|GET|https://mumulbo.com/api/v1/questions|질문 전체 조회|
+|GET|https://mumulbo.com/api/v1/questions|질문 목록 조회|
 |GET|https://mumulbo.com/api/v1/questions/{questionId}|질문 단건 조회|
 |POST|https://mumulbo.com/api/v1/questions|질문 생성|
 |PUT|https://mumulbo.com/api/v1/questions|질문 수정|
@@ -52,6 +52,7 @@ N/A
 |page|0|X (default: 0)|페이지 번호|
 |size|10|X (default: 10)|페이지 크기|
 |sort|createdAt,desc|X (default: createdAt,desc&id,desc)|정렬 조건|
+|authorId|123|X (default: null)|작성자 고유 번호|
 
 #### 2.1.1.4. Body
 N/A
