@@ -34,7 +34,7 @@
 |-------------|-------------------------------------------------------|-------------|--------|
 | POST        | https://mumulbo.com/api/v1/members                    | 회원 정보 저장    | 내부 통신용 |
 | GET         | https://mumulbo.com/api/v1/members/me                 | 회원 정보 조회    | -      |
-| DELETE      | https://mumulbo.com/api/v1/members/me                 | 회원 정보 삭제    | -      |
+| DELETE      | https://mumulbo.com/api/v1/members/me                 | 회원 정보 삭제    | 내부 통신용 |
 | GET         | https://mumulbo.com/api/v1/members/me/profile         | 프로필 조회      | -      |
 | PUT         | https://mumulbo.com/api/v1/members/me/profile/picture | 프로필 이미지 수정  | -      |
 | PATCH       | https://mumulbo.com/api/v1/members/me/profile/info    | 프로필 정보 수정   | -      |
