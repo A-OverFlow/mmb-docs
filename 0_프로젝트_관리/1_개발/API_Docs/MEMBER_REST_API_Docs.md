@@ -100,6 +100,7 @@
 
 | Key      | Value                   | Description |
 |----------|-------------------------|-------------|
+| id       | 1                       | 회원 id       |
 | name     | 송준희                     | 이름          |
 | email    | mike.urssu@gmail.com    | 이메일         |
 | nickname | nickname                | 닉네임         |
@@ -112,6 +113,7 @@
 ``` json
 요청에 성공한 경우: HttpStatus: 200
 {
+    "id": 1,
     "name": "송준희",
     "email": "mike.urssu@gmail.com",
     "nickname": "nickname",
