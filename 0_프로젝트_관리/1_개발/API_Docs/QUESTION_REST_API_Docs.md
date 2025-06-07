@@ -113,7 +113,7 @@ Content-Type: application/json
             "editedAt": "2025-05-07T23:09:21.179749"
         }
     ],
-    "hasNext": false,
+    "hasNext": true,
     "totalElements": 12
 }
 ```
