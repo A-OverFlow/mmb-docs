@@ -51,7 +51,7 @@ N/A
 |------|---|---|---|
 |page|0|X (default: 0)|페이지 번호|
 |size|10|X (default: 10)|페이지 크기|
-|sort|createdAt,desc|X (default: createdAt,desc&id,desc)|정렬 조건|
+|sort|createdAt,desc|X (default: id,desc)|정렬 조건|
 |authorId|123|X (default: null)|작성자 고유 번호|
 
 #### 2.1.1.4. Body
@@ -113,31 +113,8 @@ Content-Type: application/json
             "editedAt": "2025-05-07T23:09:21.179749"
         }
     ],
-    "pageable": {
-        "pageNumber": 0,
-        "pageSize": 2,
-        "sort": {
-            "sorted": true,
-            "empty": false,
-            "unsorted": false
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-    },
-    "totalPages": 6,
-    "totalElements": 12,
-    "last": false,
-    "size": 2,
-    "number": 0,
-    "sort": {
-        "sorted": true,
-        "empty": false,
-        "unsorted": false
-    },
-    "numberOfElements": 2,
-    "first": true,
-    "empty": false
+    "hasNext": false,
+    "totalElements": 12
 }
 ```
 
