@@ -51,7 +51,7 @@ N/A
 |---|----|--------|-------|-----------|
 |`lastId`|Long|❌|N/A|직전 페이지의 마지막 질문의 고유 번호(첫 페이지 요청 시 생략)|
 |`size`|int|❌|`10`|요청할 질문 개수(최소 1개, 최대 1000개)|
-|`authorId`|Long|❌|N/A|작성자 고유 번호|
+|`authorId`|Long|❌|N/A|작성자로 필터 시 작성자 고유 번호|
 
 #### 2.1.1.4. Body
 N/A
@@ -76,7 +76,7 @@ N/A
 #### 2.1.3.1 Request Syntax
 
 ```json
-GET https://mumulbo.com/api/v1/questions?lastId=13&size=2
+GET https://mumulbo.com/api/v1/questions?lastId=13&size=2&authorId=123
 ```
 
 #### 2.1.3.2. Response Syntax
