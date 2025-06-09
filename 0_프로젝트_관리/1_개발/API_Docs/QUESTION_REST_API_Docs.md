@@ -47,12 +47,11 @@ N/A
 N/A
 
 #### 2.1.1.3. Params
-|Key|Value|Required|Description|
-|------|---|---|---|
-|page|0|X (default: 0)|페이지 번호|
-|size|10|X (default: 10)|페이지 크기|
-|sort|createdAt,desc|X (default: createdAt,desc&id,desc)|정렬 조건|
-|authorId|123|X (default: null)|작성자 고유 번호|
+|Key|Type|Required|Default|Description|
+|---|----|--------|-------|-----------|
+|`lastId`|Long|❌|N/A|직전 페이지의 마지막 질문의 고유 번호(첫 페이지 요청 시 생략)|
+|`size`|int|❌|`10`|요청할 질문 개수(최소 1개, 최대 1000개)|
+|`authorId`|Long|❌|N/A|작성자로 필터 시 작성자 고유 번호|
 
 #### 2.1.1.4. Body
 N/A
@@ -65,21 +64,19 @@ N/A
 
 #### 2.1.2.2. Body
 
-|Key|Value|Description|
-|------|---|---|
-|id|1|질문 고유 번호|
-|subject|"제목입니다."|질문 제목|
-|content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
-|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
+|Key|Type|Description|
+|---|----|-----------|
+|`questions`|list|현재 페이지 질문 목록(질문 id  내림차순)|
+|`hasNext`|boolean|다음 페이지 존재 여부|
+|`lastId`|Long|현재 페이지 마지막 질문의 고유 번호(다음 페이지 요청 시 사용)|
+|`totalElements`|Long|질문 전체 개수|
+|`pageSize`|int|실제 응답한 질문 개수|
 
 ### 2.1.3. Syntax
-
 #### 2.1.3.1 Request Syntax
 
 ```json
-GET https://mumulbo.com/api/v1/questions
+GET https://mumulbo.com/api/v1/questions?lastId=13&size=2&authorId=123
 ```
 
 #### 2.1.3.2. Response Syntax
@@ -113,31 +110,10 @@ Content-Type: application/json
             "editedAt": "2025-05-07T23:09:21.179749"
         }
     ],
-    "pageable": {
-        "pageNumber": 0,
-        "pageSize": 2,
-        "sort": {
-            "sorted": true,
-            "empty": false,
-            "unsorted": false
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-    },
-    "totalPages": 6,
-    "totalElements": 12,
-    "last": false,
-    "size": 2,
-    "number": 0,
-    "sort": {
-        "sorted": true,
-        "empty": false,
-        "unsorted": false
-    },
-    "numberOfElements": 2,
-    "first": true,
-    "empty": false
+    "hasNext": true,
+    "lastId": 11,
+    "totalElements": 18,
+    "pageSize": 2
 }
 ```
 
