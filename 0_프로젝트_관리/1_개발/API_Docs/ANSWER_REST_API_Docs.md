@@ -28,6 +28,10 @@
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
 |DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|채택(NEXT)
+|GET|https://mumulbo.com/api/v1/|최근 댓글(NEXT)
+|GET|https://mumulbo.com/api/v1/|댓글 수(NEXT)
+|GET|https://mumulbo.com/api/v1/|가장 댓글이 많이 달린 질문(NEXT)
+|GET|https://mumulbo.com/api/v1/|내가 작성한 댓글의 질문 목록(NEXT)
 
 <br/>
 
@@ -301,4 +305,222 @@ HTTP/1.1 204 No Content
 <br/>
 
 ---
+
+### 2.5. 답변 채택
+
+|HTTP Method|URL|비고|
+|------|---|---|
+|PATCH|https://mumulbo.com/api/v1/|-|
+
+### 2.5.1. Request
+
+#### 2.5.1.1. Header
+Authorization Bearer {JWT}
+
+#### 2.5.1.2. Path Variables
+
+|Key|Description|
+|------|---|
+|answerId|답변 고유 번호|
+
+#### 2.5.1.3. Params
+N/A
+
+#### 2.5.1.4. Body
+N/A
+
+### 2.5.2. Response
+N/A
+
+### 2.5.3. Syntax
+
+#### 2.5.3.1 Request Syntax
+
+```json
+
+```
+
+#### 2.5.3.2. Response Syntax
+
+```json
+
+```
+
+<br/>
+
+---
+
+### 2.6. 최근 댓글
+
+|HTTP Method|URL|비고|
+|------|---|---|
+||https://mumulbo.com/api/v1/|-|
+
+### 2.6.1. Request
+
+#### 2.6.1.1. Header
+Authorization Bearer {JWT}
+
+#### 2.6.1.2. Path Variables
+
+|Key|Description|
+|------|---|
+|||
+
+#### 2.6.1.3. Params
+N/A
+
+#### 2.6.1.4. Body
+N/A
+
+### 2.6.2. Response
+N/A
+
+### 2.6.3. Syntax
+
+#### 2.6.3.1 Request Syntax
+
+```json
+
+```
+
+#### 2.6.3.2. Response Syntax
+
+```json
+
+```
+
+<br/>
+
+---
+
+### 2.7. 댓글 수
+
+|HTTP Method|URL|비고|
+|------|---|---|
+||https://mumulbo.com/api/v1/|-|
+
+### 2.7.1. Request
+
+#### 2.7.1.1. Header
+Authorization Bearer {JWT}
+
+#### 2.7.1.2. Path Variables
+
+|Key|Description|
+|------|---|
+|||
+
+#### 2.7.1.3. Params
+N/A
+
+#### 2.7.1.4. Body
+N/A
+
+### 2.7.2. Response
+N/A
+
+### 2.7.3. Syntax
+
+#### 2.7.3.1 Request Syntax
+
+```json
+
+```
+
+#### 2.7.3.2. Response Syntax
+
+```json
+
+```
+
+<br/>
+
+---
+
+### 2.8. 가장 댓글이 많이 달린 질문
+
+|HTTP Method|URL|비고|
+|------|---|---|
+||https://mumulbo.com/api/v1/|-|
+
+### 2.8.1. Request
+
+#### 2.8.1.1. Header
+Authorization Bearer {JWT}
+
+#### 2.8.1.2. Path Variables
+
+|Key|Description|
+|------|---|
+|||
+
+#### 2.8.1.3. Params
+N/A
+
+#### 2.8.1.4. Body
+N/A
+
+### 2.8.2. Response
+N/A
+
+### 2.8.3. Syntax
+
+#### 2.8.3.1 Request Syntax
+
+```json
+
+```
+
+#### 2.8.3.2. Response Syntax
+
+```json
+
+```
+
+<br/>
+
+---
+
+### 2.9. 내가 작성한 댓글의 질문 목록
+
+|HTTP Method|URL|비고|
+|------|---|---|
+||https://mumulbo.com/api/v1/|-|
+
+### 2.9.1. Request
+
+#### 2.9.1.1. Header
+Authorization Bearer {JWT}
+
+#### 2.9.1.2. Path Variables
+
+|Key|Description|
+|------|---|
+|||
+
+#### 2.9.1.3. Params
+N/A
+
+#### 2.9.1.4. Body
+N/A
+
+### 2.9.2. Response
+N/A
+
+### 2.9.3. Syntax
+
+#### 2.9.3.1 Request Syntax
+
+```json
+
+```
+
+#### 2.9.3.2. Response Syntax
+
+```json
+
+```
+
+
 
