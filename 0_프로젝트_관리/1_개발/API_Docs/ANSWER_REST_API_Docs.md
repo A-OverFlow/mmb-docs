@@ -374,7 +374,11 @@ N/A
 N/A
 
 ### 2.6.2. Response
-N/A
+#### 2.6.2.1 Header
+#### 2.6.2.2 Body
+|Key|Value|Description|
+|------|---|---|
+|answerId|1|답변 고유 번호|
 
 ### 2.6.3. Syntax
 
@@ -398,7 +402,7 @@ N/A
 
 |HTTP Method|URL|비고|
 |------|---|---|
-||https://mumulbo.com/api/v1/|-|
+||https://mumulbo.com/api/v1/answers/count|-|
 
 ### 2.7.1. Request
 
@@ -408,29 +412,39 @@ Authorization Bearer {JWT}
 #### 2.7.1.2. Path Variables
 
 |Key|Description|
-|------|---|
-|||
+N/A
 
 #### 2.7.1.3. Params
 N/A
 
 #### 2.7.1.4. Body
-N/A
+
 
 ### 2.7.2. Response
+#### 2.7.2.1 Header
 N/A
+#### 2.7.2.2 Body
+|Key|Value|Description|
+|------|---|---|
+|totalCount|3|전체 답변 수|
 
 ### 2.7.3. Syntax
 
 #### 2.7.3.1 Request Syntax
 
 ```json
+GET https://mumulbo.com/api/v1/answers/count
 
 ```
 
 #### 2.7.3.2. Response Syntax
 
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "totalCount" : 3
+}
 
 ```
 
