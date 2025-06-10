@@ -28,10 +28,10 @@
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
 |DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|채택(NEXT)
-|GET|https://mumulbo.com/api/v1/|최근 댓글(NEXT)
-|GET|https://mumulbo.com/api/v1/|댓글 수(NEXT)
-|GET|https://mumulbo.com/api/v1/|가장 댓글이 많이 달린 질문(NEXT)
-|GET|https://mumulbo.com/api/v1/|내가 작성한 댓글의 질문 목록(NEXT)
+|GET|https://mumulbo.com/api/v1/|최근 답변(NEXT)
+|GET|https://mumulbo.com/api/v1/|답변 수(NEXT)
+|GET|https://mumulbo.com/api/v1/|답변이 가장 많이 달린 질문(NEXT)
+|GET|https://mumulbo.com/api/v1/|내가 작성한 답변의 질문 목록(NEXT)
 
 <br/>
 
