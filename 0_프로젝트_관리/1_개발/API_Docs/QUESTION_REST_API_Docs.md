@@ -27,6 +27,7 @@
 |`POST`|https://mumulbo.com/api/v1/questions|질문 생성|
 |`PUT`|https://mumulbo.com/api/v1/questions/{questionId}|질문 수정|
 |`DELETE`|https://mumulbo.com/api/v1/questions/{questionId}|질문 삭제|
+|`GET`|https://mumulbo.com/api/v1/questions/count|질문 총 개수 조회|
 
 <br/>
 
@@ -391,6 +392,49 @@ DELETE https://mumulbo.com/api/v1/questions/{questionId}
 
 ```json
 HTTP/1.1 204 No Content
+```
+
+<br/>
+
+---
+
+### 2.6. 질문 총 개수 조회
+
+|HTTP Method|URL|비고|
+|------|---|---|
+|GET|https://mumulbo.com/api/v1/questions/count|-|
+
+### 2.6.1. Request
+N/A
+
+### 2.6.2. Response
+
+#### 2.6.2.1. Header
+N/A
+
+#### 2.6.2.2. Body
+
+|Key|Type|Description|
+|---|-----|-----------|
+|`count`|Long|질문 총 개수|
+
+### 2.6.3. Syntax
+
+#### 2.6.3.1 Request Syntax
+
+```json
+GET https://mumulbo.com/api/v1/questions/count
+```
+
+#### 2.6.3.2. Response Syntax
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "count": 3
+}
 ```
 
 <br/>
