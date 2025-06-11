@@ -22,11 +22,11 @@
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|GET|https://mumulbo.com/api/v1/questions|질문 목록 조회|
-|GET|https://mumulbo.com/api/v1/questions/{questionId}|질문 단건 조회|
-|POST|https://mumulbo.com/api/v1/questions|질문 생성|
-|PUT|https://mumulbo.com/api/v1/questions|질문 수정|
-|DELETE|https://mumulbo.com/api/v1/questions/{questionId}|질문 삭제|
+|`GET`|https://mumulbo.com/api/v1/questions|질문 목록 조회|
+|`GET`|https://mumulbo.com/api/v1/questions/{questionId}|질문 단건 조회|
+|`POST`|https://mumulbo.com/api/v1/questions|질문 생성|
+|`PUT`|https://mumulbo.com/api/v1/questions/{questionId}|질문 수정|
+|`DELETE`|https://mumulbo.com/api/v1/questions/{questionId}|질문 삭제|
 
 <br/>
 
@@ -277,7 +277,7 @@ Location: /questions/{id}
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|PUT|https://mumulbo.com/api/v1/questions|-|
+|PUT|https://mumulbo.com/api/v1/questions/{questionId}|-|
 
 ### 2.4.1. Request
 
@@ -285,7 +285,10 @@ Location: /questions/{id}
 N/A
 
 #### 2.4.1.2. Path Variables
-N/A
+
+|Key|Description|
+|---|-----------|
+|questionId|질문 고유 번호|
 
 #### 2.4.1.3. Params
 N/A
@@ -294,7 +297,6 @@ N/A
 
 |Key|Value|Required|Description|
 |------|---|---|---|
-|id|1|O|질문 고유 번호|
 |subject|"수정된 제목입니다."|O|질문 제목|
 |content|"수정된 내용입니다."|O|질문 내용|
 
@@ -319,11 +321,10 @@ N/A
 #### 2.4.3.1 Request Syntax
 
 ```json
-PUT https://mumulbo.com/api/v1/questions
+PUT https://mumulbo.com/api/v1/questions/{questionId}
 Content-Type: application/json
 
 {
-    "id": 3,
     "subject": "수정된 제목입니다.",
     "content": "수정된 내용입니다.",
 }
