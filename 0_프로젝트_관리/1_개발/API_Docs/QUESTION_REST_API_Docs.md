@@ -22,11 +22,12 @@
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|GET|https://mumulbo.com/api/v1/questions|질문 전체 조회|
-|GET|https://mumulbo.com/api/v1/questions/{questionId}|질문 단건 조회|
-|POST|https://mumulbo.com/api/v1/questions|질문 생성|
-|PUT|https://mumulbo.com/api/v1/questions|질문 수정|
-|DELETE|https://mumulbo.com/api/v1/questions/{questionId}|질문 삭제|
+|`GET`|https://mumulbo.com/api/v1/questions|질문 목록 조회|
+|`GET`|https://mumulbo.com/api/v1/questions/{questionId}|질문 단건 조회|
+|`POST`|https://mumulbo.com/api/v1/questions|질문 생성|
+|`PUT`|https://mumulbo.com/api/v1/questions/{questionId}|질문 수정|
+|`DELETE`|https://mumulbo.com/api/v1/questions/{questionId}|질문 삭제|
+|`GET`|https://mumulbo.com/api/v1/questions/count|질문 총 개수 조회|
 
 <br/>
 
@@ -47,11 +48,11 @@ N/A
 N/A
 
 #### 2.1.1.3. Params
-|Key|Value|Required|Description|
-|------|---|---|---|
-|page|0|X (default: 0)|페이지 번호|
-|size|10|X (default: 10)|페이지 크기|
-|sort|createdAt,desc|X (default: createdAt,desc&id,desc)|정렬 조건|
+|Key|Type|Required|Default|Description|
+|---|----|--------|-------|-----------|
+|`lastId`|Long|❌|N/A|직전 페이지의 마지막 질문의 고유 번호(첫 페이지 요청 시 생략)|
+|`size`|int|❌|`10`|요청할 질문 개수(최소 1개, 최대 1000개)|
+|`authorId`|Long|❌|N/A|작성자로 필터 시 작성자 고유 번호|
 
 #### 2.1.1.4. Body
 N/A
@@ -64,23 +65,19 @@ N/A
 
 #### 2.1.2.2. Body
 
-|Key|Value|Description|
-|------|---|---|
-|id|1|질문 고유 번호|
-|subject|"제목입니다."|질문 제목|
-|content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
-|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
+|Key|Type|Description|
+|---|----|-----------|
+|`questions`|list|현재 페이지 질문 목록(질문 id  내림차순)|
+|`hasNext`|boolean|다음 페이지 존재 여부|
+|`lastId`|Long|현재 페이지 마지막 질문의 고유 번호(다음 페이지 요청 시 사용)|
+|`totalElements`|Long|질문 전체 개수|
+|`pageSize`|int|실제 응답한 질문 개수|
 
 ### 2.1.3. Syntax
-
 #### 2.1.3.1 Request Syntax
 
 ```json
-GET https://mumulbo.com/api/v1/questions
+GET https://mumulbo.com/api/v1/questions?lastId=13&size=2&authorId=123
 ```
 
 #### 2.1.3.2. Response Syntax
@@ -90,17 +87,15 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "content": [
+    "questions": [
         {
             "id": 12,
             "subject": "질문입니다.",
             "content": "내용입니다.",
             "author": {
                 "id": 123,
-                "name": "heejaykong"
+                "nickname": "heejaykong"
             },
-            "status": "NEW",
-            "answers": [],
             "createdAt": "2025-05-07T23:09:21.899321",
             "editedAt": "2025-05-07T23:09:21.899321"
         },
@@ -110,39 +105,16 @@ Content-Type: application/json
             "content": "내용입니다.",
             "author": {
                 "id": 123,
-                "name": "heejaykong"
+                "nickname": "heejaykong"
             },
-            "status": "NEW",
-            "answers": [],
             "createdAt": "2025-05-07T23:09:21.179749",
             "editedAt": "2025-05-07T23:09:21.179749"
         }
     ],
-    "pageable": {
-        "pageNumber": 0,
-        "pageSize": 2,
-        "sort": {
-            "sorted": true,
-            "empty": false,
-            "unsorted": false
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-    },
-    "totalPages": 6,
-    "totalElements": 12,
-    "last": false,
-    "size": 2,
-    "number": 0,
-    "sort": {
-        "sorted": true,
-        "empty": false,
-        "unsorted": false
-    },
-    "numberOfElements": 2,
-    "first": true,
-    "empty": false
+    "hasNext": true,
+    "lastId": 11,
+    "totalElements": 18,
+    "pageSize": 2
 }
 ```
 
@@ -185,9 +157,7 @@ N/A
 |id|1|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
@@ -211,10 +181,8 @@ Content-Type: application/json
     "content": "내용입니다.",
     "author": {
         "id": 321,
-        "name": "heejaykong"
+        "nickname": "heejaykong"
     },
-    "status": "NEW",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
 }
@@ -233,7 +201,10 @@ Content-Type: application/json
 ### 2.3.1. Request
 
 #### 2.3.1.1. Header
-N/A
+
+|Key|Value|Required|Description|
+|------|---|---|---|
+|X-User-Id|123|O|작성자 고유 번호|
 
 #### 2.3.1.2. Path Variables
 N/A
@@ -247,8 +218,6 @@ N/A
 |------|---|---|---|
 |subject|"제목입니다."|O|질문 제목|
 |content|"내용입니다."|O|질문 내용|
-|authorId|321|O|작성자 고유 번호|
-|authorName|"heejaykong"|O|작성자 이름|
 
 ### 2.3.2. Response
 
@@ -262,9 +231,7 @@ N/A
 |id|3|질문 고유 번호|
 |subject|"제목입니다."|질문 제목|
 |content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"NEW"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
 
@@ -273,14 +240,13 @@ N/A
 #### 2.3.3.1 Request Syntax
 
 ```json
-POST https://mumulbo.com/api/v1/questions
+POST /api/v1/questions
 Content-Type: application/json
+X-User-Id: 123
 
 {
     "subject": "제목입니다.",
-    "content": "내용입니다.",
-    "authorId": 321,
-    "authorName": "heejaykong",
+    "content": "내용입니다."
 }
 ```
 
@@ -296,11 +262,9 @@ Location: /questions/{id}
     "subject": "제목입니다.",
     "content": "내용입니다.",
     "author": {
-        "id": 321,
-        "name": "heejaykong"
+        "id": 123,
+        "nickname": "heejaykong"
     },
-    "status": "NEW",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
 }
@@ -314,7 +278,7 @@ Location: /questions/{id}
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|PUT|https://mumulbo.com/api/v1/questions|-|
+|PUT|https://mumulbo.com/api/v1/questions/{questionId}|-|
 
 ### 2.4.1. Request
 
@@ -322,7 +286,10 @@ Location: /questions/{id}
 N/A
 
 #### 2.4.1.2. Path Variables
-N/A
+
+|Key|Description|
+|---|-----------|
+|questionId|질문 고유 번호|
 
 #### 2.4.1.3. Params
 N/A
@@ -331,10 +298,8 @@ N/A
 
 |Key|Value|Required|Description|
 |------|---|---|---|
-|id|1|O|질문 고유 번호|
 |subject|"수정된 제목입니다."|O|질문 제목|
 |content|"수정된 내용입니다."|O|질문 내용|
-|status|"ING"|O|질문 상태|
 
 ### 2.4.2. Response
 
@@ -348,9 +313,7 @@ N/A
 |id|1|질문 고유 번호|
 |subject|"수정된 제목입니다."|질문 제목|
 |content|"수정된 내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "name": "heejaykong"&#13;}</pre>|작성자 정보|
-|status|"ING"|질문 상태(NEW/ING/DONE)|
-|answers|[]|답변 목록|
+|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |editedAt|"2025-05-06T23:33:04.333333"|수정 시간|
 
@@ -359,14 +322,12 @@ N/A
 #### 2.4.3.1 Request Syntax
 
 ```json
-PUT https://mumulbo.com/api/v1/questions
+PUT https://mumulbo.com/api/v1/questions/{questionId}
 Content-Type: application/json
 
 {
-    "id": 3,
     "subject": "수정된 제목입니다.",
     "content": "수정된 내용입니다.",
-    "status": "ING"
 }
 ```
 
@@ -382,10 +343,8 @@ Content-Type: application/json
     "content": "수정된 내용입니다.",
     "author": {
         "id": 321,
-        "name": "heejaykong"
+        "nickname": "heejaykong"
     },
-    "status": "ING",
-    "answers": [],
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:33:04.333333"
 }
@@ -433,6 +392,49 @@ DELETE https://mumulbo.com/api/v1/questions/{questionId}
 
 ```json
 HTTP/1.1 204 No Content
+```
+
+<br/>
+
+---
+
+### 2.6. 질문 총 개수 조회
+
+|HTTP Method|URL|비고|
+|------|---|---|
+|GET|https://mumulbo.com/api/v1/questions/count|-|
+
+### 2.6.1. Request
+N/A
+
+### 2.6.2. Response
+
+#### 2.6.2.1. Header
+N/A
+
+#### 2.6.2.2. Body
+
+|Key|Type|Description|
+|---|-----|-----------|
+|`count`|Long|질문 총 개수|
+
+### 2.6.3. Syntax
+
+#### 2.6.3.1 Request Syntax
+
+```json
+GET https://mumulbo.com/api/v1/questions/count
+```
+
+#### 2.6.3.2. Response Syntax
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "count": 3
+}
 ```
 
 <br/>
