@@ -1,6 +1,6 @@
 # 무물보 API 문서 - Chat Service (개발용)
 
-Base URL: `https://dev.mumulbo.com`
+**Base URL**: `https://dev.mumulbo.com`
 
 ---
 
@@ -21,11 +21,11 @@ Base URL: `https://dev.mumulbo.com`
 
 ### 2.1. API 목록
 
-| Method | URL                                       | 설명                  |
-|--------|-------------------------------------------|---------------------|
-| GET    | `/api/v1/chat/messages`                   | 최근 채팅 목록 조회         |
-| POST   | `/api/v1/chat/message`                    | 채팅 메시지 저장           |
-| WSS    | `wss://dev.mumulbo.com/ws/chat?token=...` | 실시간 채팅 WebSocket 연결 |
+| Method | URL                             | 설명                  | 인증 방식                                |
+|--------|---------------------------------|---------------------|--------------------------------------|
+| GET    | `/api/v1/chat/messages`         | 최근 채팅 목록 조회         | ❌ 인증 없음 (공개 채팅)                      |
+| POST   | `/api/v1/chat/message`          | 채팅 메시지 저장           | ✅ `Authorization: Bearer <JWT>`      |
+| WSS    | `wss://dev.mumulbo.com/ws/chat` | 실시간 채팅 WebSocket 연결 | ✅ `Authorization: Bearer <JWT>` (헤더) |
 
 ---
 
@@ -33,7 +33,7 @@ Base URL: `https://dev.mumulbo.com`
 
 - **URL**: `GET /api/v1/chat/messages`
 - **설명**: 최근 12시간 이내 채팅 메시지를 조회합니다.
-- **인증**: 없음 (공개 채팅 목록)
+- **인증**: ❌ 없음 (공개 채팅)
 
 #### ✅ 응답 예시
 
@@ -58,7 +58,9 @@ Base URL: `https://dev.mumulbo.com`
 - **URL**: `POST /api/v1/chat/message`
 - **설명**: 채팅 메시지를 저장합니다.  
   운영 환경에서는 sender 정보는 JWT 토큰에서 추출됩니다.
-- **인증**: Bearer 토큰 (JWT)
+- 웹소켓 기능 장애시 사용할수 있는 API 이며, 정상흐름에서는 필요없는 API입니다.
+- 정상흐름시에는 실시간채팅시 DB에도 채팅데이터가 저장됨
+- **인증**: ✅ `Authorization: Bearer <JWT>`
 
 #### ✅ 요청 예시
 
@@ -90,14 +92,24 @@ Base URL: `https://dev.mumulbo.com`
 
 ### 2.4. 실시간 채팅 WebSocket
 
-- **URL**: `wss://dev.mumulbo.com/ws/chat?token=JWT`
+- **URL**: `wss://dev.mumulbo.com/ws/chat`
 - **설명**: WebSocket을 통해 실시간 채팅을 송수신합니다.
-- **인증**: JWT 토큰 (쿼리 파라미터로 전달)
+- **인증**: ✅ JWT 토큰을 **헤더의 Authorization**에 넣어 전송
+  ```
+  Authorization: Bearer <JWT>
+  ```
 
 #### ✅ 연결 예시
 
-```
-wss://dev.mumulbo.com/ws/chat?token=valid-test-token
+WebSocket 라이브러리에서 헤더를 설정할 수 있어야 하며, 예시는 다음과 같습니다:
+
+```javascript
+//아래 5줄은 챗지피티가 알려준 소스이므로 검증필요.. 
+new WebSocket("wss://dev.mumulbo.com/ws/chat", [], {
+  headers: {
+    Authorization: "Bearer valid-test-token"
+  }
+});
 ```
 
 #### ✅ 요청 메시지 예시 (클라이언트 → 서버)
@@ -123,8 +135,11 @@ wss://dev.mumulbo.com/ws/chat?token=valid-test-token
 }
 ```
 
-> **참고**: WebSocket 메시지 타입은 현재 `TEXT`, `EMOJI`, `SYSTEM`, `WHISPER` 지원 예정
+---
 
-![w11_ms_chat_test1.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test1.png)
-![w11_ms_chat_test2.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test2.png)
-![w11_ms_chat_test3.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test3.png)
+
+![w14_ms_chat_test1.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test1.png)
+![w14_ms_chat_test2.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test2.png)
+![w14_ms_chat_test3.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test3.png)
+postman wss프로토콜 사용시 header에 토큰넣는방법
+![w14_ms_chat_test4.png](..%2F..%2F..%2F9_images%2Fw14_ms_chat_test4.png)
