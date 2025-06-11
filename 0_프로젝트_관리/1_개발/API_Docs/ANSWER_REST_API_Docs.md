@@ -28,8 +28,8 @@
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
 |DELETE|https://mumulbo.com/api/v1/answers/{answerId}|답변 삭제
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}/accept|채택(NEXT)
-|GET|https://mumulbo.com/api/v1/|최근 답변(NEXT)
-|GET|https://mumulbo.com/api/v1/|답변 수(NEXT)
+|GET|https://mumulbo.com/api/v1/recent|최근 답변
+|GET|https://mumulbo.com/api/v1/count|답변 수
 |GET|https://mumulbo.com/api/v1/|답변이 가장 많이 달린 질문(NEXT)
 |GET|https://mumulbo.com/api/v1/|내가 작성한 답변의 질문 목록(NEXT)
 
