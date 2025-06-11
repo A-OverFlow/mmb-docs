@@ -38,6 +38,7 @@
 | GET         | https://mumulbo.com/api/v1/members/me/profile         | 프로필 조회      | -      |
 | PUT         | https://mumulbo.com/api/v1/members/me/profile/picture | 프로필 이미지 수정  | -      |
 | PATCH       | https://mumulbo.com/api/v1/members/me/profile/info    | 프로필 정보 수정   | -      |
+| GET         | https://mumulbo.com/api/v1/members/total              | 총 회원수 조회    | -      |
 
 ---
 
@@ -311,5 +312,32 @@
 {
     "error": "MEMBER-001",
     "message": "존재하지 않는 회원입니다."
+}
+```
+
+---
+
+### 2.7. 총 회원수 조회
+
+| HTTP Method | URL                                      | 비고       |
+|-------------|------------------------------------------|----------|
+| GET         | https://mumulbo.com/api/v1/members/total | 토큰 필요 없음 |
+
+### 2.7.1. Response
+
+#### 2.7.1.1. Body
+
+| Key   | Value | Description |
+|-------|-------|-------------|
+| count | 1     | 총 회원수       |
+
+### 2.7.2. Syntax
+
+#### 2.7.2.1. Response Syntax
+
+``` json
+요청에 성공한 경우: HttpStatus: 200
+{
+    "count": 1
 }
 ```
