@@ -104,8 +104,8 @@ Content-Type: application/json
         "content": "다른 답변이다냥.",
         "author": "heejaykong",
         "status": "NOT_ACCEPTED"
-        "createdAt": "2025-05-06T23:26:04.436588",
-        "updatedAt": "2025-05-06T23:26:04.436588"
+        "createdAt": "2025-05-08T23:26:04.436588",
+        "updatedAt": "2025-05-08T23:26:04.436588"
     }
 ]
 ```
