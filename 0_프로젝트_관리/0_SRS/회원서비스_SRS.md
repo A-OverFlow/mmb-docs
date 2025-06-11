@@ -53,6 +53,10 @@
 
 닉네임, 자기소개, 웹사이트 정보를 수정합니다.
 
+### 3-7. 총 회원수 조회
+
+총 회원수를 조회합니다.
+
 ## 4. API 명세 요약
 
 Reference. [Member Service Api Docs](https://github.com/A-OverFlow/mmb-docs/blob/main/0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B4%80%EB%A6%AC/1_%EA%B0%9C%EB%B0%9C/API_Docs/MEMBER_REST_API_Docs.md)
@@ -65,6 +69,7 @@ Reference. [Member Service Api Docs](https://github.com/A-OverFlow/mmb-docs/blob
 | GET         | https://mumulbo.com/api/v1/members/me/profile         | ㅇ                     | 프로필 조회      | -      |
 | PUT         | https://mumulbo.com/api/v1/members/me/profile/picture | ㅇ                     | 프로필 이미지 수정  | -      |
 | PATCH       | https://mumulbo.com/api/v1/members/me/profile/info    | ㅇ                     | 프로필 정보 수정   | -      |
+| GET         | https://mumulbo.com/api/v1/members/total              | x                     | 총 회원수 조회    | -      |
 
 ## 5. 도메인 모델 요약
 
