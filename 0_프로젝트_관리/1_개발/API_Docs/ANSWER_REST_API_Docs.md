@@ -22,7 +22,7 @@
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|GET|https://mumulbo.com/api/v1/questions/{questionId}/answers|질문의 답변 전체 조회|
+|GET|https://mumulbo.com/api/v1/answers/{questionId}|질문의 답변 전체 조회|
 |GET|~~https://mumulbo.com/api/v1/answers/{answerId}~~|~~답변 단건 조회~~ 스펙 아웃|
 |POST|https://mumulbo.com/api/v1/answers|답변 생성|
 |PATCH|https://mumulbo.com/api/v1/answers/{answerId}|답변 수정
@@ -41,7 +41,7 @@
 
 |HTTP Method|URL|비고|
 |------|---|---|
-|GET|https://mumulbo.com/api/v1/questions/{questionId}/answers|-|
+|GET|https://mumulbo.com/api/v1/answers/{questionId}|-|
 
 ### 2.1.1. Request
 
@@ -81,7 +81,7 @@ N/A
 #### 2.1.3.1 Request Syntax
 
 ```json
-GET https://mumulbo.com/api/v1/questions/{questionId}/answers
+GET https://mumulbo.com/api/v1/answers/{questionId}
 ```
 
 #### 2.1.3.2. Response Syntax
