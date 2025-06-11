@@ -94,7 +94,8 @@ Content-Type: application/json
             "content": "내용입니다.",
             "author": {
                 "id": 123,
-                "nickname": "heejaykong"
+                "nickname": "heejaykong",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
             },
             "createdAt": "2025-05-07T23:09:21.899321",
             "editedAt": "2025-05-07T23:09:21.899321"
@@ -105,7 +106,8 @@ Content-Type: application/json
             "content": "내용입니다.",
             "author": {
                 "id": 123,
-                "nickname": "heejaykong"
+                "nickname": "heejaykong",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
             },
             "createdAt": "2025-05-07T23:09:21.179749",
             "editedAt": "2025-05-07T23:09:21.179749"
@@ -152,14 +154,14 @@ N/A
 
 #### 2.2.2.2. Body
 
-|Key|Value|Description|
-|------|---|---|
-|id|1|질문 고유 번호|
-|subject|"제목입니다."|질문 제목|
-|content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
-|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
+|Key|Type|Description|
+|---|----|-----------|
+|`id`|Long|질문 고유 번호|
+|`subject`|String|질문 제목|
+|`content`|String|질문 내용|
+|`author`|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong",&#13;  "picture": "/.../..."&#13;}</pre>|작성자 정보|
+|`createdAt`|String|생성 시간|
+|`editedAt`|String|수정 시간|
 
 ### 2.2.3. Syntax
 
@@ -181,7 +183,8 @@ Content-Type: application/json
     "content": "내용입니다.",
     "author": {
         "id": 321,
-        "nickname": "heejaykong"
+        "nickname": "heejaykong",
+        "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
     },
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
@@ -226,14 +229,14 @@ N/A
 
 #### 2.3.2.2. Body
 
-|Key|Value|Description|
-|------|---|---|
-|id|3|질문 고유 번호|
-|subject|"제목입니다."|질문 제목|
-|content|"내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
-|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|editedAt|"2025-05-06T23:26:04.436588"|수정 시간|
+|Key|Type|Description|
+|---|----|-----------|
+|`id`|Long|질문 고유 번호|
+|`subject`|String|질문 제목|
+|`content`|String|질문 내용|
+|`author`|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong",&#13;  "picture": "/.../..."&#13;}</pre>|작성자 정보|
+|`createdAt`|String|생성 시간|
+|`editedAt`|String|수정 시간|
 
 ### 2.3.3. Syntax
 
@@ -263,7 +266,8 @@ Location: /questions/{id}
     "content": "내용입니다.",
     "author": {
         "id": 123,
-        "nickname": "heejaykong"
+        "nickname": "heejaykong",
+        "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
     },
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:26:04.436588"
@@ -308,14 +312,14 @@ N/A
 
 #### 2.4.2.2. Body
 
-|Key|Value|Description|
-|------|---|---|
-|id|1|질문 고유 번호|
-|subject|"수정된 제목입니다."|질문 제목|
-|content|"수정된 내용입니다."|질문 내용|
-|author|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong"&#13;}</pre>|작성자 정보|
-|createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
-|editedAt|"2025-05-06T23:33:04.333333"|수정 시간|
+|Key|Type|Description|
+|---|----|-----------|
+|`id`|Long|질문 고유 번호|
+|`subject`|String|질문 제목|
+|`content`|String|질문 내용|
+|`author`|<pre lang="json">{&#13;  "id": 123,&#13;  "nickname": "heejaykong",&#13;  "picture": "/.../..."&#13;}</pre>|작성자 정보|
+|`createdAt`|String|생성 시간|
+|`editedAt`|String|수정 시간|
 
 ### 2.4.3. Syntax
 
@@ -343,7 +347,8 @@ Content-Type: application/json
     "content": "수정된 내용입니다.",
     "author": {
         "id": 321,
-        "nickname": "heejaykong"
+        "nickname": "heejaykong",
+        "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
     },
     "createdAt": "2025-05-06T23:26:04.436588",
     "editedAt": "2025-05-06T23:33:04.333333"
