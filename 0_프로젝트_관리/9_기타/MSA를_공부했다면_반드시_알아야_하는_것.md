@@ -16,10 +16,10 @@
     * 독립적 배포와 개발: 각 서비스는 개별적으로 배포되고 롤백(?) 가능해야 함 ✅
 2. 서비스 간 통신 방식
     * 동기 방식 (REST, gRPC) ✅
-    * 비동기 방식 (Kafka, RabbitMQ 등) 🔜
-    * Synchronous vs. Asynchronous의 장단점과 Trade-off 🔜
+    * 비동기 방식 (Kafka, RabbitMQ 등) 🔜 -> 공희재
+    * Synchronous vs. Asynchronous의 장단점과 Trade-off 🔜 -> 공희재
 3. API Gateway
-    * 인증 ✅, 라우팅 ✅, 속도 제한 ⚠️, 로깅 ⚠️, CORS 제어 ⚠️
+    * 인증 ✅, 라우팅 ✅, 속도 제한, 로깅, CORS 제어
     * 대표 도구: Spring Cloud Gateway ✅
 4. 인증/인가 (Security)
     * Token 기반 인증 (JWT, OAuth2.0) ✅
@@ -29,16 +29,16 @@
     * Eureka, Consul, Zookeeper 등 ⛔
     * 동적 서비스 위치 확인 (특히 클러스터 환경에서 필수) ⛔
 6. 장애 복원력 및 회복 전략
-    * Circuit Breaker (예: Resilience4j) 🔜
-    * Retry / Timeout / Fallback 설계 🔜
-    * Bulkhead Pattern, Rate Limiting 🔜
+    * Circuit Breaker (예: Resilience4j) 🔜 -> 최유연
+    * Retry / Timeout / Fallback 설계 🔜 -> 최유연
+    * Bulkhead Pattern, Rate Limiting 🔜 -> 이윤진
 7. 분산 트랜잭션 처리
-    * Saga Pattern, Orchestration vs. Choreography 🔜
-    * Eventual Consistency 개념에 익숙해야 함 🔜
+    * Saga Pattern, Orchestration vs. Choreography 🔜 -> 심명섭
+    * Eventual Consistency 개념에 익숙해야 함 🔜 -> 심명섭
 8. 로그 및 모니터링
-    * 분산 로그 수집 (ELK, Loki 등) ⚠️
-    * 분산 추적 (Zipkin, Jaeger, OpenTelemetry) ⚠️
-    * Prometheus + Grafana 조합을 통한 모니터링 ⚠️
+    * 분산 로그 수집 (ELK, Loki 등) ⚠️ -> 이윤진
+    * 분산 추적 (Zipkin, Jaeger, OpenTelemetry) ⚠️ -> 송주임님
+    * Prometheus + Grafana 조합을 통한 모니터링 ✅
 9. 배포 자동화 및 운영
     * CI/CD 파이프라인 구축 (GitHub Actions, Jenkins, ArgoCD 등) ✅
     * 컨테이너 기반 운영 (Docker ✅, Kubernetes ⛔)
@@ -48,9 +48,9 @@
     * 데이터 중복 허용과 데이터 동기화 전략 ⚠️
     * CQRS, Event Sourcing의 개념적 이해 🔜
 11. 테스트 전략
-    * Contract Test (예: Spring Cloud Contract) 🔜
-    * 서비스 간 통신이 많아지면서 통합 테스트보다 계약 기반 테스트가 중요 🔜
-    * Consumer-Driven Contracts (CDC) 🔜
+    * Contract Test (예: Spring Cloud Contract) 🔜 -> 조영용
+    * 서비스 간 통신이 많아지면서 통합 테스트보다 계약 기반 테스트가 중요 🔜  -> 조영용
+    * Consumer-Driven Contracts (CDC) 🔜  -> 조영용
 12. 팀 협업과 조직 설계
-    * Conway's Law 이해 🔜
-    * MSA는 기술 뿐 아니라 조직 구조와도 깊은 관련 있음 🔜
+    * Conway's Law 이해 🔜 -> 김혜린
+    * MSA는 기술 뿐 아니라 조직 구조와도 깊은 관련 있음 🔜  -> 김혜린
