@@ -71,7 +71,7 @@ N/A
 |------|---|---|
 |answerId|1|답변 고유 번호|
 |content|"답변이다냥"|답변 내용|
-|author|"yuyeon.choe"|작성자 이름|
+|author|{"id": 123,"nickname": "yuyeonchoe","picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"}|작성자 정보|
 |status|"ACCEPTED"|답변 상태(ACCEPTED/NOT_ACCEPTED)|
 |createdAt|"2025-05-06T23:26:04.436588"|생성 시간|
 |updatedAt|"2025-05-07T23:26:04.436588"|수정 시간|
@@ -94,7 +94,11 @@ Content-Type: application/json
     {
         "answerId": 1,
         "content": "답변이다냥.",
-        "author": "yuyeon.choe",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
         "status": "ACCEPTED",
         "createdAt": "2025-05-06T23:26:04.436588",
         "updatedAt": "2025-05-07T23:26:04.436588"
@@ -102,7 +106,11 @@ Content-Type: application/json
     {
         "answerId": 2,
         "content": "다른 답변이다냥.",
-        "author": "heejaykong",
+        "author": {
+                "id": 234,
+                "nickname": "heejaykong",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77NH"
+            },
         "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-08T23:26:04.436588",
         "updatedAt": "2025-05-08T23:26:04.436588"

@@ -1,4 +1,4 @@
-# 무물보 API 문서 - Chat Service (개발용)
+<img width="939" alt="스크린샷 2025-06-21 오후 9 18 43" src="https://github.com/user-attachments/assets/d2203931-d1aa-4ba4-83e2-9bc0e07ad3f5" /># 무물보 API 문서 - Chat Service (개발용)
 
 **Base URL**: `https://dev.mumulbo.com`
 
@@ -24,8 +24,11 @@
 |--------|----------------------------------------|---------------------|--------------------------------------|
 | GET    | `/api/v1/chat/messages`                | 최근 채팅 목록 조회         | ❌ 인증 없음 (공개 채팅)                      |
 | POST   | `/api/v1/chat/message`                 | 채팅 메시지 저장           | ✅ `Authorization: Bearer <JWT>`      |
-| WSS    | `wss://dev.mumulbo.com/api/v1/ws/chat` | 실시간 채팅 WebSocket 연결 | ✅ `Authorization: Bearer <JWT>` (헤더) |
+| WSS    | `wss://dev.mumulbo.com/api/v1/ws/chat` | 실시간 채팅 WebSocket 연결 | URL Query String 에 토큰을 포함시켜 전달
 
+WSS 요청 예시
+
+wss://dev.mumulbo.com/api/v1/ws/chat?token=eyJhbdddddd.eyJzdWIiOiI0ffffffffNzB9.Pxh6UVIJneF2ta5Nv0
 ---
 
 ### 2.2. 채팅 목록 조회
@@ -119,11 +122,8 @@
 
 ```javascript
 // 예시 - 실제 사용 시 WebSocket 클라이언트 라이브러리 필요
-new WebSocket("wss://dev.mumulbo.com/api/v1/ws/chat", [], {
-  headers: {
-    Authorization: "Bearer valid-test-token"
-  }
-});
+const token = "valid-test-token";
+const socket = new WebSocket(`wss://dev.mumulbo.com/api/v1/ws/chat?token=${encodeURIComponent(token)}`);
 ```
 
 #### ✅ 요청 메시지 예시 (클라이언트 → 서버)
