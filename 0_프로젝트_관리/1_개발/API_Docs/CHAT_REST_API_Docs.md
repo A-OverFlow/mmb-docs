@@ -1,4 +1,4 @@
-<img width="939" alt="스크린샷 2025-06-21 오후 9 18 43" src="https://github.com/user-attachments/assets/d2203931-d1aa-4ba4-83e2-9bc0e07ad3f5" /># 무물보 API 문서 - Chat Service (개발용)
+무물보 API 문서 - Chat Service (개발용)
 
 **Base URL**: `https://dev.mumulbo.com`
 
