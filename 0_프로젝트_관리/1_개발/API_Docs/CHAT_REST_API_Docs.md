@@ -247,3 +247,5 @@ const socket = new WebSocket(`wss://dev.mumulbo.com/api/v1/ws/chat?token=${encod
 ![w14_ms_chat_test3.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test3.png)
 postman wss프로토콜 사용시 header에 토큰넣는방법
 ![w14_ms_chat_test4.png](..%2F..%2F..%2F9_images%2Fw14_ms_chat_test4.png)
+소켓연결 유지를 위한 ping 연결
+![w16_ms_chat_ping.png](..%2F..%2F..%2F9_images%2Fw16_ms_chat_ping.png)
