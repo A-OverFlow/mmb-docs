@@ -406,17 +406,49 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 [
     {
-        "answerId": 3,
+        "answerId": 5,
         "content": "답변이다냥.",
-        "author": "yuyeon.choe",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
         "status": "ACCEPTED",
+        "createdAt": "2025-05-11T23:26:04.436588",
+        "updatedAt": "2025-05-11T23:26:04.436588"
+    },
+    {
+        "answerId": 4,
+        "content": "다른 답변이다냥2.",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
+        "status": "NOT_ACCEPTED"
+        "createdAt": "2025-05-10T23:26:04.436588",
+        "updatedAt": "2025-05-10T23:26:04.436588"
+    },
+    {
+        "answerId": 3,
+        "content": "다른 답변이다냥.",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
+        "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-09T23:26:04.436588",
         "updatedAt": "2025-05-09T23:26:04.436588"
     },
     {
         "answerId": 2,
-        "content": "다른 답변이다냥2.",
-        "author": "heejaykong",
+        "content": "다른 답변이다냥.",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
         "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-08T23:26:04.436588",
         "updatedAt": "2025-05-08T23:26:04.436588"
@@ -424,7 +456,11 @@ Content-Type: application/json
     {
         "answerId": 1,
         "content": "다른 답변이다냥.",
-        "author": "heejaykong",
+        "author": {
+                "id": 123,
+                "nickname": "yuyeonchoe",
+                "picture": "images/profiles/01JWTWGSHTEM6QRN8VRMJN77YY"
+            },
         "status": "NOT_ACCEPTED"
         "createdAt": "2025-05-07T23:26:04.436588",
         "updatedAt": "2025-05-07T23:26:04.436588"

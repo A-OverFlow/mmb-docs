@@ -227,8 +227,25 @@ const socket = new WebSocket(`wss://dev.mumulbo.com/api/v1/ws/chat?token=${encod
 }
 ```
 
+### 2.7. 소켓 유지용 (WebSocket)
+
+* **설명**: 소켓 연결이 끊기지않도록 PING 을 주기적으로 보내는것을 브로드캐스트 하지 않도록 수정
+* **전송 방식**: WebSocket
+* **메시지 타입**: `PING`
+* **인증**: ✅ `Authorization: Bearer <JWT>`
+
+#### ✅ 요청 메시지 예시 (클라이언트 → 서버)
+
+```json
+{
+  "type": "PING"
+}
+```
+
 ![w14_ms_chat_test1.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test1.png)
 ![w14_ms_chat_test2.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test2.png)
 ![w14_ms_chat_test3.png](..%2F..%2F..%2F9_images%2Fw11_ms_chat_test3.png)
 postman wss프로토콜 사용시 header에 토큰넣는방법
 ![w14_ms_chat_test4.png](..%2F..%2F..%2F9_images%2Fw14_ms_chat_test4.png)
+소켓연결 유지를 위한 ping 연결
+![w16_ms_chat_ping.png](..%2F..%2F..%2F9_images%2Fw16_ms_chat_ping.png)
