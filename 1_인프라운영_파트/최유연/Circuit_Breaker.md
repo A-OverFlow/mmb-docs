@@ -128,4 +128,42 @@ AOP 기반하에 동작하므로 우선순위를 바꿔서 적용하고자 할 �
 aspectOrder 속성 값을 수정하여 적용할 수 있음
 
 
+## 코드 적용
+
+
+```java
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class ExternalServiceExecutor {
+
+    @CircuitBreaker(name = "externalService", fallbackMethod = "fallback")
+    public ServiceResponse callExternalService(ServiceRequest request) {
+        // 실제 외부 API 호출 로직
+        // ...
+        return new ServiceResponse(); // 예시 응답
+    }
+
+    // 기본 fallback
+    private ServiceResponse fallback(ServiceRequest request, Exception exception) {
+        log.warn("Fallback executed due to exception. request: {}", request, exception);
+        return getDefaultResponse(request);
+    }
+
+    // CircuitBreaker가 열렸을 때만 대응하는 fallback
+    private ServiceResponse fallback(ServiceRequest request, CallNotPermittedException exception) {
+        log.warn("[CircuitBreaker: OPEN] Fallback executed. request: {}", request, exception);
+        return getDefaultResponse(request);
+    }
+
+    private ServiceResponse getDefaultResponse(ServiceRequest request) {
+        // 실패 시 반환할 기본 응답 처리 로직
+        return ServiceResponse.failure("Temporary service unavailable");
+    }
+}
+
+```
+
 
