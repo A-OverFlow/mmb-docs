@@ -68,5 +68,64 @@ Resilience4j는 Netflix Hystrix로부터 영감을 받은 함수형 프로그래
 현재는 maintenence 모드로 전환되었고, 대체 모듈로 Resilience4j가 선택되었다.
 참고로, Resilience4j는 Rate Limiter, Retry, Bulkhead, TimeLimiter, Cache등을 수행할 수 있다.
 
+## 코어 모듈
+```
+dependencies {
+  // 1. CircuitBreaker : 장애 전파 방지 기능 제공
+  implementation("io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}")
+  // 2. Retry : 요청 실패 시 재시도 처리 기능 제공
+  implementation("io.github.resilience4j:resilience4j-retry:${resilience4jVersion}")
+  // 3. RateLimiter : 제한치를 넘어서 요청을 거부하거나 Queue 생성하여 처리하는 기능 제공
+  implementation("io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}")
+  // 4. TimeLimiter : 실행 시간제한 설정 기능 제공
+  implementation("io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}")
+  // 5. Bulkhead : 동시 실행 횟수 제한 기능 제공
+  implementation("io.github.resilience4j:resilience4j-bulkhead:${resilience4jVersion}")
+  // 6. Cache : 결과 캐싱 기능 제공
+  implementation("io.github.resilience4j:resilience4j-cache:${resilience4jVersion}")
+}
+```
+
+## 모듈의 우선순위
+
+Retry 모듈이 가장 마지막에 적용된다.
+Retry ( CircuitBreaker ( RateLimiter ( TimeLimiter ( BulkHead ( TargetFunction ) ) ) ) )
+
+
+resilience4j의 CircuitBreakerConfigurationProperties, RetryConfigurationProperties 클래스 내부를 살펴보면,
+CircuitBreaker 와 Retry 의 Order 값이 각각 -3, -4 로
+별도 처리가 없으면, CircuitBreaker 가 Retry 보다 우선으로 적용된다는 것을 알 수 있습니다.
+
+CircuitBreakerConfigurationProperties
+```java
+public class CircuitBreakerConfigurationProperties extends
+    io.github.resilience4j.common.circuitbreaker.configuration.CircuitBreakerConfigurationProperties {
+    private int circuitBreakerAspectOrder = Ordered.LOWEST_PRECEDENCE - 3;
+}
+
+```
+
+RetryConfigurationProperties
+```java
+public class RetryConfigurationProperties extends
+    io.github.resilience4j.common.retry.configuration.RetryConfigurationProperties {
+    private int retryAspectOrder = Ordered.LOWEST_PRECEDENCE - 4;
+}
+```
+
+CircuitBreakerAspect
+```java
+@Aspect
+public class CircuitBreakerAspect implements Ordered {
+   @Override
+    public int getOrder() {
+        return circuitBreakerProperties.getCircuitBreakerAspectOrder();
+    }
+}
+```
+
+AOP 기반하에 동작하므로 우선순위를 바꿔서 적용하고자 할 경우, annotation 방식을 사용하여 layer를 분리하거나
+aspectOrder 속성 값을 수정하여 적용할 수 있음
+
 
 
