@@ -108,17 +108,12 @@ dependencies {
 }
 ```
 
-## 모듈의 우선순위
-
-Retry 모듈이 가장 마지막에 적용된다.
+## 모듈의 우선순위   
+Resilience4j에서 각 모듈은 다음과 같은 데코레이터 구조로 중첩 적용된다.   
 Retry ( CircuitBreaker ( RateLimiter ( TimeLimiter ( BulkHead ( TargetFunction ) ) ) ) )
 
-
+다만, Spring AOP 기반의 실행 우선순위 기준으로는, @Retry의 우선 순위 값이 더 작기 때문에 Retry가 CircuitBreaker보다 먼저 실행된다.   
 resilience4j의 CircuitBreakerConfigurationProperties, RetryConfigurationProperties 클래스 내부를 살펴보면,
-
-CircuitBreaker 와 Retry 의 Order 값이 각각 -3, -4 로
-별도 처리가 없으면, 
-CircuitBreaker 가 Retry 보다 우선으로 적용된다는 것을 알 수 있다.
 
 CircuitBreakerConfigurationProperties
 ```java
