@@ -98,8 +98,10 @@ Retry ( CircuitBreaker ( RateLimiter ( TimeLimiter ( BulkHead ( TargetFunction )
 
 
 resilience4j의 CircuitBreakerConfigurationProperties, RetryConfigurationProperties 클래스 내부를 살펴보면,
+
 CircuitBreaker 와 Retry 의 Order 값이 각각 -3, -4 로
-별도 처리가 없으면, CircuitBreaker 가 Retry 보다 우선으로 적용된다는 것을 알 수 있습니다.
+별도 처리가 없으면, 
+CircuitBreaker 가 Retry 보다 우선으로 적용된다는 것을 알 수 있다.
 
 CircuitBreakerConfigurationProperties
 ```java
