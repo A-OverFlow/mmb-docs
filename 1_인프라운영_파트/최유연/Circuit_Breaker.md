@@ -37,7 +37,7 @@ SW에서 말하는 서킷 브레이커는 서로 다른 시스템 간의 연동 
 
 서킷 브레이커는 상태에 따라 서로 다른 동작을 하는데, 
 
-3가지의 보통 상태(OPEN, CLOSED, HALF_OPEN)와 2가지의 특별한 상태(DISABLED, FORCE_OPEN)을 갖는다.
+3가지의 보통 상태(OPEN, CLOSED, HALF_OPEN)와 2가지의 특별한 상태(DISABLED, FORCE_OPEN)을 갖는다.   
 보통 상태엔
 - OPEN/HALF_OPEN : 문제 발생이 감지됨
 - CLOSED : 정상적으로 호출되고 응답을 줌
