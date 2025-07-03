@@ -50,17 +50,22 @@ SW에서 말하는 서킷 브레이커는 서로 다른 시스템 간의 연동 
 서킷브레이커는 슬라이딩 윈도(sliding window)를 사용하여 상태의 변화여부를 결정한다.
 
 슬라이딩 윈도는 횟수 방식(COUNT_BASED)과 시간 방식(TIME_BASED)으로 나뉜다.
+
 방식에 따라 슬라이딩 윈도 안에서 정해진 확률보다 높은 확률로 호출에 실패하게 되면 상태를 OPEN으로 변경한다.
+
 OPEN 상태에서는 연동된 시스템 호출을 시도하지 않으며, 
 바로 호출 실패 Exception을 발생시키거나 정해진 fallback 동작을 수행한다.
 
 OPEN 이후 설정한 시간이 지나면 HALF_OPEN 상태로 변경되며, 
-호출이 정상화되었는지 다시한번 실패 확률로 확인합니다. 정상화되었다고 판단되면, 
+호출이 정상화되었는지 다시한번 실패 확률로 확인한다.
+
+정상화되었다고 판단되면, 
 CLOSED 상태로 변경되며, 아직 정상화되지 못했다고 판단되면 다시 OPEN 상태로 되돌아 간다.
 <img width="479" alt="image" src="https://github.com/user-attachments/assets/9e113226-5638-4ae1-911a-652046903fde" />
 
 # Resilience4j
 애플리케이션 레벨에서 서킷브레이크 구현에는 Resilience4j를 사용한다.
+
 Resilience4j는 Netflix Hystrix로부터 영감을 받은 함수형 프로그래밍으로 설계된, 경량의 내결함성 라이브러리이다.
 
 함수형 프로그래밍으로 설계가 되어서 functional interface, lambda, method reference 등을 활용하여 구현이 가능하다.
