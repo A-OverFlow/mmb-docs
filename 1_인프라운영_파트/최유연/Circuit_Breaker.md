@@ -169,6 +169,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExternalServiceExecutor {
 
+    // name = "externalService" : 설정 파일에서 이 이름으로 서킷 설정을 찾음
+    // fallbackMethod = "fallback" : 호출 실패 시 실행할 대체 메서드 지정
     @CircuitBreaker(name = "externalService", fallbackMethod = "fallback")
     public ServiceResponse callExternalService(ServiceRequest request) {
         // 실제 외부 API 호출 로직
@@ -176,18 +178,26 @@ public class ExternalServiceExecutor {
         return new ServiceResponse(); // 예시 응답
     }
 
+
     // 기본 fallback
+    // 일반적인 모든 예외를 처리하는 fallback
+    // 외부 시스템에서 타임아웃, 연결 실패, 런타임 예외 등 어떤 예외가 발생하든 이 메서드로 fallback 가능.
     private ServiceResponse fallback(ServiceRequest request, Exception exception) {
         log.warn("Fallback executed due to exception. request: {}", request, exception);
         return getDefaultResponse(request);
     }
 
     // CircuitBreaker가 열렸을 때만 대응하는 fallback
+    // 서킷 브레이커가 Open 상태일때만 호출됨
+    // "너무 자주 실패해서 이제 호출 자체를 차단 중이야"라는 상황을 의미
+    // 실무에서는 이 fallback에만 특별한 메시지를 넣거나 모니터링 알람을 걸기도 함
     private ServiceResponse fallback(ServiceRequest request, CallNotPermittedException exception) {
         log.warn("[CircuitBreaker: OPEN] Fallback executed. request: {}", request, exception);
         return getDefaultResponse(request);
     }
 
+    // fallback 메서드들에서 공통으로 쓰이는 기본 응답 생성 메서드
+    // 실패했지만 사용자에게는 최소한의 안내 메시지를 주기 위한 용도   
     private ServiceResponse getDefaultResponse(ServiceRequest request) {
         // 실패 시 반환할 기본 응답 처리 로직
         return ServiceResponse.failure("Temporary service unavailable");
@@ -195,5 +205,14 @@ public class ExternalServiceExecutor {
 }
 
 ```
+   
+예외별 fallback 오버로딩을 처리 : Exception vs CallNotPermittedException   
+응답 일관성 확보 : 모든 실패 상황에서도 ServiceResponse.failure(...)로 응답 포맷 유지   
+비즈니스 로직 분리 : 외부 호출/대응 분리로 구조 명확   
+설정 파일 연동 :  externalService 이름으로 yml 에서 설정 가능 (silidingWindowSize, failureRateThreshold 등)   
 
+# 무물보에서 쓰려면...
+- @CircuitBreaker 어노테이션을 활용해 실패 감시 + 차단 + fallback 적용
+- 예외별로 fallback 메소드를 오버로딩해서 정교하게 제어
+- 응답 포맷이나 로깅도 통일성 있게 구성
 
